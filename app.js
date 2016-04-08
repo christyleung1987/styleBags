@@ -4,15 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var fontKey = require('./key');
 
+var flash = require('connect-flash');
+var ejsLayouts = require("express-ejs-layouts");
+var session = require('express-session');
+var methodOverride = require('method-override');
+var passport = require('passport');
+
+var mongoose = require('mongoose');
+mongoose.connect(process.env.DB_CONN_STYLE_BAGS);
+
 var app = express();
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +32,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect(process.env.DB_CONN_STYLE_BAGS);
+// PASSPORT AUTHENTICATION
+// every view automatically uses flash
+app.use(flash());
+//every view automatically uses ejsLayouts, reusable headers & footers
+app.use(ejsLayouts);
+// encrypts cookie using this secret; use express.session() before passport.session() to ensure that the login session is restored in the correct order
+app.use(session({ secret: 'STYLEBAGS-EXPRESS-AUTH' }));
+// passport.initialize() middleware is required to initialize Passport.
+app.use(passport.initialize());
+// If your application uses persistent login sessions, passport.session()
+app.use(passport.session());
+// Set Passport configuration
+require('./config/passport')(passport);
+app.use(methodOverride(function(request, response) {
+  if(request.body && typeof request.body === 'object' && '_method' in request.body) {
+    var method = request.body._method;
+    delete request.body._method;
+    return method;
+  }
+}));
+// allow global access to currentUser variable, this must be after require passport
+app.use(function(req, res, next) {
+  global.currentUser = req.user;
+  next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
