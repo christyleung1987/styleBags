@@ -22,13 +22,17 @@ $(function() {
     $(this).parent().hide();
     randomColors(6);
     console.log(colors[0]);
+    console.log(`"background-color", "rgb(150,200,100)"`);
+    console.log('background-color', `${colors[1]}`);
+    console.log('background-color', 'red');
+    console.log(`'background-color', '${colors[2]}'`);
     $('#generator').css('display', 'block');
-    $('#color1').css(`"background-color": "$rgb(150,200,100)"`)
-    $('#color2').css(`"background-color": "${colors[1]}"`)
-    $('#color3').css(`"background-color": "${colors[2]}"`)
-    $('#color4').css(`"background-color": "${colors[3]}"`)
-    $('#color5').css(`"background-color": "${colors[4]}"`)
-    $('#color6').css(`"background-color": "${colors[5]}"`)
+    $('#color1').css('background-color', `${colors[0]}`);
+    $('#color2').css('background-color', `${colors[1]}`);
+    $('#color3').css('background-color', `${colors[2]}`);
+    $('#color4').css('background-color', `${colors[3]}`);
+    $('#color5').css('background-color', `${colors[4]}`);
+    $('#color6').css('background-color', `${colors[5]}`);
   });
 
   $('h1').on('click', function(){
