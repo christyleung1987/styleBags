@@ -1,4 +1,5 @@
 $(function() {
+
 // COLOR GENERATOR
   function randomColor(){
     var red = Math.floor(Math.random()*256);
@@ -7,7 +8,6 @@ $(function() {
     var color = `rgb(${red}, ${green}, ${blue})`;
     return color;
   }
-
   var colors = [];
 
   function randomColors(num){
@@ -39,6 +39,18 @@ $(function() {
     $('#generator').css('display', 'none');
     $('#landing').show();
   });
-//  FONTS GENERATOR
+
+  // SET COLOR SWATCH HEIGHT
+  //Runs on document load & on resize
+  $(window).resize(function() {
+    var swatchQuantity = $('.color-swatch').length;
+    //50 is padding on #generator
+    var totalSwatchHeight = $(window).height() - $('header').height() - 50;
+    var singleSwatchHeight = totalSwatchHeight / swatchQuantity;
+    $('.color-swatch').css('height', singleSwatchHeight+'px');
+  }).resize();
+
+
+  // FONTS GENERATOR
 
 });

@@ -9,21 +9,26 @@
     <script src="/javascripts/main.js" type="text/javascript" charset="utf-8" async defer></script>
   </head>
   <body>
-    <header>
+
+    <header class="container-fluid">
       <h1>StyleBags</h1>
       <ul>
         <li>Sign Up</li>
         <li>Sign In with Facebook</li>
       </ul>
     </header>
-    <section id="landing">
-      <p>Info about how the app works</p>
+
+    <section id="landing" class="container">
+      <h1>StyleBags</h1>
+      <p>Cupcake ipsum dolor sit amet soufflé sesame snaps macaroon. Donut bonbon biscuit brownie. Marzipan jelly beans oat cake candy canes caramels chocolate bar.</p>
+      <p>Bonbon pudding I love. Powder jelly beans soufflé sugar plum pastry I love. Candy soufflé ice cream halvah brownie icing.</p>
       <button id="start">START</button>
       <a href="https://www.googleapis.com/webfonts/v1/webfonts?key="></a>
     </section>
 
-    <section id="generator">
-      <div id="colors">
+    <section id="generator" class="container-fluid">
+      <div class="row">
+      <div id="colors" class="col-xs-12 col-md-6">
         <div id="color-generator">
           <div class="color-swatch" id="color1">
             <p>test</p>
@@ -44,11 +49,14 @@
             <p>test</p>
           </div>
         </div>
-        <div id="gallery">
+        <div id="gallery" class="col-xs-12 col-md-6">
+          display 2 newest colorBags && 4 random ones
         </div>
       </div>
-      <div id="fonts">
+      <div id="fonts" class="col-xs-12 col-md-6">
+        Random fonts here
       </div>
+    </div>
     </section>
 
   </body>
