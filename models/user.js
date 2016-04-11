@@ -5,12 +5,8 @@ var userSchema = new mongoose.Schema({
   local : {
     //username: {unique: true},
     email: {type: String},
-<<<<<<< HEAD
-    password: {type: String}
-=======
     password: {type: String},
     facebookId: {type: Number}
->>>>>>> 0c3bf39e0570eb4e706f0925f16e2f36ed148a14
   }
 
 });
