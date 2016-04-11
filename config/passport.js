@@ -1,4 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('../models/user');
 
 module.exports = function(passport) {
@@ -38,20 +39,33 @@ module.exports = function(passport) {
     });
   }));
 
-  passport.use('local-login', new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true
-  }, function(req, email, password, done) {
+    passport.use('local-login', new LocalStrategy({
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true
+    }, function(req, email, password, done) {
 
-    // Search for a use with this email
-    User.findOne({ 'local.email': email }, function(err, user) {
-      if (err) return done(err);
-      // If no user is found
-      if (!user) return done(null, false, req.flash('errorMessage', 'No user found.'));
-      // Check if the password is correct
-      if (!user.validPassword(password)) return done(null, false, req.flash('errorMessage', 'Oops wrong password!'));
-      return done(null, user);
-    });
-  }));
+      // Search for a use with this email
+      User.findOne({ 'local.email': email }, function(err, user) {
+        if (err) return done(err);
+        // If no user is found
+        if (!user) return done(null, false, req.flash('errorMessage', 'No user found.'));
+        // Check if the password is correct
+        if (!user.validPassword(password)) return done(null, false, req.flash('errorMessage', 'Oops wrong password!'));
+        return done(null, user);
+      });
+    }));
+
+  //FACEBOOK PASSPORT STRATEGY
+  passport.use(new FacebookStrategy({
+      clientID: '224660214563132',
+      clientSecret: '32a4d611f1fd27f1dd11f8ba3f0aa7c1',
+      callbackURL: "http://localhost:3000/auth/facebook/callback"
+    },
+    function(accessToken, refreshToken, profile, cb) {
+      User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+        return cb(err, user);
+      });
+    }
+  ));
 }

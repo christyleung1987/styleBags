@@ -6,6 +6,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <!-- SCRIPTS -->
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript" async defer></script>
     <script src="/javascripts/main.js" type="text/javascript" charset="utf-8" async defer></script>
   </head>
   <body>
@@ -29,6 +30,27 @@
     <section id="generator" class="container-fluid">
       <div class="row">
       <div id="colors" class="col-xs-12 col-md-6">
+      <form>
+        How many colors do you need?(3-6)
+        <input id="color-number" value="6"/>
+        <button type="button" id="color-ammt">Submit</button>
+      </form>
+      <!-- <div>
+        <div class="col-lg-6">
+            <div class="input-group">
+              <input type="text" class="form-control" aria-label="..." placeholder="How any colors do you need?">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose<span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                </ul>
+              </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
         <div id="color-generator">
           <div class="color-swatch" id="color1">
             <p>test</p>

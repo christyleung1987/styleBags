@@ -61,6 +61,16 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 
+//FACEBOOK AUTHENTICATION
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/auth/facebook/' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
