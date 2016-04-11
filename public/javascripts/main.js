@@ -48,8 +48,19 @@ $(function() {
 
 
 //  FONTS GENERATOR
+  function fontGenerator(){
+    var fonts = [];
+    fonts.push($('#fontsArray').val());
+    var fonts = fonts[0].toString();
+    var fontsArray = fonts.split(",");
+    var fontFamily1 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
+    var fontFamily2 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
+    var fontFamily3 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
 
-  // var fontTypes;
+    var fontFamily1Plus = fontFamily1.replace(/ /g, "+");
+    var fontFamily2Plus = fontFamily2.replace(/ /g, "+");
+    var fontFamily3Plus = fontFamily3.replace(/ /g, "+");
+  }
 
 
 
@@ -66,6 +77,7 @@ $(function() {
         colorsGenerator();
         $('#save-colors').val(colors);
       } else if (keys[40] && keys[70]) {
+        fontGenerator();
         console.log("f and down arrow pressed");
       }
     }
