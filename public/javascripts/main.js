@@ -22,12 +22,12 @@ $(function() {
 
   function colorsGenerator(){
     randomColors(num);
-    $('#color1').css('background-color', `${colors[0]}`);
-    $('#color2').css('background-color', `${colors[1]}`);
-    $('#color3').css('background-color', `${colors[2]}`);
-    $('#color4').css('background-color', `${colors[3]}`);
-    $('#color5').css('background-color', `${colors[4]}`);
-    $('#color6').css('background-color', `${colors[5]}`);
+      $('#color1').css('background-color', `${colors[0]}`);
+      $('#color2').css('background-color', `${colors[1]}`);
+      $('#color3').css('background-color', `${colors[2]}`);
+      $('#color4').css('background-color', `${colors[3]}`);
+      $('#color5').css('background-color', `${colors[4]}`);
+      $('#color6').css('background-color', `${colors[5]}`);
   }
 
   // COLOR Generator jQuery
@@ -62,6 +62,14 @@ $(function() {
     var fontFamily1Plus = fontFamily1.replace(/ /g, "+");
     var fontFamily2Plus = fontFamily2.replace(/ /g, "+");
     var fontFamily3Plus = fontFamily3.replace(/ /g, "+");
+
+    $('#fontsLink').html(`<link href='https://fonts.googleapis.com/css?family=${fontFamily2Plus}:400,400italic,700|${fontFamily1Plus}:400,400italic,700|${fontFamily3Plus}:400,400italic,700' rel='stylesheet' type='text/css'>`);
+    $('article:nth-of-type(1)').css('font-family', `${fontFamily1}`);
+    $('article:nth-of-type(2)').css('font-family', `${fontFamily2}`);
+    $('article:nth-of-type(3)').css('font-family', `${fontFamily3}`);
+    $('article:nth-of-type(1) h1').html(`${fontFamily1}`);
+    $('article:nth-of-type(2) h1').html(`${fontFamily2}`);
+    $('article:nth-of-type(3) h1').html(`${fontFamily3}`);
   }
 
 
