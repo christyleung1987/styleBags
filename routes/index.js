@@ -39,8 +39,6 @@ router.get('/', authenticatedUser, function(req, res, next) {
       res.render('index', { title: 'Express', fonts: fontTypes, fontFamily1: fontFamily1, fontFamily2: fontFamily2, fontFamily3: fontFamily3, fontFamily1Plus: fontFamily1Plus, fontFamily2Plus: fontFamily2Plus, fontFamily3Plus: fontFamily3Plus});
     }
   })
-
-
 });
 
 /* GET /signup */
