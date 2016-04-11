@@ -3,7 +3,7 @@
   <head>
     <title>StyleBags App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link href='https://fonts.googleapis.com/css?family=<%=fontFamily1Plus%>|<%=fontFamily2Plus%>|<%=fontFamily3Plus%>' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=<%=fontFamily1Plus%>:400,400italic,700|<%=fontFamily2Plus%>:400,400italic,700|<%=fontFamily3Plus%>:400,400italic,700' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
@@ -65,9 +65,15 @@
         </div>
       </div>
       <div id="fonts" class="col-xs-12 col-md-6">
-        <p style="font-family:<%=fontFamily1%>;"><%= fontFamily1 %></p>
-        <p style="font-family:<%=fontFamily2%>;"><%= fontFamily2 %></p>
-        <p style="font-family:<%=fontFamily3%>;"><%= fontFamily3 %></p>
+        <h1 style="font-family:<%=fontFamily1%>;"><%= fontFamily1 %></h2>
+          <p><i>italicized goodness</i></p>
+          <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
+        <h1 style="font-family:<%=fontFamily2%>;"><%= fontFamily2 %></h2>
+          <p><i>italicized goodness</i></p>
+          <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
+        <h1 style="font-family:<%=fontFamily3%>;"><%= fontFamily3 %></h2>
+          <p><i>italicized goodness</i></p>
+          <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </div>
     </div>
     </section>

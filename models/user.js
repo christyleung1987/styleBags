@@ -6,7 +6,7 @@ var userSchema = new mongoose.Schema({
     //username: {unique: true},
     email: {type: String},
     password: {type: String},
-    facebookId: {type: Number, unique: true}
+    facebookId: {type: Number}
   }
 });
 
