@@ -36,7 +36,7 @@ router.get('/', authenticatedUser, function(req, res, next) {
       var fontFamily1Plus = fontFamily1.replace(/ /g, "+");
       var fontFamily2Plus = fontFamily2.replace(/ /g, "+");
       var fontFamily3Plus = fontFamily3.replace(/ /g, "+");
-      res.render('index', { title: 'Express', fontFamily1: fontFamily1, fontFamily2: fontFamily2, fontFamily3: fontFamily3, fontFamily1Plus: fontFamily1Plus, fontFamily2Plus: fontFamily2Plus, fontFamily3Plus: fontFamily3Plus});
+      res.render('index', { title: 'Express', fonts: fontTypes, fontFamily1: fontFamily1, fontFamily2: fontFamily2, fontFamily3: fontFamily3, fontFamily1Plus: fontFamily1Plus, fontFamily2Plus: fontFamily2Plus, fontFamily3Plus: fontFamily3Plus});
     }
   })
 });
@@ -77,5 +77,29 @@ router.get('/logout', function(req, res, next) {
   req.logout();
   res.redirect("/");
 });
+
+// /* POST /colorbags */
+
+// var ColorBag = require('../models/colorBag');
+
+// router.post('/colorbags', function(req, res, next) {
+//   var name = req.body.colorsName;
+//   var rgbs = req.body.colorsRgbs;
+//   var userId = req.body.userId
+
+//   var newColorBag = ColorBag({
+//     name: name,
+//     rgbs: rgbs,
+//     userId: userId,
+//     createdAt: new Date()
+//   });
+
+//   // Save the color bag
+//   newColorBag.save(function(err, colorBag) {
+//       if (err) console.log(err);
+
+//       res.json(colorBag);
+//   });
+// });
 
 module.exports = router;

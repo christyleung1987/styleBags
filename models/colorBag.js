@@ -10,4 +10,3 @@ var colorBagSchema = new mongoose.Schema({
 var ColorBag = new mongoose.model('Color', colorBagSchema);
 
 module.exports = ColorBag;
-
