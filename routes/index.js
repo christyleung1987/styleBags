@@ -28,10 +28,14 @@ router.get('/', authenticatedUser, function(req, res, next) {
       data.items.forEach(function(item) {
         fontTypes.push(item.family);
       });
-      var num=Math.floor(Math.random()*fontTypes.length);
-      var num2=Math.floor(Math.random()*fontTypes.length);
-      var num3=Math.floor(Math.random()*fontTypes.length);
-      res.render('index', { title: 'Express', fontTypes: fontTypes, num: num, num2: num2, num3: num3});
+      var fontFamily1 = fontTypes[Math.floor(Math.random()*fontTypes.length)];
+      var fontFamily2 = fontTypes[Math.floor(Math.random()*fontTypes.length)];
+      var fontFamily3 = fontTypes[Math.floor(Math.random()*fontTypes.length)];
+
+      var fontFamily1Plus = fontFamily1.replace(/ /g, "+");
+      var fontFamily2Plus = fontFamily2.replace(/ /g, "+");
+      var fontFamily3Plus = fontFamily3.replace(/ /g, "+");
+      res.render('index', { title: 'Express', fontFamily1: fontFamily1, fontFamily2: fontFamily2, fontFamily3: fontFamily3, fontFamily1Plus: fontFamily1Plus, fontFamily2Plus: fontFamily2Plus, fontFamily3Plus: fontFamily3Plus});
     }
   })
 
@@ -76,5 +80,3 @@ router.get('/logout', function(req, res, next) {
 });
 
 module.exports = router;
-
-

@@ -3,9 +3,10 @@
   <head>
     <title>StyleBags App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=<%=fontFamily1Plus%>|<%=fontFamily2Plus%>|<%=fontFamily3Plus%>' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <!-- SCRIPTS -->
-    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript" async defer></script>
     <script src="/javascripts/main.js" type="text/javascript" charset="utf-8" async defer></script>
   </head>
@@ -35,22 +36,6 @@
         <input id="color-number" value="6"/>
         <button type="button" id="color-ammt">Submit</button>
       </form>
-      <!-- <div>
-        <div class="col-lg-6">
-            <div class="input-group">
-              <input type="text" class="form-control" aria-label="..." placeholder="How any colors do you need?">
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose<span class="caret"></span></button>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">6</a></li>
-                </ul>
-              </div><!-- /btn-group -->
-            </div><!-- /input-group -->
-          </div><!-- /.col-lg-6 -->
-        </div>
         <div id="color-generator">
           <div class="color-swatch" id="color1">
             <p>test</p>
@@ -76,16 +61,13 @@
         </div>
       </div>
       <div id="fonts" class="col-xs-12 col-md-6">
-        <p><%= fontTypes[num] %></p>
-        <p><%= fontTypes[num2] %></p>
-        <p><%= fontTypes[num3] %></p>
+        <p style="font-family:<%=fontFamily1%>;"><%= fontFamily1 %></p>
+        <p style="font-family:<%=fontFamily2%>;"><%= fontFamily2 %></p>
+        <p style="font-family:<%=fontFamily3%>;"><%= fontFamily3 %></p>
       </div>
     </div>
     </section>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"> </script>
-    <script>
-      // $('#fontfamily').css('font-family', fontTypes[num]);
-      </script>
 
   </body>
 </html>
