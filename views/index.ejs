@@ -56,9 +56,10 @@
             <p>test</p>
           </div>
           <div>
-            <form id="color-scheme">
-              <input id="save-colors" type="text"/>
-              <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+            <form id="color-scheme" action="/colorbags" method="post">
+            <input type="text" name="colorsName" placeholder="Name your new color bag"/>
+              <input id="save-colors" name="colorsRgbs" type="hidden"/>
+              <input type="hidden" name="userId" value="<%=global.currentUser.id%>"/>
               <button>Save</button>
             </form>
           </div>

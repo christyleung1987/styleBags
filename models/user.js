@@ -6,6 +6,7 @@ var userSchema = new mongoose.Schema({
     //username: {unique: true},
     email: {type: String},
     password: {type: String},
+    colorbags: [{ type: userSchema.Types.ObjectId, ref: 'colorbags' }],
     facebookId: {type: Number, unique: true}
   }
 });
