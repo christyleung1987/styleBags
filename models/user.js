@@ -20,15 +20,11 @@ userSchema.methods.validPassword = function(password) {
 
 userSchema.statics.findOrCreate = function findOrCreate(profile, cb){
   var userObj = new this();
-  this.findOne({_id : profile.id},function(err,result){
+  this.findOne({'local.facebookId' : profile.facebookId},function(err,result){
     if(!result) {
-      console.log(profile);
-      console.log(profile.facebookId);
-      userObj.facebookId = profile.facebookId;
+      userObj.local.facebookId = profile.facebookId;
       userObj.save(cb);
-      console.log(userObj);
     } else {
-      console.log("#2")
       cb(err,result);
     }
   });
