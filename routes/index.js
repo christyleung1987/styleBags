@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport')
 var router = express.Router();
+var request = require('request');
 
 function authenticatedUser(req, res, next) {
   // If the user is authenticated, then we can continue with next
@@ -20,7 +21,21 @@ function unAuthenticatedUser(req, res, next) {
 
 /* GET home page. */
 router.get('/', authenticatedUser, function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  request('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCFs8d81WezJEYRo-tXbyc2FBx6mp3Vvs0', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var data = JSON.parse(body);
+      var fontTypes = [];
+      data.items.forEach(function(item) {
+        fontTypes.push(item.family);
+      });
+      var num=Math.floor(Math.random()*fontTypes.length);
+      var num2=Math.floor(Math.random()*fontTypes.length);
+      var num3=Math.floor(Math.random()*fontTypes.length);
+      res.render('index', { title: 'Express', fontTypes: fontTypes, num: num, num2: num2, num3: num3});
+    }
+  })
+
+
 });
 
 /* GET /signup */

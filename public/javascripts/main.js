@@ -44,6 +44,16 @@ $(function() {
     $('#landing').show();
   });
 
+
+
+//  FONTS GENERATOR
+
+  // var fontTypes;
+
+
+
+  // console.log(fontTypes);
+
   // //C & DOWN, F & DOWN KEYPRESSES
   var keys = {67: false, 70: false, 40: false};
   $(document).keydown(function(e) {
@@ -97,6 +107,7 @@ $(function() {
     }
   });
 
+
   // SET COLOR SWATCH HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
@@ -107,7 +118,5 @@ $(function() {
     $('.color-swatch').css('height', singleSwatchHeight+'px');
   }).resize();
 
-
-  // FONTS GENERATOR
 
 });

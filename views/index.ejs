@@ -24,7 +24,7 @@
       <p>Cupcake ipsum dolor sit amet soufflé sesame snaps macaroon. Donut bonbon biscuit brownie. Marzipan jelly beans oat cake candy canes caramels chocolate bar.</p>
       <p>Bonbon pudding I love. Powder jelly beans soufflé sugar plum pastry I love. Candy soufflé ice cream halvah brownie icing.</p>
       <button id="start">START</button>
-      <a href="https://www.googleapis.com/webfonts/v1/webfonts?key="></a>
+      <a href="https://www.googleapis.com/webfonts/v1/webfonts?key=" + fontKey ></a>
     </section>
 
     <section id="generator" class="container-fluid">
@@ -81,10 +81,16 @@
         </div>
       </div>
       <div id="fonts" class="col-xs-12 col-md-6">
-        Random fonts here
+        <p><%= fontTypes[num] %></p>
+        <p><%= fontTypes[num2] %></p>
+        <p><%= fontTypes[num3] %></p>
       </div>
     </div>
     </section>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"> </script>
+    <script>
+      // $('#fontfamily').css('font-family', fontTypes[num]);
+      </script>
 
   </body>
 </html>
