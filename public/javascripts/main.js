@@ -40,6 +40,23 @@ $(function() {
     $('#landing').show();
   });
 
+  //C & DOWN, F & DOWN KEYPRESSES
+  var keys = {67: false, 70: false, 40: false};
+  $(document).keydown(function(e) {
+    if (e.keyCode in keys) {
+      keys[e.keyCode] = true;
+      if (keys[40] && keys[67]) {
+        console.log("c and down arrow pressed");
+      } else if (keys[40] && keys[70]) {
+        console.log("f and down arrow pressed");
+      }
+    }
+  }).keyup(function(e) {
+    if (e.keyCode in keys) {
+      keys[e.keyCode] = false;
+    }
+  });
+
   // SET COLOR SWATCH HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
