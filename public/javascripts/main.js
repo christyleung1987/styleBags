@@ -69,16 +69,16 @@ $(function() {
   // console.log(fontTypes);
 
   // //C & DOWN, F & DOWN KEYPRESSES
-  var keys = {67: false, 70: false, 40: false};
+  var keys = {67: false, 70: false, 39: false};
   $(document).keydown(function(e) {
     if (e.keyCode in keys) {
       keys[e.keyCode] = true;
-      if (keys[40] && keys[67]) {
+      if (keys[39] && keys[67]) {
         console.log("c and down arrow pressed");
         colors = [];
         colorsGenerator();
         $('#save-colors').val(colors);
-      } else if (keys[40] && keys[70]) {
+      } else if (keys[39] && keys[70]) {
         fontGenerator();
         console.log("f and down arrow pressed");
       }
