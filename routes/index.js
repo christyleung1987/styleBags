@@ -1,6 +1,13 @@
 var express = require('express');
 var passport = require('passport')
 var router = express.Router();
+var request = require('request');
+
+request('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCFs8d81WezJEYRo-tXbyc2FBx6mp3Vvs0', function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body)
+  }
+})
 
 function authenticatedUser(req, res, next) {
   // If the user is authenticated, then we can continue with next

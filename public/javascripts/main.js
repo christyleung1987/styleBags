@@ -30,5 +30,9 @@ $(function() {
   });
 
 //  FONTS GENERATOR
+  var fontType = [.family];
+  var num;
+  num=Math.floor(Math.random()*3);
+  document.getElementById("fontfamily").style.fontFamily =fontType[num];
 
 });
