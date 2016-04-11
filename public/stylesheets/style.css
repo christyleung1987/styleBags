@@ -5,6 +5,10 @@ header {
   background-color: #1e1e1e;
   color: #e6e6e6; }
 
+#fblogin {
+  width: 150px !important;
+  height: auto; }
+
 #gallery {
   display: none; }
 
