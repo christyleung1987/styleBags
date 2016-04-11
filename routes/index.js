@@ -3,6 +3,7 @@ var passport = require('passport')
 var router = express.Router();
 var request = require('request');
 
+
 function authenticatedUser(req, res, next) {
   // If the user is authenticated, then we can continue with next
   // https://github.com/jaredhanson/passport/blob/a892b9dc54dce34b7170ad5d73d8ccfba87f4fcf/lib/passport/http/request.js#L74
@@ -28,10 +29,14 @@ router.get('/', authenticatedUser, function(req, res, next) {
       data.items.forEach(function(item) {
         fontTypes.push(item.family);
       });
-      var num=Math.floor(Math.random()*fontTypes.length);
-      var num2=Math.floor(Math.random()*fontTypes.length);
-      var num3=Math.floor(Math.random()*fontTypes.length);
-      res.render('index', { title: 'Express', fontTypes: fontTypes, num: num, num2: num2, num3: num3});
+      var fontFamily1 = fontTypes[Math.floor(Math.random()*fontTypes.length)];
+      var fontFamily2 = fontTypes[Math.floor(Math.random()*fontTypes.length)];
+      var fontFamily3 = fontTypes[Math.floor(Math.random()*fontTypes.length)];
+
+      var fontFamily1Plus = fontFamily1.replace(/ /g, "+");
+      var fontFamily2Plus = fontFamily2.replace(/ /g, "+");
+      var fontFamily3Plus = fontFamily3.replace(/ /g, "+");
+      res.render('index', { title: 'Express', fontFamily1: fontFamily1, fontFamily2: fontFamily2, fontFamily3: fontFamily3, fontFamily1Plus: fontFamily1Plus, fontFamily2Plus: fontFamily2Plus, fontFamily3Plus: fontFamily3Plus});
     }
   })
 });
@@ -74,5 +79,3 @@ router.get('/logout', function(req, res, next) {
 });
 
 module.exports = router;
-
-
