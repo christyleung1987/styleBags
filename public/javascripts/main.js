@@ -42,14 +42,12 @@ $(function() {
 
 
 //  FONTS GENERATOR
-  module.exports = ()
+
+  // var fontTypes;
 
 
-  var fontType;
-  var num;
-  num=Math.floor(Math.random()*3);
-  document.getElementById("fontfamily").style.fontFamily =fontType[num];
 
+  // console.log(fontTypes);
 
   // SET COLOR SWATCH HEIGHT
   //Runs on document load & on resize
