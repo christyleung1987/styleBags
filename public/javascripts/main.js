@@ -42,7 +42,10 @@ $(function() {
 
 
 //  FONTS GENERATOR
-  var fontType = [.family];
+  module.exports = ()
+
+
+  var fontType;
   var num;
   num=Math.floor(Math.random()*3);
   document.getElementById("fontfamily").style.fontFamily =fontType[num];

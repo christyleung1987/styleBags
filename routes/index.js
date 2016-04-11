@@ -5,7 +5,12 @@ var request = require('request');
 
 request('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCFs8d81WezJEYRo-tXbyc2FBx6mp3Vvs0', function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    console.log(body)
+    var data = JSON.parse(body);
+    var fontType = [];
+    data.items.forEach(function(item) {
+      fontType.push(item.family);
+    });
+    console.log(fontType);
   }
 })
 
