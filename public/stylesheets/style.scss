@@ -1,6 +1,6 @@
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 header {
@@ -28,4 +28,12 @@ header {
 
 a {
   color: #00B7FF;
+}
+
+#fonts {
+  font-size: 1.2em;
+
+  article:not(:last-child) {
+    margin-bottom: 60px;
+  }
 }

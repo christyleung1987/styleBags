@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 header {
   background-color: #1e1e1e;
@@ -22,5 +22,10 @@ header {
 
 a {
   color: #00B7FF; }
+
+#fonts {
+  font-size: 1.2em; }
+  #fonts article:not(:last-child) {
+    margin-bottom: 60px; }
 
 /*# sourceMappingURL=style.css.map */
