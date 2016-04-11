@@ -107,11 +107,12 @@ $(function() {
     }
   });
 
+  module.exports = colors;
 
   // SET COLOR SWATCH HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
-    var swatchQuantity = $('.color-swatch').length;
+    var swatchQuantity = colors.length;
     //50 is padding on #generator
     var totalSwatchHeight = $(window).height() - $('header').height() - 50;
     var singleSwatchHeight = totalSwatchHeight / swatchQuantity;
