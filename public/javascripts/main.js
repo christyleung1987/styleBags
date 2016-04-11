@@ -1,5 +1,4 @@
 $(function() {
-
 // COLOR GENERATOR functions
   function randomColor(){
     var red = Math.floor(Math.random()*256);
