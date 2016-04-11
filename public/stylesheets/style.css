@@ -1,48 +1,31 @@
-
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 header {
-  background-color: rgb(30,30,30);
-  color: rgb(230,230,230);
-}
+  background-color: #1e1e1e;
+  color: #e6e6e6; }
 
 #gallery {
-  display: none;
-}
+  display: none; }
 
 #landing {
-  background: #39A2AE;
+  background: #39A2AE; }
 
-}
 #generator {
   background: #CC998D;
   padding: 25px;
-  display: none;
-}
-  .color-swatch{
-    width: 100%;
-    margin: 0;
-  }
-  #color1{
-    background-color: rgb(200,200,200);
-  }
-  #color2{
-    background-color: rgb(117,98,230);
-  }
-  #color3{
-    background-color: rgb(98,117,230);
-  }
-  #color4{
-    background-color: rgb(230,98,117);
-  }
-  #color5{
-    background-color: rgb(98,117,230);
-  }
-  #color6{
-    background-color: rgb(98,98,117);
-  }
+  display: none; }
+
+.color-swatch {
+  width: 100%;
+  margin: 0; }
+
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
+
+#fonts {
+  font-size: 1.2em; }
+  #fonts article:not(:last-child) {
+    margin-bottom: 60px; }
+
+/*# sourceMappingURL=style.css.map */

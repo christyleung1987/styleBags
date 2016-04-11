@@ -3,7 +3,7 @@
   <head>
     <title>StyleBags App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link href='https://fonts.googleapis.com/css?family=<%=fontFamily1Plus%>|<%=fontFamily2Plus%>|<%=fontFamily3Plus%>' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=<%=fontFamily1Plus%>:400,400italic,700|<%=fontFamily2Plus%>:400,400italic,700|<%=fontFamily3Plus%>:400,400italic,700' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
@@ -30,16 +30,40 @@
 
     <section id="generator" class="container-fluid">
       <div class="row">
-      <div id="colors" class="col-xs-12 col-md-6">
-      <form>
-        How many colors do you need?(3-6)
-        <input id="color-number" value="6"/>
-        <button type="button" id="color-ammt">Submit</button>
-      </form>
-        <div id="color-generator">
-          <div class="color-swatch" id="color1">
-            <p>test</p>
+        <div id="colors" class="col-xs-12 col-md-6">
+        <form>
+          How many colors do you need?(3-6)
+          <input id="color-number" value="6"/>
+          <button type="button" id="color-ammt">Submit</button>
+        </form>
+          <div id="color-generator">
+            <div class="color-swatch" id="color1">
+              <p>test</p>
+            </div>
+            <div class="color-swatch" id="color2">
+              <p>test</p>
+            </div>
+            <div class="color-swatch" id="color3">
+              <p>test</p>
+            </div>
+            <div class="color-swatch" id="color4">
+              <p>test</p>
+            </div>
+            <div class="color-swatch" id="color5">
+              <p>test</p>
+            </div>
+            <div class="color-swatch" id="color6">
+              <p>test</p>
+            </div>
+            <div>
+              <form id="color-scheme">
+                <input id="save-colors" type="text"/>
+                <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+                <button>Save</button>
+              </form>
+            </div>
           </div>
+<<<<<<< HEAD
           <div class="color-swatch" id="color2">
             <p>test</p>
           </div>
@@ -62,18 +86,30 @@
               <input type="hidden" name="userId" value="<%=global.currentUser.id%>"/>
               <button>Save</button>
             </form>
+=======
+          <div id="gallery" class="col-xs-12 col-md-6">
+            display 2 newest colorBags && 4 random ones
+>>>>>>> 2cd8cf53c6d0c5931990a8abef84a96c73c39c36
           </div>
         </div>
-        <div id="gallery" class="col-xs-12 col-md-6">
-          display 2 newest colorBags && 4 random ones
+        <div id="fonts" class="col-xs-12 col-md-6">
+          <article style="font-family:<%=fontFamily1%>;">
+            <h1><%= fontFamily1 %></h1>
+            <p><i>italicized goodness</i></p>
+            <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
+          </article>
+          <article style="font-family:<%=fontFamily2%>;">
+            <h1><%= fontFamily2 %></h1>
+            <p><i>italicized goodness</i></p>
+            <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
+          </article>
+          <article style="font-family:<%=fontFamily3%>;">
+          <h1><%= fontFamily3 %></h1>
+            <p><i>italicized goodness</i></p>
+            <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
+          </article>
         </div>
       </div>
-      <div id="fonts" class="col-xs-12 col-md-6">
-        <p style="font-family:<%=fontFamily1%>;"><%= fontFamily1 %></p>
-        <p style="font-family:<%=fontFamily2%>;"><%= fontFamily2 %></p>
-        <p style="font-family:<%=fontFamily3%>;"><%= fontFamily3 %></p>
-      </div>
-    </div>
     </section>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"> </script>
 

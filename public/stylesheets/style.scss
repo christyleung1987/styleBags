@@ -1,0 +1,39 @@
+
+body {
+  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header {
+  background-color: rgb(30,30,30);
+  color: rgb(230,230,230);
+}
+
+#gallery {
+  display: none;
+}
+
+#landing {
+  background: #39A2AE;
+
+}
+#generator {
+  background: #CC998D;
+  padding: 25px;
+  display: none;
+}
+.color-swatch{
+  width: 100%;
+  margin: 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#fonts {
+  font-size: 1.2em;
+
+  article:not(:last-child) {
+    margin-bottom: 60px;
+  }
+}
