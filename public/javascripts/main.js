@@ -51,8 +51,10 @@ $(function() {
   function fontGenerator(){
     var fonts = [];
     fonts.push($('#fontsArray').val());
+    console.log(fonts);
     var fonts = fonts[0].toString();
     var fontsArray = fonts.split(",");
+    console.log(fontsArray);
     var fontFamily1 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
     var fontFamily2 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
     var fontFamily3 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
