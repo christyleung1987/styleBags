@@ -34,8 +34,6 @@ router.get('/', authenticatedUser, function(req, res, next) {
       res.render('index', { title: 'Express', fontTypes: fontTypes, num: num, num2: num2, num3: num3});
     }
   })
-
-
 });
 
 /* GET /signup */
