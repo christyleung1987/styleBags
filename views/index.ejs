@@ -55,10 +55,13 @@
           <div class="color-swatch" id="color6">
             <p>test</p>
           </div>
-          <form id="save-colors">
-            <input type="text" value="<%=global.currentUser.id%>"/>
-            <button>Save</button>
-          </form>
+          <div>
+            <form id="color-scheme">
+              <input id="save-colors" type="text"/>
+              <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+              <button>Save</button>
+            </form>
+          </div>
         </div>
         <div id="gallery" class="col-xs-12 col-md-6">
           display 2 newest colorBags && 4 random ones

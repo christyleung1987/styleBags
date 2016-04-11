@@ -37,6 +37,7 @@ $(function() {
     $('#generator').css('display', 'block');
     colors=[];
     colorsGenerator();
+    $('#save-colors').val(colors);
   });
 
   $('h1').on('click', function(){
@@ -63,6 +64,7 @@ $(function() {
         console.log("c and down arrow pressed");
         colors = [];
         colorsGenerator();
+        $('#save-colors').val(colors);
       } else if (keys[40] && keys[70]) {
         console.log("f and down arrow pressed");
       }
@@ -86,6 +88,7 @@ $(function() {
       colors.pop();
       colors.pop();
       console.log(colors);
+      $('#save-colors').val(colors);
     } else if ($('#color-number').val() < 5) {
       $('#color6').hide();
       $('#color5').hide();
@@ -93,26 +96,28 @@ $(function() {
       colors.pop();
       colors.pop();
       console.log(colors);
+      $('#save-colors').val(colors);
     } else if ($('#color-number').val() < 6) {
       $('#color6').hide();
       $('#color5').show();
       $('#color4').show();
       colors.pop();
       console.log(colors);
+      $('#save-colors').val(colors);
     } else {
       $('#color6').show();
       $('#color5').show();
       $('#color4').show();
       console.log(colors);
+      $('#save-colors').val(colors);
     }
   });
 
-  module.exports = colors;
 
   // SET COLOR SWATCH HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
-    var swatchQuantity = colors.length;
+    var swatchQuantity = $('.color-swatch').length;
     //50 is padding on #generator
     var totalSwatchHeight = $(window).height() - $('header').height() - 50;
     var singleSwatchHeight = totalSwatchHeight / swatchQuantity;
