@@ -1,6 +1,6 @@
 $(function() {
 
-// COLOR GENERATOR
+// COLOR GENERATOR functions
   function randomColor(){
     var red = Math.floor(Math.random()*256);
     var green = Math.floor(Math.random()*256);
@@ -10,22 +10,21 @@ $(function() {
   }
   var colors = [];
 
-  function randomColors(num){
-    for (var i=1; i<=num; i++){
+  var num = $('#color-number').val();
+
+  function randomColors(val){
+    for (var i=1; i<=val; i++){
       var color = randomColor();
       colors.push(color);
     }
     return colors;
   }
 
+  // COLOR Generator jQuery
+
   $('#start').on('click', function(){
     $(this).parent().hide();
-    randomColors(6);
-    console.log(colors[0]);
-    console.log(`"background-color", "rgb(150,200,100)"`);
-    console.log('background-color', `${colors[1]}`);
-    console.log('background-color', 'red');
-    console.log(`'background-color', '${colors[2]}'`);
+    randomColors(num);
     $('#generator').css('display', 'block');
     $('#color1').css('background-color', `${colors[0]}`);
     $('#color2').css('background-color', `${colors[1]}`);
@@ -38,6 +37,23 @@ $(function() {
   $('h1').on('click', function(){
     $('#generator').css('display', 'none');
     $('#landing').show();
+  });
+
+  //C & DOWN, F & DOWN KEYPRESSES
+  var keys = {67: false, 70: false, 40: false};
+  $(document).keydown(function(e) {
+    if (e.keyCode in keys) {
+      keys[e.keyCode] = true;
+      if (keys[40] && keys[67]) {
+        console.log("c and down arrow pressed");
+      } else if (keys[40] && keys[70]) {
+        console.log("f and down arrow pressed");
+      }
+    }
+  }).keyup(function(e) {
+    if (e.keyCode in keys) {
+      keys[e.keyCode] = false;
+    }
   });
 
   // SET COLOR SWATCH HEIGHT
