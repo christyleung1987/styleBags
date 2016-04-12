@@ -5,22 +5,84 @@
 
 <div id="border">
   <header class="container-fluid">
+
+
+
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Login</h4>
+        </div>
+        <div class="modal-body">
+              <form method="post" action="/login">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input class="form-control" type="text" name="email" id="email">
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Password</label>
+                  <input class="form-control" type="password" name="password" id="password">
+                </div>
+                <input class="btn btn-default" type="submit">
+              </form>
+              <a href="/auth/facebook"><img src="images/fblogin.png" class="fblogin" alt="Login with Facebook"></a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+        </div>
+        <div class="modal-body">
+                <form method="post" action="/signup">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="text" name="email" id="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" name="password" id="password">
+                  </div>
+                  <input class="btn btn-default" type="submit">
+                </form>
+                <a href="/auth/facebook"><img src="images/fblogin.png" class="fblogin" alt="Login with Facebook"></a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
     <img src="images/logo.png" id="logo" alt="logo" />
     <% if(global.currentUser){ %>
     <a href="/logout"><button>Log out</button></a>
     <% } else { %>
-      <a href="/login"><button>Log In</button></a>
-      <a href="/signup"><button>Sign Up</button></a>
-      <a href="/auth/facebook"><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i></a>
-    <% } %>
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Login</button>
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signupModal">Signup</button>
+      <% } %>
     <button id="bags" class="hidden">my bags ▼</button>
   </header>
 </div>
 
 <section id="landing" class="container">
   <h1>StyleBags</h1>
-  <p>Cupcake ipsum dolor sit amet soufflé sesame snaps macaroon. Donut bonbon biscuit brownie. Marzipan jelly beans oat cake candy canes caramels chocolate bar.</p>
-  <p>Bonbon pudding I love. Powder jelly beans soufflé sugar plum pastry I love. Candy soufflé ice cream halvah brownie icing.</p>
+  <p>Welcome to StyleBags!</p>
+  <p>Save custom colors and fonts to your StyleBag! Begin by selecting the amount of colors you would like the palette to display and continue by pressing "c" and the right arrow to generate more random colors. To lock a color in the palette, click on the lock. To generate 3 more random fonts, click "f" and the right arrow. Once you sign up or login, you can save color schemes and fonts to use later! Click on a gallery to view a set of pre-saved fonts by other users.</p>
   <button id="start">START</button>
 </section>
 
@@ -90,7 +152,7 @@
       </div>
     </div>
     <div id="fonts" class="col-xs-12 col-md-6 text-center">
-      <article style="font-family:<%=fontFamily1%>;">
+      <article style="font-family:<%=fontFamily1%>">
       <% if(global.currentUser){ %>
         <form id="font" action="/fonts" method="post">
           <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily1%>"/>
@@ -102,7 +164,7 @@
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </article>
-      <article style="font-family:<%=fontFamily2%>;">
+      <article style="font-family:<%=fontFamily2%>">
       <% if(global.currentUser){ %>
          <form id="font" action="/fonts" method="post">
            <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily2%>"/>
@@ -114,7 +176,7 @@
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </article>
-      <article style="font-family:<%=fontFamily3%>;">
+      <article style="font-family:<%=fontFamily3%>">
       <% if(global.currentUser){ %>
        <form id="font" action="/fonts" method="post">
          <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily3%>"/>
