@@ -27,7 +27,6 @@ var color;
 
   var num = $('#color-number').val() || 6;
 
-
   function randomColors(val){
     for (var i=1; i<=val; i++){
       var color = randomColor();
@@ -151,15 +150,15 @@ var color;
   });
 
   // Locking and unlocking color divs
-  $('.unlock').on('click', function(){
-    $(this).parent().parent().toggleClass('locked');
-    $(this).parent().html(`<i class="lock fa fa-lock fa-3x" aria-hidden="true"></i>`);
+  $('#unlock').on('click', function(){
+    $(this).parent().html(`<i id="lock" class="fa fa-lock fa-3x" aria-hidden="true"></i>`);
+    $(this).parent().parent().removeClass('unlocked').addClass('locked');
   });
 
-  $('.lock').on('click', function(){
-    $(this).parent().parent().toggleClass('locked');
-    $(this).parent().html(`<i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i>`);
-  });
+  $('#lock').on('click', function(){
+    $(this).parent().html(`<i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i>`);
+    $(this).parent().parent().removeClass('unlocked').addClass('locked');
+  })
 
 
 
