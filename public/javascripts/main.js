@@ -7,6 +7,38 @@ $('#bags').on('click', function(){
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
 
+function savedBags(){
+  $.ajax({
+    url: '/colorBags',
+    method: 'GET',
+    data: {},
+    dataType: 'json'
+  })
+  .done(function(colorbags) {
+    displayColorBags(colorbags);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log('Uhh oh');
+    console.log(jqXHR, textStatus, errorThrown);
+  })
+}
+
+function displayColorBags(colorbags) {
+  if (!colorbags) {
+    return;
+  } else {
+    for (var i = 0; i <= colorbags.length; i++) {
+      var name = colorbags[i].name;
+      $('aside').append(`<div class="colorbag"><h4>${name}</h4><div class="colorbag-rgb" id="colorbag${i}"></div></div>`);
+      for (var j = 0; j <= colorbags[i].rgbs.length; j++) {
+        console.log(`#colorbag${i}`)
+        $(`#colorbag${i}`).append(`<div class="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};"></div>`);
+      }
+    }
+  }
+}
+
+savedBags();
 
 var colors = [];
 
@@ -70,6 +102,13 @@ var color;
       $('#color5').css('background-color', `${colors[4]}`);
       $('#color6').css('background-color', `${colors[5]}`);
   }
+
+  //To check whether the color generator is locked. First if THIS div has both .color-swatch and .locked, do nothing, else run the color generator.
+  // if ($(".color-swatch").siblings().hasClass("locked")) {
+  // // logic here
+  //   return false;
+  // }
+
 
   // COLOR Generator jQuery
 
@@ -202,8 +241,16 @@ var color;
     $(this).parent().parent().toggleClass('locked');
     $(this).toggleClass('fa-lock fa-unlock');
   });
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+  var clickedDiv = []
+  function clickDiv(){
+    divNames.forEach(function(){
+      if ($(".color-swatch").siblings().hasClass("locked")) {
+        clickedDiv.push('#color[i]')
+      }
+    })
+  }
+  console.log(clickedDiv);
   // SET COLOR SWATCH & ASIDE HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
@@ -217,9 +264,11 @@ var color;
     $('aside').css('height', asideHeight+'px');
   }).resize();
 
+
   // Setting font colors to gen colors
   $('.fontHeader').on('click', function() {
 
   });
+
 
 });

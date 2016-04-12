@@ -4,9 +4,9 @@ var ColorBag = require('../models/colorBag');
 
 router.get('/', function(req, res, next) {
   var id = global.currentUser.id;
-  ColorBag.find({ userId: id }, 'name rgbs', function(err, colorbag) {
+  ColorBag.find({ userId: id }, 'name rgbs date', function(err, colorbags) {
     if (err) console.log(err);
-    console.log(colorbag);
+    res.json(colorbags);
   });
 })
 
