@@ -7,6 +7,12 @@ $('#bags').on('click', function(){
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
 
+// GENERATOR / GALLERY SWITCH
+$('.switch').on('click', function() {
+  $('#color-generator').toggleClass('hidden');
+  $('#gallery').toggleClass('hidden');
+})
+
 var color;
 
 // COLOR GENERATOR functions

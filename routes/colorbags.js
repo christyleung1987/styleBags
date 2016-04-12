@@ -10,8 +10,8 @@ router.post('/', function(req, res, next) {
 
   newColorBag.save(function(err, user) {
     if (err) console.log(err);
-    alert('ColorBag created!');
-    return res.redirect('/');
-    //res.json(newColorBag);
+    //res.redirect('/');
+    res.json(newColorBag);
   });
 });
+module.exports = router;

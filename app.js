@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var fontKey = require('./key');
+var colorbags = require('./routes/colorbags');
 
 var flash = require('connect-flash');
 var ejsLayouts = require("express-ejs-layouts");
@@ -64,6 +65,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/colorbags', colorbags);
 
 //FACEBOOK AUTHENTICATION
 app.get('/auth/facebook', passport.authenticate('facebook'));

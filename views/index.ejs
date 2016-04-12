@@ -19,12 +19,13 @@
   <p>Cupcake ipsum dolor sit amet soufflé sesame snaps macaroon. Donut bonbon biscuit brownie. Marzipan jelly beans oat cake candy canes caramels chocolate bar.</p>
   <p>Bonbon pudding I love. Powder jelly beans soufflé sugar plum pastry I love. Candy soufflé ice cream halvah brownie icing.</p>
   <button id="start">START</button>
-  <!-- <a href="https://www.googleapis.com/webfonts/v1/webfonts?key=" + fontKey ></a> -->
 </section>
 
 <section id="generator" class="container-fluid">
   <div class="row">
       <div id="color-generator" class="col-xs-12 col-md-6">
+        <button class="switch">Gallery</button>
+
         <form>
           How many colors do you need?(3-6)
           <input id="color-number" value="6"/>
@@ -34,6 +35,7 @@
         <div class="color-swatch" id="color1">
           <p><span id="lock" class="unlocked"><i class="fa fa-unlock" aria-hidden="true"></i>
 </span></p>
+        </div>
         <div class="color-swatch unlocked" id="color1">
           <p><i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
@@ -52,16 +54,15 @@
         <div class="color-swatch unlocked" id="color6">
           <p><i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
-        <div>
-          <form id="color-scheme">
+          <form id="colorBag" action="/colorbags" method="post">
             <input id="colorBagName" type="text" name="colorBagName" placeholder="Color Bag Name" />
             <input id="rgbs" name="rgbs" type="text"/>
             <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-            <button>Save</button>
+            <input type="submit" name="saveColorBag" value="Save" />
           </form>
-        </div>
       </div>
-      <div id="gallery" class="col-xs-12 col-md-6">
+      <div id="gallery" class="col-xs-12 col-md-6 hidden">
+        <button class="switch">Gallery</button>
         <div class="row">
           <div class="col-xs-6">
             first random
