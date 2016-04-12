@@ -7,7 +7,7 @@ $('#bags').on('click', function(){
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
 
-
+var colors = [];
 // COLOR GENERATOR functions
   function randomColor(){
     var red = Math.floor(Math.random()*256);
@@ -15,8 +15,34 @@ $('#bags').on('click', function(){
     var blue = Math.floor(Math.random()*256);
     var color = `rgb(${red}, ${green}, ${blue})`;
     return color;
+    colors.push(color);
   }
-  var colors = [];
+
+  console.log(colors);
+
+  var hexCodes = [];
+
+  function rgb2hex(colors){
+    if (colors && colors.length < 6) {
+      colors.forEach(function(color){
+        console.log(colors);
+        color = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+        var sepColor = color;
+          sepColor.forEach(function(sep){
+          // var hexColor = ("#" + ("0" + parseInt(color,10).toString(16)).slice(-2));
+          var hexColor = ("#" + ("0" + parseInt(sep[0],10).toString(16)).slice(-2) + ("0" + parseInt(sep[1],10).toString(16)).slice(-2) + ("0" + parseInt(sep[2],10).toString(16)).slice(-2));
+          hexCodes.push(hexColor);
+        })
+        console.log(hexCodes);
+        return hexCodes;
+
+      // var hex = rgb2hex( $('.result').val() );
+      $('.result').html(hexCodes);
+
+      })
+    }
+}
+
 
   var num = $('#color-number').val() || 6;
 
@@ -48,6 +74,7 @@ $('#bags').on('click', function(){
 
     colors=[];
     colorsGenerator();
+    rgb2hex(colors);
     $('#save-colors').val(colors);
   });
 
@@ -94,6 +121,7 @@ $('#bags').on('click', function(){
       if (keys[39] && keys[67]) {
         colors = [];
         colorsGenerator();
+        rgb2hex(colors);
         $('#save-colors').val(colors);
       } else if (keys[39] && keys[70]) {
         fontGenerator();
@@ -110,6 +138,7 @@ $('#bags').on('click', function(){
     console.log($('#color-number').val());
     colors = [];
     colorsGenerator();
+    rgb2hex(colors);
     if ($('#color-number').val() < 4) {
       $('#color6').hide();
       $('#color5').hide();
