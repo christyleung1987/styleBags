@@ -13,7 +13,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Login</h4>
+          <h2 class="modal-title" id="myModalLabel">Login</h2>
         </div>
         <div class="modal-body">
               <form method="post" action="/login">
@@ -28,11 +28,7 @@
                 </div>
                 <input class="btn btn-default" type="submit">
               </form>
-              <a href="/auth/facebook"><img src="images/fblogin.png" class="fblogin" alt="Login with Facebook"></a>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+              <a href="/auth/facebook"><img src="images/connectfb.jpg" class="fblogin" alt="Login with Facebook"></a>
         </div>
       </div>
     </div>
@@ -43,7 +39,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+          <h2 class="modal-title" id="myModalLabel">Sign Up</h2>
         </div>
         <div class="modal-body">
                 <form method="post" action="/signup">
@@ -57,11 +53,7 @@
                   </div>
                   <input class="btn btn-default" type="submit">
                 </form>
-                <a href="/auth/facebook"><img src="images/fblogin.png" class="fblogin" alt="Login with Facebook"></a>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+                <a href="/auth/facebook"><img src="images/connectfb.jpg" class="fblogin" alt="Login with Facebook"></a>
         </div>
       </div>
     </div>
@@ -97,22 +89,22 @@
           <button type="button" id="color-ammt">Submit</button>
         </form>
         <div class="color-swatch" id="color1">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
         </div>
         <div class="color-swatch" id="color2">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
         </div>
         <div class="color-swatch" id="color3">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
         </div>
         <div class="color-swatch" id="color4">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
         </div>
         <div class="color-swatch" id="color5">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
         </div>
         <div class="color-swatch" id="color6">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
         </div>
         <% if(global.currentUser){ %>
           <form id="colorBag" action="/colorbags" method="post">

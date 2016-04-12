@@ -151,41 +151,44 @@ var color;
 
   // change ammount of color divs shown based on user input
   $('#color-ammt').on('click', function(){
-    console.log($('#color-number').val());
-    colors = [];
-    colorsGenerator();
-    rgb2hex(colors);
-    if ($('#color-number').val() < 4) {
-      $('#color6').hide();
-      $('#color5').hide();
-      $('#color4').hide();
-      colors.pop();
-      colors.pop();
-      colors.pop();
-      console.log(colors);
-      $('#rgbs').val(colors);
-    } else if ($('#color-number').val() < 5) {
-      $('#color6').hide();
-      $('#color5').hide();
-      $('#color4').show();
-      colors.pop();
-      colors.pop();
-      console.log(colors);
-      $('#rgbs').val(colors);
-    } else if ($('#color-number').val() < 6) {
-      $('#color6').hide();
-      $('#color5').show();
-      $('#color4').show();
-      colors.pop();
-      console.log(colors);
-      $('#rgbs').val(colors);
-    } else {
-      $('#color6').show();
-      $('#color5').show();
-      $('#color4').show();
-      console.log(colors);
-      $('#rgbs').val(colors);
+    if ($('.color-swatch').siblings().hasClass('.color-swatch .locked')){
+      console.log("I'm working!");
     }
+      console.log($('#color-number').val());
+      colors = [];
+      colorsGenerator();
+      rgb2hex(colors);
+      if ($('#color-number').val() < 4) {
+        $('#color6').hide();
+        $('#color5').hide();
+        $('#color4').hide();
+        colors.pop();
+        colors.pop();
+        colors.pop();
+        console.log(colors);
+        $('#rgbs').val(colors);
+      } else if ($('#color-number').val() < 5) {
+        $('#color6').hide();
+        $('#color5').hide();
+        $('#color4').show();
+        colors.pop();
+        colors.pop();
+        console.log(colors);
+        $('#rgbs').val(colors);
+      } else if ($('#color-number').val() < 6) {
+        $('#color6').hide();
+        $('#color5').show();
+        $('#color4').show();
+        colors.pop();
+        console.log(colors);
+        $('#rgbs').val(colors);
+      } else {
+        $('#color6').show();
+        $('#color5').show();
+        $('#color4').show();
+        console.log(colors);
+        $('#rgbs').val(colors);
+      }
   });
 
   // Locking and unlocking color divs
@@ -213,5 +216,10 @@ var color;
     var asideHeight = $(window).height() - $('header').height();
     $('aside').css('height', asideHeight+'px');
   }).resize();
+
+  // Setting font colors to gen colors
+  $('.fontHeader').on('click', function() {
+
+  });
 
 });
