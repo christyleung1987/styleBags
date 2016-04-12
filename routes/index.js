@@ -20,7 +20,7 @@ function unAuthenticatedUser(req, res, next) {
 }
 
 /* GET home page. */
-router.get('/', authenticatedUser, function(req, res, next) {
+router.get('/', function(req, res, next) {
   request('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCFs8d81WezJEYRo-tXbyc2FBx6mp3Vvs0', function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);

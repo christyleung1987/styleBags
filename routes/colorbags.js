@@ -2,10 +2,23 @@ var express = require('express');
 var router = express.Router();
 var ColorBag = require('../models/colorBag');
 
+router.get('/', function(req, res, next) {
+  var id = global.currentUser.id;
+  ColorBag.find({ userId: id }, 'name rgbs', function(err, colorbag) {
+    if (err) console.log(err);
+    console.log(colorbag);
+  });
+})
+
 router.post('/', function(req, res, next) {
+  var rgbsString = req.body.rgbs;
+  var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');
+  var rgbs = rgbsStringSplit.split('split');
+
   var newColorBag = ColorBag({
       name: req.body.colorBagName,
-      rgbs: req.body.rgbs,
+      rgbs: rgbs,
+      userId: req.body.userId
   });
 
   newColorBag.save(function(err, user) {
@@ -14,4 +27,5 @@ router.post('/', function(req, res, next) {
     res.json(newColorBag);
   });
 });
+
 module.exports = router;

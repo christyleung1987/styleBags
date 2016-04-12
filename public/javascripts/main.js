@@ -7,6 +7,9 @@ $('#bags').on('click', function(){
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
 
+
+var colors = [];
+
 // GENERATOR / GALLERY SWITCH
 $('.switch').on('click', function() {
   $('#color-generator').toggleClass('hidden');
@@ -15,6 +18,7 @@ $('.switch').on('click', function() {
 
 var color;
 
+
 // COLOR GENERATOR functions
   function randomColor(){
     var red = Math.floor(Math.random()*256);
@@ -22,11 +26,32 @@ var color;
     var blue = Math.floor(Math.random()*256);
     color = `rgb(${red}, ${green}, ${blue})`;
     return color;
+    colors.push(color);
   }
-  var colors = [];
+
+  console.log(colors);
+
+  var hexCodes = [];
+
+  function rgb2hex(arr){
+    var hexCodes=[];
+      arr.forEach(function(color){
+          var sepColorHexCodes=[];
+          color = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+            color.forEach(function(sepColor){
+                var hexColor = ("0" + parseInt(sepColor,10).toString(16)).slice(-2);
+                sepColorHexCodes.push(hexColor);
+            })
+          sepColorHexCodes.splice([0], 1);
+          // sepColorHexCodes.toString();
+          var hexColor = ("#" + ("0" + parseInt(sepColorHexCodes[0],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[1],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[2],16).toString(16)).slice(-2));
+          hexCodes.push(hexColor);
+      })
+    $('#hexCodes').val(hexCodes);
+  }
+
 
   var num = $('#color-number').val() || 6;
-
 
   function randomColors(val){
     for (var i=1; i<=val; i++){
@@ -55,7 +80,12 @@ var color;
 
     colors=[];
     colorsGenerator();
+
+    rgb2hex(colors);
+    $('#save-colors').val(colors);
+
     $('#rgbs').val(colors);
+
   });
 
   $('#logo').on('click', function(){
@@ -89,6 +119,9 @@ var color;
     $('article:nth-of-type(1) h1').html(`${fontFamily1}`);
     $('article:nth-of-type(2) h1').html(`${fontFamily2}`);
     $('article:nth-of-type(3) h1').html(`${fontFamily3}`);
+    $('article:nth-of-type(1) #fontName').val(`${fontFamily1}`);
+    $('article:nth-of-type(2) #fontName').val(`${fontFamily2}`);
+    $('article:nth-of-type(3) #fontName').val(`${fontFamily3}`);
   }
 
   // console.log(fontTypes);
@@ -101,7 +134,11 @@ var color;
       if (keys[39] && keys[67]) {
         colors = [];
         colorsGenerator();
+
+        rgb2hex(colors);
+        $('#save-colors').val(colors);
         $('#rgbs').val(colors);
+
       } else if (keys[39] && keys[70]) {
         fontGenerator();
       }
@@ -117,6 +154,7 @@ var color;
     console.log($('#color-number').val());
     colors = [];
     colorsGenerator();
+    rgb2hex(colors);
     if ($('#color-number').val() < 4) {
       $('#color6').hide();
       $('#color5').hide();
@@ -151,16 +189,16 @@ var color;
   });
 
   // Locking and unlocking color divs
-  $('.unlock').on('click', function(){
+  $('.fa-unlock').on('click', function(){
     $(this).parent().parent().toggleClass('locked');
-    $(this).parent().html(`<i class="lock fa fa-lock fa-3x" aria-hidden="true"></i>`);
+    $(this).toggleClass('fa-lock fa-unlock');
   });
 
-  $('.lock').on('click', function(){
+  $('.fa-lock').on('click', function(){
+    console.log("lock clicked");
     $(this).parent().parent().toggleClass('locked');
-    $(this).parent().html(`<i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i>`);
+    $(this).toggleClass('fa-lock fa-unlock');
   });
-
 
 
   // SET COLOR SWATCH & ASIDE HEIGHT
@@ -175,6 +213,5 @@ var color;
     var asideHeight = $(window).height() - $('header').height();
     $('aside').css('height', asideHeight+'px');
   }).resize();
-
 
 });

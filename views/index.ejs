@@ -6,10 +6,13 @@
 <div id="border">
   <header class="container-fluid">
     <img src="images/logo.png" id="logo" alt="logo" />
-    <ul>
-      <li>Sign In</li>
-      <li>Sign Up</li>
-    </ul>
+    <% if(global.currentUser){ %>
+    <a href="/logout"><button>Log out</button></a>
+    <% } else { %>
+      <a href="/login"><button>Log In</button></a>
+      <a href="/signup"><button>Sign Up</button></a>
+      <a href="/auth/facebook"><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i></a>
+    <% } %>
     <button id="bags" class="hidden">my bags ▼</button>
   </header>
 </div>
@@ -31,30 +34,32 @@
           <input id="color-number" value="6"/>
           <button type="button" id="color-ammt">Submit</button>
         </form>
-        <div class="color-swatch unlocked" id="color1">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+        <div class="color-swatch" id="color1">
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color2">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color3">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color4">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color5">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color6">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
+        <% if(global.currentUser){ %>
           <form id="colorBag" action="/colorbags" method="post">
             <input id="colorBagName" type="text" name="colorBagName" placeholder="Color Bag Name" />
-            <input id="rgbs" name="rgbs" type="text"/>
-            <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+            <input id="rgbs" name="rgbs" type="hidden"/>
+            <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
             <input type="submit" name="saveColorBag" value="Save" />
           </form>
+        <% } %>
       </div>
       <div id="gallery" class="col-xs-12 col-md-6 hidden">
         <button class="switch">Gallery</button>
@@ -86,16 +91,37 @@
     </div>
     <div id="fonts" class="col-xs-12 col-md-6 text-center">
       <article style="font-family:<%=fontFamily1%>;">
+      <% if(global.currentUser){ %>
+        <form id="font" action="/fonts" method="post">
+          <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily1%>"/>
+          <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+          <input type="submit" name="saveFont" value="Save" />
+        </form>
+      <% } %>
         <h1><%= fontFamily1 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </article>
       <article style="font-family:<%=fontFamily2%>;">
+      <% if(global.currentUser){ %>
+         <form id="font" action="/fonts" method="post">
+           <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily2%>"/>
+           <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+           <input type="submit" name="saveFont" value="Save" />
+         </form>
+        <% } %>
         <h1><%= fontFamily2 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </article>
       <article style="font-family:<%=fontFamily3%>;">
+      <% if(global.currentUser){ %>
+       <form id="font" action="/fonts" method="post">
+         <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily3%>"/>
+         <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+         <input type="submit" name="saveFont" value="Save" />
+       </form>
+      <% } %>
       <h1><%= fontFamily3 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
