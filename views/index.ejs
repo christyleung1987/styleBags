@@ -24,8 +24,7 @@
 
 <section id="generator" class="container-fluid">
   <div class="row">
-    <div id="colors" class="col-xs-12 col-md-6">
-      <div id="color-generator">
+      <div id="color-generator" class="col-xs-12 col-md-6">
         <form>
           How many colors do you need?(3-6)
           <input id="color-number" value="6"/>
@@ -51,7 +50,8 @@
         </div>
         <div>
           <form id="color-scheme">
-            <input id="save-colors" type="text"/>
+            <input id="colorBagName" type="text" name="colorBagName" placeholder="Color Bag Name" />
+            <input id="rgbs" name="rgbs" type="text"/>
             <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
             <button>Save</button>
           </form>
