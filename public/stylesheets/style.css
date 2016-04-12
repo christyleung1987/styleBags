@@ -68,7 +68,8 @@ aside {
   padding-top: 20px;
   background-color: #272826;
   border-left: 2px dotted #00a376;
-  box-shadow: -1px 0 10px black; }
+  box-shadow: -1px 0 10px black;
+  overflow: scroll; }
 
 .colorbag-rgb {
   width: 100%; }

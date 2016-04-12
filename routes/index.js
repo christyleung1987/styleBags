@@ -48,7 +48,7 @@ router.get('/signup', unAuthenticatedUser, function(req, res, next) {
 /* POST /signup */
 router.post('/signup', function(req, res, next) {
   var signupStrategy = passport.authenticate('local-signup', {
-    // successRedirect: "/",
+    successRedirect: "/",
     failureRedirect: "/signup",
     failureFlash: true
   });
@@ -63,7 +63,7 @@ router.get('/login', unAuthenticatedUser, function(req, res, next) {
 /* POST /login */
 router.post('/login', function(req, res, next) {
   var loginStrategy = passport.authenticate('local-login', {
-    // successRedirect: "/",
+    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true
   });
