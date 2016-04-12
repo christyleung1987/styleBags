@@ -100,13 +100,16 @@ aside {
   background-color: $dark-grey;
   border-left: 2px dotted $green;
   box-shadow: -1px 0 10px black;
+  overflow: scroll;
 }
 
 .colorbag-rgb {
+  width: 100%;
 
   div[class^="rgb"] {
-    width: 25px;
-    height: 25px;
+    display: inline-block;
+    height: 50px;
+    //width set in jQuery;
   }
 }
 

@@ -68,11 +68,14 @@ aside {
   padding-top: 20px;
   background-color: #272826;
   border-left: 2px dotted #00a376;
-  box-shadow: -1px 0 10px black; }
+  box-shadow: -1px 0 10px black;
+  overflow: scroll; }
 
-.colorbag-rgb div[class^="rgb"] {
-  width: 25px;
-  height: 25px; }
+.colorbag-rgb {
+  width: 100%; }
+  .colorbag-rgb div[class^="rgb"] {
+    display: inline-block;
+    height: 50px; }
 
 #generator {
   padding: 25px;
