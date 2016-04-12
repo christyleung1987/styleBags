@@ -82,7 +82,7 @@
 <section id="landing" class="container">
   <h1>StyleBags</h1>
   <p>Welcome to StyleBags!</p>
-  <p>Save custom colors and fonts to your StyleBag! Begin by selecting the amount of colors you would like the palette to display and continue by pressing "xxx!¡!xxx" to generate more random colors. To lock a color in the palette, press "!xxx!¡!xxx". To generate 3 more random fonts, --- do this --- ---- do some shit to save it ---- Click on a gallery to view a set of pre-saved fonts by other users.</p>
+  <p>Save custom colors and fonts to your StyleBag! Begin by selecting the amount of colors you would like the palette to display and continue by pressing "c" and the right arrow to generate more random colors. To lock a color in the palette, click on the lock. To generate 3 more random fonts, click "f" and the right arrow. Once you sign up or login, you can save color schemes and fonts to use later! Click on a gallery to view a set of pre-saved fonts by other users.</p>
   <button id="start">START</button>
 </section>
 
@@ -159,7 +159,7 @@
       </div>
     </div>
     <div id="fonts" class="col-xs-12 col-md-6 text-center">
-      <article style="display: none">
+      <article style="font-family:<%=fontFamily1%>">
       <% if(global.currentUser){ %>
         <form id="font" action="/fonts" method="post">
           <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily1%>"/>
@@ -171,7 +171,7 @@
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </article>
-      <article style="display: none">
+      <article style="font-family:<%=fontFamily2%>">
       <% if(global.currentUser){ %>
          <form id="font" action="/fonts" method="post">
            <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily2%>"/>
@@ -183,7 +183,7 @@
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </article>
-      <article style="display: none">
+      <article style="font-family:<%=fontFamily3%>">
       <% if(global.currentUser){ %>
        <form id="font" action="/fonts" method="post">
          <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily3%>"/>
