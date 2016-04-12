@@ -33,26 +33,22 @@ var color;
 
   var hexCodes = [];
 
-  function rgb2hex(colors){
-    if (colors && colors.length < 6) {
-      colors.forEach(function(color){
-        console.log(colors);
-        color = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-        var sepColor = color;
-          sepColor.forEach(function(sep){
-          // var hexColor = ("#" + ("0" + parseInt(color,10).toString(16)).slice(-2));
-          var hexColor = ("#" + ("0" + parseInt(sep[0],10).toString(16)).slice(-2) + ("0" + parseInt(sep[1],10).toString(16)).slice(-2) + ("0" + parseInt(sep[2],10).toString(16)).slice(-2));
+  function rgb2hex(arr){
+    var hexCodes=[];
+      arr.forEach(function(color){
+          var sepColorHexCodes=[];
+          color = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+            color.forEach(function(sepColor){
+                var hexColor = ("0" + parseInt(sepColor,10).toString(16)).slice(-2);
+                sepColorHexCodes.push(hexColor);
+            })
+          sepColorHexCodes.splice([0], 1);
+          // sepColorHexCodes.toString();
+          var hexColor = ("#" + ("0" + parseInt(sepColorHexCodes[0],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[1],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[2],16).toString(16)).slice(-2));
           hexCodes.push(hexColor);
-        })
-        console.log(hexCodes);
-        return hexCodes;
-
-      // var hex = rgb2hex( $('.result').val() );
-      $('.result').html(hexCodes);
-
       })
-    }
-}
+    $('#hexCodes').val(hexCodes);
+  }
 
 
   var num = $('#color-number').val() || 6;
