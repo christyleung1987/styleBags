@@ -7,6 +7,12 @@ $('#bags').on('click', function(){
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
 
+// GENERATOR / GALLERY SWITCH
+$('.switch').on('click', function() {
+  $('#color-generator').toggleClass('hidden');
+  $('#gallery').toggleClass('hidden');
+})
+
 var color;
 
 // COLOR GENERATOR functions
@@ -145,15 +151,15 @@ var color;
   });
 
   // Locking and unlocking color divs
-  $('#unlock').on('click', function(){
-    $(this).parent().html(`<i id="lock" class="fa fa-lock fa-3x" aria-hidden="true"></i>`);
-    $(this).parent().parent().removeClass('unlocked').addClass('locked');
+  $('.unlock').on('click', function(){
+    $(this).parent().parent().toggleClass('locked');
+    $(this).parent().html(`<i class="lock fa fa-lock fa-3x" aria-hidden="true"></i>`);
   });
 
-  $('#lock').on('click', function(){
-    $(this).parent().html(`<i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i>`);
-    $(this).parent().parent().removeClass('unlocked').addClass('locked');
-  })
+  $('.lock').on('click', function(){
+    $(this).parent().parent().toggleClass('locked');
+    $(this).parent().html(`<i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i>`);
+  });
 
 
 

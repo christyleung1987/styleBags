@@ -19,49 +19,45 @@
   <p>Welcome to StyleBags!</p>
   <p>Save custom colors and fonts to your StyleBag! Begin by selecting the amount of colors you would like the palette to display and continue by pressing "xxx!¡!xxx" to generate more random colors. To lock a color in the palette, press "!xxx!¡!xxx". To generate 3 more random fonts, --- do this --- ---- do some shit to save it ---- Click on a gallery to view a set of pre-saved fonts by other users.</p>
   <button id="start">START</button>
-  <!-- <a href="https://www.googleapis.com/webfonts/v1/webfonts?key=" + fontKey ></a> -->
 </section>
 
 <section id="generator" class="container-fluid">
   <div class="row">
       <div id="color-generator" class="col-xs-12 col-md-6">
+        <button class="switch">Gallery</button>
+
         <form>
           How many colors do you need?(3-6)
           <input id="color-number" value="6"/>
           <button type="button" id="color-ammt">Submit</button>
         </form>
-
-        <div class="color-swatch" id="color1">
-          <p><span id="lock" class="unlocked"><i class="fa fa-unlock" aria-hidden="true"></i>
-</span></p>
         <div class="color-swatch unlocked" id="color1">
-          <p><i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
-        <div class="color-swatch unlocked" id="color2">
-          <p><i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+        <div class="color-swatch" id="color2">
+          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
-        <div class="color-swatch unlocked" id="color3">
-          <p><i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+        <div class="color-swatch" id="color3">
+          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
-        <div class="color-swatch unlocked" id="color4">
-          <p><i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+        <div class="color-swatch" id="color4">
+          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
-        <div class="color-swatch unlocked" id="color5">
-          <p><i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+        <div class="color-swatch" id="color5">
+          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
-        <div class="color-swatch unlocked" id="color6">
-          <p><i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+        <div class="color-swatch" id="color6">
+          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
-        <div>
-          <form id="color-scheme">
+          <form id="colorBag" action="/colorbags" method="post">
             <input id="colorBagName" type="text" name="colorBagName" placeholder="Color Bag Name" />
             <input id="rgbs" name="rgbs" type="text"/>
             <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-            <button>Save</button>
+            <input type="submit" name="saveColorBag" value="Save" />
           </form>
-        </div>
       </div>
-      <div id="gallery" class="col-xs-12 col-md-6">
+      <div id="gallery" class="col-xs-12 col-md-6 hidden">
+        <button class="switch">Gallery</button>
         <div class="row">
           <div class="col-xs-6">
             first random
