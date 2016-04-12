@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var fontKey = require('./key');
 var colorbags = require('./routes/colorbags');
+var fonts = require('./routes/fonts');
 
 var flash = require('connect-flash');
 var ejsLayouts = require("express-ejs-layouts");
@@ -32,10 +33,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(session({
-  secret: 'STYLEBAGS-EXPRESS-AUTH'
-}));
 
 // PASSPORT AUTHENTICATION
 // every view automatically uses flash
@@ -66,6 +63,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 app.use('/colorbags', colorbags);
+app.use('/fonts', fonts);
 
 //FACEBOOK AUTHENTICATION
 app.get('/auth/facebook', passport.authenticate('facebook'));

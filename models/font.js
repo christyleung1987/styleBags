@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var fontSchema = new mongoose.Schema({
   fontName: {type: String, required: true, unique: true},
-  category: {type: String, required: true},
+  category: {type: String},
+  date: {type: Date, default: Date.now},
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -10,6 +11,6 @@ var fontSchema = new mongoose.Schema({
   tags: Array
 })
 
-var Font = new mongoose.model('Font', fontSchema);
+var Font = mongoose.model('Font', fontSchema);
 
 module.exports = Font;
