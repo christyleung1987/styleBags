@@ -27,10 +27,12 @@ header {
   border-bottom: 10px solid $green;
   color: $off-white;
   margin-bottom: 8px;
-  padding-bottom: 10px;
+  padding: 10px 0 10px 0;
 
-  h1 {
-    color: $yellow;
+  #logo {
+    float: left;
+    width: 200px;
+    height: auto;
   }
 
   ul {
@@ -39,15 +41,15 @@ header {
 
   #bags {
     float: right;
-      color: $off-white;
-      border:4px dashed $purple;
-      text-shadow: 2px 2px 3px black;
-      background-color: $off-black;
-      border-radius: 10px;
-      font-size: .8em;
-      padding: 4px 8px;
-      position: relative;
-      top: 55px;
+    color: $off-white;
+    border: 4px dashed $purple;
+    text-shadow: 2px 2px 3px black;
+    background-color: $off-black;
+    border-radius: 10px;
+    font-size: .8em;
+    padding: 4px 8px;
+    position: relative;
+    top: 120px;
   }
 }
 

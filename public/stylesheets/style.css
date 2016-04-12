@@ -15,9 +15,11 @@ header {
   border-bottom: 10px solid #00a376;
   color: #e7e7e7;
   margin-bottom: 8px;
-  padding-bottom: 10px; }
-  header h1 {
-    color: #f4b800; }
+  padding: 10px 0 10px 0; }
+  header #logo {
+    float: left;
+    width: 200px;
+    height: auto; }
   header ul {
     float: left; }
   header #bags {
@@ -30,7 +32,7 @@ header {
     font-size: .8em;
     padding: 4px 8px;
     position: relative;
-    top: 55px; }
+    top: 120px; }
 
 .container, .container-fluid:not(:first-of-type) {
   padding: 10px 25px;
