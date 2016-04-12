@@ -7,6 +7,9 @@ $('#bags').on('click', function(){
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
 
+
+var colors = [];
+
 // GENERATOR / GALLERY SWITCH
 $('.switch').on('click', function() {
   $('#color-generator').toggleClass('hidden');
@@ -15,6 +18,7 @@ $('.switch').on('click', function() {
 
 var color;
 
+
 // COLOR GENERATOR functions
   function randomColor(){
     var red = Math.floor(Math.random()*256);
@@ -22,8 +26,34 @@ var color;
     var blue = Math.floor(Math.random()*256);
     color = `rgb(${red}, ${green}, ${blue})`;
     return color;
+    colors.push(color);
   }
-  var colors = [];
+
+  console.log(colors);
+
+  var hexCodes = [];
+
+  function rgb2hex(colors){
+    if (colors && colors.length < 6) {
+      colors.forEach(function(color){
+        console.log(colors);
+        color = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+        var sepColor = color;
+          sepColor.forEach(function(sep){
+          // var hexColor = ("#" + ("0" + parseInt(color,10).toString(16)).slice(-2));
+          var hexColor = ("#" + ("0" + parseInt(sep[0],10).toString(16)).slice(-2) + ("0" + parseInt(sep[1],10).toString(16)).slice(-2) + ("0" + parseInt(sep[2],10).toString(16)).slice(-2));
+          hexCodes.push(hexColor);
+        })
+        console.log(hexCodes);
+        return hexCodes;
+
+      // var hex = rgb2hex( $('.result').val() );
+      $('.result').html(hexCodes);
+
+      })
+    }
+}
+
 
   var num = $('#color-number').val() || 6;
 
@@ -54,7 +84,12 @@ var color;
 
     colors=[];
     colorsGenerator();
+
+    rgb2hex(colors);
+    $('#save-colors').val(colors);
+
     $('#rgbs').val(colors);
+
   });
 
   $('#logo').on('click', function(){
@@ -100,7 +135,11 @@ var color;
       if (keys[39] && keys[67]) {
         colors = [];
         colorsGenerator();
+
+        rgb2hex(colors);
+        $('#save-colors').val(colors);
         $('#rgbs').val(colors);
+
       } else if (keys[39] && keys[70]) {
         fontGenerator();
       }
@@ -116,6 +155,7 @@ var color;
     console.log($('#color-number').val());
     colors = [];
     colorsGenerator();
+    rgb2hex(colors);
     if ($('#color-number').val() < 4) {
       $('#color6').hide();
       $('#color5').hide();
@@ -150,16 +190,16 @@ var color;
   });
 
   // Locking and unlocking color divs
-  $('#unlock').on('click', function(){
-    $(this).parent().html(`<i id="lock" class="fa fa-lock fa-3x" aria-hidden="true"></i>`);
-    $(this).parent().parent().removeClass('unlocked').addClass('locked');
+  $('.fa-unlock').on('click', function(){
+    $(this).parent().parent().toggleClass('locked');
+    $(this).toggleClass('fa-lock fa-unlock');
   });
 
-  $('#lock').on('click', function(){
-    $(this).parent().html(`<i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i>`);
-    $(this).parent().parent().removeClass('unlocked').addClass('locked');
-  })
-
+  $('.fa-lock').on('click', function(){
+    console.log("lock clicked");
+    $(this).parent().parent().toggleClass('locked');
+    $(this).toggleClass('fa-lock fa-unlock');
+  });
 
 
   // SET COLOR SWATCH & ASIDE HEIGHT
@@ -174,6 +214,5 @@ var color;
     var asideHeight = $(window).height() - $('header').height();
     $('aside').css('height', asideHeight+'px');
   }).resize();
-
 
 });

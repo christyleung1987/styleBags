@@ -31,28 +31,29 @@
           <input id="color-number" value="6"/>
           <button type="button" id="color-ammt">Submit</button>
         </form>
-        <div class="color-swatch unlocked" id="color1">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+        <div class="color-swatch" id="color1">
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color2">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color3">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color4">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color5">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
         <div class="color-swatch" id="color6">
-          <p><i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i></p>
         </div>
           <form id="colorBag" action="/colorbags" method="post">
             <input id="colorBagName" type="text" name="colorBagName" placeholder="Color Bag Name" />
             <input id="rgbs" name="rgbs" type="text"/>
             <input type="text" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+            <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
             <input type="submit" name="saveColorBag" value="Save" />
           </form>
       </div>
