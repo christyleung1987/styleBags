@@ -75,6 +75,11 @@ var color;
       $('#color6').css('background-color', `${colors[5]}`);
   }
 
+  //To check whether the color generator is locked. First if THIS div has both .color-swatch and .locked, do nothing, else run the color generator.
+  if ($("#color").siblings().hasClass("locked")) {
+  // logic here
+    return
+  }
   // COLOR Generator jQuery
 
   $('#start').on('click', function(){
