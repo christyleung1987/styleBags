@@ -145,14 +145,15 @@ var color;
   });
 
   // Locking and unlocking color divs
-  $('.unlock').on('click', function(){
+  $('.fa-unlock').on('click', function(){
     $(this).parent().parent().toggleClass('locked');
-    $(this).parent().html(`<i class="lock fa fa-lock fa-3x" aria-hidden="true"></i>`);
+    $(this).toggleClass('fa-lock fa-unlock');
   });
 
-  $('.lock').on('click', function(){
+  $('.fa-lock').on('click', function(){
+    console.log("lock clicked");
     $(this).parent().parent().toggleClass('locked');
-    $(this).parent().html(`<i class="unlock fa fa-unlock fa-3x" aria-hidden="true"></i>`);
+    $(this).toggleClass('fa-lock fa-unlock');
   });
 
 
