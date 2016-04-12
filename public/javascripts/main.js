@@ -123,6 +123,9 @@ var color;
     $('article:nth-of-type(1) h1').html(`${fontFamily1}`);
     $('article:nth-of-type(2) h1').html(`${fontFamily2}`);
     $('article:nth-of-type(3) h1').html(`${fontFamily3}`);
+    $('article:nth-of-type(1) #fontName').val(`${fontFamily1}`);
+    $('article:nth-of-type(2) #fontName').val(`${fontFamily2}`);
+    $('article:nth-of-type(3) #fontName').val(`${fontFamily3}`);
   }
 
   // console.log(fontTypes);

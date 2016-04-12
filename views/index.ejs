@@ -51,9 +51,8 @@
         </div>
           <form id="colorBag" action="/colorbags" method="post">
             <input id="colorBagName" type="text" name="colorBagName" placeholder="Color Bag Name" />
-            <input id="rgbs" name="rgbs" type="text"/>
-            <input type="text" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-            <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+            <input id="rgbs" name="rgbs" type="hidden"/>
+            <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
             <input type="submit" name="saveColorBag" value="Save" />
           </form>
       </div>
@@ -87,16 +86,19 @@
     </div>
     <div id="fonts" class="col-xs-12 col-md-6 text-center">
       <article style="font-family:<%=fontFamily1%>;">
+        <form id="font" action="/fonts" method="post"><input type="hidden" name="fontName" id="fontName" value="<%=fontFamily1%>"/><input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/><input type="submit" name="saveFont" value="Save" /></form>
         <h1><%= fontFamily1 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </article>
       <article style="font-family:<%=fontFamily2%>;">
+         <form id="font" action="/fonts" method="post"><input type="hidden" name="fontName" id="fontName" value="<%=fontFamily2%>"/><input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/><input type="submit" name="saveFont" value="Save" /></form>
         <h1><%= fontFamily2 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
       </article>
       <article style="font-family:<%=fontFamily3%>;">
+       <form id="font" action="/fonts" method="post"><input type="hidden" name="fontName" id="fontName" value="<%=fontFamily3%>"/><input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/><input type="submit" name="saveFont" value="Save" /></form>
       <h1><%= fontFamily3 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
