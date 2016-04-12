@@ -1,20 +1,60 @@
 
+$light-grey: #2C292D;
+$grey: #272826;
+$dark-grey: #232323;
+$off-white: #E5FFF9;
+$mint: #2dffce;
+
+//not used (yet)
+$dark-mint: #198E73;
+$light-mint: #73e2c9;
+$light-purple: #E5BAFF;
+
 html, body {
   height: 100%;
   min-height: 100%;
 }
 body {
+  color: $off-white;
+  background-color: $grey;
   font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 header {
-  background-color: rgb(30,30,30);
-  color: rgb(230,230,230);
+  background-color: $dark-purple;
+  border-bottom: 20px double $mint;
+  color: $off-white;
+
+  h1 {
+    color: $mint;
+  }
 
   #myBags {
     float: right;
-    background: black;
-    color: turquoise;
+      color: $off-white;
+      background-color: $dark-purple;
+      border-radius: 10px;
+      padding: 4px 8px;
+      margin-bottom: 5px;
+  }
+}
+
+.container, .container-fluid:not(:first-of-type) {
+  background-color: $dark-grey;
+}
+
+#landing {
+  margin-top: 50px;
+  color: $off-white;
+  h1 {
+    color: $mint;
+  }
+  #start {
+    color: $off-white;
+    background-color: $dark-purple;
+    padding: 15px 25px;
+    margin: 50px 0;
+    border-radius: 20px;
   }
 }
 
@@ -37,15 +77,13 @@ aside {
   top: -25px;
   left: 10px;
   //height set in jQuery
-  background-color: turquoise;
+  padding-top: 20px;
+  background-color: $dark-purple;
+  border-left: 2px dotted $mint;
+  box-shadow: -1px 0 10px black;
 }
 
-#landing {
-  background: #39A2AE;
-
-}
 #generator {
-  background: #CC998D;
   padding: 25px;
   display: none;
 }
@@ -56,11 +94,15 @@ aside {
 }
 
 a {
-  color: #00B7FF;
+  color: $mint;
 }
 
 #fonts {
-  font-size: 1.2em;
+  font-size: 1.3em;
+
+  h1 {
+    color: $mint;
+  }
 
   article:not(:last-child) {
     margin-bottom: 60px;
