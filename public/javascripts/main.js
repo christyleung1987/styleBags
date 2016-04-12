@@ -72,10 +72,12 @@ var color;
   }
 
   //To check whether the color generator is locked. First if THIS div has both .color-swatch and .locked, do nothing, else run the color generator.
-  if ($("#color").siblings().hasClass("locked")) {
-  // logic here
-    return
-  }
+  // if ($(".color-swatch").siblings().hasClass("locked")) {
+  // // logic here
+  //   return false;
+  // }
+
+
   // COLOR Generator jQuery
 
   $('#start').on('click', function(){
@@ -204,8 +206,16 @@ var color;
     $(this).parent().parent().toggleClass('locked');
     $(this).toggleClass('fa-lock fa-unlock');
   });
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+  var clickedDiv = []
+  function clickDiv(){
+    divNames.forEach(function(){
+      if ($(".color-swatch").siblings().hasClass("locked")) {
+        clickedDiv.push('#color[i]')
+      }
+    })
+  }
+  console.log(clickedDiv);
   // SET COLOR SWATCH & ASIDE HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
@@ -218,5 +228,6 @@ var color;
     var asideHeight = $(window).height() - $('header').height();
     $('aside').css('height', asideHeight+'px');
   }).resize();
+
 
 });
