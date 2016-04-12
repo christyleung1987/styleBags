@@ -45,6 +45,7 @@ $('#bags').on('click', function(){
     $(this).parent().hide();
     $('#generator').css('display', 'block');
       $('#bags').removeClass('hidden');
+      $('aside').addClass('hidden');
 
     colors=[];
     colorsGenerator();
