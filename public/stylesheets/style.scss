@@ -12,6 +12,7 @@ html, body {
   height: 100%;
   min-height: 100%;
 }
+
 body {
   color: $off-white;
   background-color: $dark-grey;
@@ -78,10 +79,6 @@ header {
   margin: 30px auto 15px;
   width: 150px;
   height: auto;
-}
-
-#gallery {
-  display: none;
 }
 
 .hidden {

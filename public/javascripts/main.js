@@ -2,18 +2,29 @@ $(function() {
 // MY BAGS DROPDOWN
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
-  $('#colors').toggleClass('col-md-6 col-md-5');
+  $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
 
+
 var colors = [];
+
+// GENERATOR / GALLERY SWITCH
+$('.switch').on('click', function() {
+  $('#color-generator').toggleClass('hidden');
+  $('#gallery').toggleClass('hidden');
+})
+
+var color;
+
+
 // COLOR GENERATOR functions
   function randomColor(){
     var red = Math.floor(Math.random()*256);
     var green = Math.floor(Math.random()*256);
     var blue = Math.floor(Math.random()*256);
-    var color = `rgb(${red}, ${green}, ${blue})`;
+    color = `rgb(${red}, ${green}, ${blue})`;
     return color;
     colors.push(color);
   }
@@ -74,8 +85,12 @@ var colors = [];
 
     colors=[];
     colorsGenerator();
+
     rgb2hex(colors);
     $('#save-colors').val(colors);
+
+    $('#rgbs').val(colors);
+
   });
 
   $('#logo').on('click', function(){
@@ -121,8 +136,11 @@ var colors = [];
       if (keys[39] && keys[67]) {
         colors = [];
         colorsGenerator();
+
         rgb2hex(colors);
         $('#save-colors').val(colors);
+        $('#rgbs').val(colors);
+
       } else if (keys[39] && keys[70]) {
         fontGenerator();
       }
@@ -147,7 +165,7 @@ var colors = [];
       colors.pop();
       colors.pop();
       console.log(colors);
-      $('#save-colors').val(colors);
+      $('#rgbs').val(colors);
     } else if ($('#color-number').val() < 5) {
       $('#color6').hide();
       $('#color5').hide();
@@ -155,22 +173,35 @@ var colors = [];
       colors.pop();
       colors.pop();
       console.log(colors);
-      $('#save-colors').val(colors);
+      $('#rgbs').val(colors);
     } else if ($('#color-number').val() < 6) {
       $('#color6').hide();
       $('#color5').show();
       $('#color4').show();
       colors.pop();
       console.log(colors);
-      $('#save-colors').val(colors);
+      $('#rgbs').val(colors);
     } else {
       $('#color6').show();
       $('#color5').show();
       $('#color4').show();
       console.log(colors);
-      $('#save-colors').val(colors);
+      $('#rgbs').val(colors);
     }
   });
+
+  // Locking and unlocking color divs
+  $('.fa-unlock').on('click', function(){
+    $(this).parent().parent().toggleClass('locked');
+    $(this).toggleClass('fa-lock fa-unlock');
+  });
+
+  $('.fa-lock').on('click', function(){
+    console.log("lock clicked");
+    $(this).parent().parent().toggleClass('locked');
+    $(this).toggleClass('fa-lock fa-unlock');
+  });
+
 
 
   // SET COLOR SWATCH & ASIDE HEIGHT
