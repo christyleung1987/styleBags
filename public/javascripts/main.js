@@ -1,5 +1,5 @@
 $(function() {
-//MYBAG DROPDOWN
+// MY BAGS DROPDOWN
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
   $('#colors').toggleClass('col-md-6 col-md-5');
@@ -44,13 +44,16 @@ $('#bags').on('click', function(){
   $('#start').on('click', function(){
     $(this).parent().hide();
     $('#generator').css('display', 'block');
+      $('#bags').removeClass('hidden');
+
     colors=[];
     colorsGenerator();
     $('#save-colors').val(colors);
   });
 
-  $('h1').on('click', function(){
+  $('header h1').on('click', function(){
     $('#generator').css('display', 'none');
+    $('#bags').addClass('hidden');
     $('#landing').show();
   });
 
