@@ -7,13 +7,14 @@ $('#bags').on('click', function(){
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
 
+var color;
 
 // COLOR GENERATOR functions
   function randomColor(){
     var red = Math.floor(Math.random()*256);
     var green = Math.floor(Math.random()*256);
     var blue = Math.floor(Math.random()*256);
-    var color = `rgb(${red}, ${green}, ${blue})`;
+    color = `rgb(${red}, ${green}, ${blue})`;
     return color;
   }
   var colors = [];
@@ -142,6 +143,18 @@ $('#bags').on('click', function(){
       $('#save-colors').val(colors);
     }
   });
+
+  // Locking and unlocking color divs
+  $('#unlock').on('click', function(){
+    $(this).parent().html(`<i id="lock" class="fa fa-lock fa-3x" aria-hidden="true"></i>`);
+    $(this).parent().parent().removeClass('unlocked').addClass('locked');
+  });
+
+  $('#lock').on('click', function(){
+    $(this).parent().html(`<i id="unlock" class="fa fa-unlock fa-3x" aria-hidden="true"></i>`);
+    $(this).parent().parent().removeClass('unlocked').addClass('locked');
+  })
+
 
 
   // SET COLOR SWATCH & ASIDE HEIGHT
