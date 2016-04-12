@@ -2,7 +2,7 @@ $(function() {
 // MY BAGS DROPDOWN
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
-  $('#colors').toggleClass('col-md-6 col-md-5');
+  $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
@@ -48,7 +48,7 @@ $('#bags').on('click', function(){
 
     colors=[];
     colorsGenerator();
-    $('#save-colors').val(colors);
+    $('#rgbs').val(colors);
   });
 
   $('#logo').on('click', function(){
@@ -94,7 +94,7 @@ $('#bags').on('click', function(){
       if (keys[39] && keys[67]) {
         colors = [];
         colorsGenerator();
-        $('#save-colors').val(colors);
+        $('#rgbs').val(colors);
       } else if (keys[39] && keys[70]) {
         fontGenerator();
       }
@@ -118,7 +118,7 @@ $('#bags').on('click', function(){
       colors.pop();
       colors.pop();
       console.log(colors);
-      $('#save-colors').val(colors);
+      $('#rgbs').val(colors);
     } else if ($('#color-number').val() < 5) {
       $('#color6').hide();
       $('#color5').hide();
@@ -126,20 +126,20 @@ $('#bags').on('click', function(){
       colors.pop();
       colors.pop();
       console.log(colors);
-      $('#save-colors').val(colors);
+      $('#rgbs').val(colors);
     } else if ($('#color-number').val() < 6) {
       $('#color6').hide();
       $('#color5').show();
       $('#color4').show();
       colors.pop();
       console.log(colors);
-      $('#save-colors').val(colors);
+      $('#rgbs').val(colors);
     } else {
       $('#color6').show();
       $('#color5').show();
       $('#color4').show();
       console.log(colors);
-      $('#save-colors').val(colors);
+      $('#rgbs').val(colors);
     }
   });
 

@@ -3,7 +3,10 @@ var mongoose = require('mongoose');
 var fontSchema = new mongoose.Schema({
   fontName: {type: String, required: true, unique: true},
   category: {type: String, required: true},
-  userId: {type: Number, required: true},
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   tags: Array
 })
 
