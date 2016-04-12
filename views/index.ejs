@@ -6,9 +6,10 @@
 <header class="container-fluid">
   <h1>StyleBags</h1>
   <ul>
+    <li>Sign In</li>
     <li>Sign Up</li>
-    <li>Sign In with Facebook</li>
   </ul>
+  <button id="myBags">myBags ▼</button>
 </header>
 
 <section id="landing" class="container">
@@ -22,11 +23,11 @@
 <section id="generator" class="container-fluid">
   <div class="row">
     <div id="colors" class="col-xs-12 col-md-6">
-    <form>
-      How many colors do you need?(3-6)
-      <input id="color-number" value="6"/>
-      <button type="button" id="color-ammt">Submit</button>
-    </form>
+      <form>
+        How many colors do you need?(3-6)
+        <input id="color-number" value="6"/>
+        <button type="button" id="color-ammt">Submit</button>
+      </form>
       <div id="color-generator">
         <div class="color-swatch" id="color1">
           <p>test</p>
@@ -55,7 +56,33 @@
         </div>
       </div>
       <div id="gallery" class="col-xs-12 col-md-6">
-        display 2 newest colorBags && 4 random ones
+        <div id="newestColorBags" class="row">
+          <div class="col-xs-6">
+            first new here
+          </div>
+          <div class="col-xs-6">
+            second new here
+          </div>
+        </div>
+        <div id="randomColorBags">
+          <div class="row">
+            <div class="col-xs-6">
+              first random
+            </div>
+            <div class="col-xs-6">
+              second random
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              third random
+            </div>
+            <div class="col-xs-6">
+              fourth random
+            </div>
+          </div>
+          <button id="randomize">RANDOMIZE</button>
+        </div>
       </div>
     </div>
     <div id="fonts" class="col-xs-12 col-md-6">
@@ -76,5 +103,9 @@
       </article>
       <input id="fontsArray" type="hidden" value="<%= fonts %>"/>
     </div>
+
+    <aside class="col-xs-12 col-md-2 hidden">
+      <p>test</p>
+    </aside>
   </div>
 </section>

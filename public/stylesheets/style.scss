@@ -1,4 +1,8 @@
 
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
 body {
   font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -6,15 +10,34 @@ body {
 header {
   background-color: rgb(30,30,30);
   color: rgb(230,230,230);
+
+  #myBags {
+    float: right;
+    background: black;
+    color: turquoise;
+  }
 }
 
 #fblogin {
-  width: 150px!important;
+  width: 150px;
   height: auto;
 }
 
 #gallery {
   display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+aside {
+  position: relative;
+  //padding on #generator
+  top: -25px;
+  left: 10px;
+  //height set in jQuery
+  background-color: turquoise;
 }
 
 #landing {
@@ -28,6 +51,7 @@ header {
 }
 .color-swatch{
   width: 100%;
+  //height set in jQuery
   margin: 0;
 }
 
