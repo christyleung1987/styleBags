@@ -102,6 +102,14 @@ aside {
   box-shadow: -1px 0 10px black;
 }
 
+.colorbag-rgb {
+
+  div[class^="rgb"] {
+    width: 25px;
+    height: 25px;
+  }
+}
+
 #generator {
   padding: 25px;
   display: none;

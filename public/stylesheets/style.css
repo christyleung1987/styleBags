@@ -22,6 +22,8 @@ header {
     height: auto; }
   header ul {
     float: left; }
+    header ul li {
+      display: inline; }
   header #bags {
     float: right;
     color: #e7e7e7;
@@ -67,6 +69,10 @@ aside {
   background-color: #272826;
   border-left: 2px dotted #00a376;
   box-shadow: -1px 0 10px black; }
+
+.colorbag-rgb div[class^="rgb"] {
+  width: 25px;
+  height: 25px; }
 
 #generator {
   padding: 25px;
