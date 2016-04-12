@@ -6,6 +6,9 @@ $('#bags').on('click', function(){
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
 });
+$('#bags').one('click', function() {
+  savedBags();
+});
 
 function savedBags(){
   $.ajax({
@@ -27,18 +30,20 @@ function displayColorBags(colorbags) {
   if (!colorbags) {
     return;
   } else {
+    //loop through colorbags
     for (var i = 0; i <= colorbags.length; i++) {
       var name = colorbags[i].name;
+      var rgbTotal = colorbags[i].rgbs.length;
       $('aside').append(`<div class="colorbag"><h4>${name}</h4><div class="colorbag-rgb" id="colorbag${i}"></div></div>`);
-      for (var j = 0; j <= colorbags[i].rgbs.length; j++) {
-        console.log(`#colorbag${i}`)
-        $(`#colorbag${i}`).append(`<div class="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};"></div>`);
+      //loop through rgb array
+      for (var j = 0; j <= rgbTotal; j++) {
+        //-20 is left & right padding on aside
+        var width = 100 / rgbTotal;
+        $(`#colorbag${i}`).append(`<div class="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>`);
       }
     }
   }
 }
-
-savedBags();
 
 var colors = [];
 
