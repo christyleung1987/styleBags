@@ -57,7 +57,6 @@ var color;
 
   var num = $('#color-number').val() || 6;
 
-
   function randomColors(val){
     for (var i=1; i<=val; i++){
       var color = randomColor();
@@ -203,7 +202,6 @@ var color;
   });
 
 
-
   // SET COLOR SWATCH & ASIDE HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
@@ -216,6 +214,5 @@ var color;
     var asideHeight = $(window).height() - $('header').height();
     $('aside').css('height', asideHeight+'px');
   }).resize();
-
 
 });
