@@ -51,7 +51,7 @@ $('#bags').on('click', function(){
     $('#save-colors').val(colors);
   });
 
-  $('header h1').on('click', function(){
+  $('#logo').on('click', function(){
     $('#generator').css('display', 'none');
     $('#bags').addClass('hidden');
     $('#landing').show();
