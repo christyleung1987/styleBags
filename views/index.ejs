@@ -3,30 +3,33 @@
   <link href='https://fonts.googleapis.com/css?family=<%=fontFamily1Plus%>:400,400italic,700|<%=fontFamily2Plus%>:400,400italic,700|<%=fontFamily3Plus%>:400,400italic,700' rel='stylesheet' type='text/css'>
 </div>
 
-<header class="container-fluid">
-  <h1>StyleBags</h1>
-  <ul>
-    <li>Sign Up</li>
-    <li>Sign In with Facebook</li>
-  </ul>
-</header>
+<div id="border">
+  <header class="container-fluid">
+    <img src="images/logo.png" id="logo" alt="logo" />
+    <ul>
+      <li>Sign In</li>
+      <li>Sign Up</li>
+    </ul>
+    <button id="bags" class="hidden">my bags ▼</button>
+  </header>
+</div>
 
 <section id="landing" class="container">
   <h1>StyleBags</h1>
   <p>Cupcake ipsum dolor sit amet soufflé sesame snaps macaroon. Donut bonbon biscuit brownie. Marzipan jelly beans oat cake candy canes caramels chocolate bar.</p>
   <p>Bonbon pudding I love. Powder jelly beans soufflé sugar plum pastry I love. Candy soufflé ice cream halvah brownie icing.</p>
   <button id="start">START</button>
-  <a href="https://www.googleapis.com/webfonts/v1/webfonts?key=" + fontKey ></a>
+  <!-- <a href="https://www.googleapis.com/webfonts/v1/webfonts?key=" + fontKey ></a> -->
 </section>
 
 <section id="generator" class="container-fluid">
   <div class="row">
     <div id="colors" class="col-xs-12 col-md-6">
-    <form>
-      How many colors do you need?(3-6)
-      <input id="color-number" value="6"/>
-      <button type="button" id="color-ammt">Submit</button>
-    </form>
+      <form>
+        How many colors do you need?(3-6)
+        <input id="color-number" value="6"/>
+        <button type="button" id="color-ammt">Submit</button>
+      </form>
       <div id="color-generator">
         <div class="color-swatch" id="color1">
           <p><span id="lock" class="unlocked"><i class="fa fa-unlock" aria-hidden="true"></i>
@@ -61,10 +64,36 @@
         </div>
       </div>
       <div id="gallery" class="col-xs-12 col-md-6">
-        display 2 newest colorBags && 4 random ones
+        <div id="newestColorBags" class="row">
+          <div class="col-xs-6">
+            first new here
+          </div>
+          <div class="col-xs-6">
+            second new here
+          </div>
+        </div>
+        <div id="randomColorBags">
+          <div class="row">
+            <div class="col-xs-6">
+              first random
+            </div>
+            <div class="col-xs-6">
+              second random
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              third random
+            </div>
+            <div class="col-xs-6">
+              fourth random
+            </div>
+          </div>
+          <button id="randomize">RANDOMIZE</button>
+        </div>
       </div>
     </div>
-    <div id="fonts" class="col-xs-12 col-md-6">
+    <div id="fonts" class="col-xs-12 col-md-6 text-center">
       <article style="font-family:<%=fontFamily1%>;">
         <h1><%= fontFamily1 %></h1>
         <p><i>italicized goodness</i></p>
@@ -82,5 +111,9 @@
       </article>
       <input id="fontsArray" type="hidden" value="<%= fonts %>"/>
     </div>
+
+    <aside class="col-xs-12 col-md-2 hidden">
+      <p>test</p>
+    </aside>
   </div>
 </section>

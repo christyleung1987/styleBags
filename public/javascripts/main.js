@@ -1,4 +1,13 @@
 $(function() {
+// MY BAGS DROPDOWN
+$('#bags').on('click', function(){
+  $('aside').toggleClass('hidden');
+  $('#colors').toggleClass('col-md-6 col-md-5');
+  $('#gallery').toggleClass('col-md-6 col-md-5');
+  $('#fonts').toggleClass('col-md-6 col-md-5');
+});
+
+
 // COLOR GENERATOR functions
   function randomColor(){
     var red = Math.floor(Math.random()*256);
@@ -35,13 +44,16 @@ $(function() {
   $('#start').on('click', function(){
     $(this).parent().hide();
     $('#generator').css('display', 'block');
+    $('#bags').removeClass('hidden');
+
     colors=[];
     colorsGenerator();
     $('#save-colors').val(colors);
   });
 
-  $('h1').on('click', function(){
+  $('header h1').on('click', function(){
     $('#generator').css('display', 'none');
+    $('#bags').addClass('hidden');
     $('#landing').show();
   });
 
@@ -72,8 +84,6 @@ $(function() {
     $('article:nth-of-type(3) h1').html(`${fontFamily3}`);
   }
 
-
-
   // console.log(fontTypes);
 
   // //C & DOWN, F & DOWN KEYPRESSES
@@ -82,13 +92,11 @@ $(function() {
     if (e.keyCode in keys) {
       keys[e.keyCode] = true;
       if (keys[39] && keys[67]) {
-        console.log("c and down arrow pressed");
         colors = [];
         colorsGenerator();
         $('#save-colors').val(colors);
       } else if (keys[39] && keys[70]) {
         fontGenerator();
-        console.log("f and down arrow pressed");
       }
     }
   }).keyup(function(e) {
@@ -136,7 +144,7 @@ $(function() {
   });
 
 
-  // SET COLOR SWATCH HEIGHT
+  // SET COLOR SWATCH & ASIDE HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
     var swatchQuantity = $('.color-swatch').length;
@@ -144,6 +152,9 @@ $(function() {
     var totalSwatchHeight = $(window).height() - $('header').height() - 50;
     var singleSwatchHeight = totalSwatchHeight / swatchQuantity;
     $('.color-swatch').css('height', singleSwatchHeight+'px');
+
+    var asideHeight = $(window).height() - $('header').height();
+    $('aside').css('height', asideHeight+'px');
   }).resize();
 
 

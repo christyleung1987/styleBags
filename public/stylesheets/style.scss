@@ -1,15 +1,82 @@
+$off-white: #e7e7e7;
+$off-black: #1e1e1e;
+$dark-grey: #272826;
 
+$pink: #c22d69;
+$purple: #7d338c;
+$blue: #3163ac;
+$green: #00a376;
+$yellow: #f4b800;
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
 body {
+  color: $off-white;
+  background-color: $dark-grey;
   font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-header {
-  background-color: rgb(30,30,30);
-  color: rgb(230,230,230);
+#border {
+  border-bottom: 10px solid $blue;
 }
 
-#fblogin {
-  width: 150px!important;
+header {
+  background-color: $dark-grey;
+  border-bottom: 10px solid $green;
+  color: $off-white;
+  margin-bottom: 8px;
+  padding: 10px 0 10px 0;
+
+  #logo {
+    float: left;
+    width: 200px;
+    height: auto;
+  }
+
+  ul {
+    float: left;
+  }
+
+  #bags {
+    float: right;
+    color: $off-white;
+    border: 4px dashed $purple;
+    text-shadow: 2px 2px 3px black;
+    background-color: $off-black;
+    border-radius: 10px;
+    font-size: .8em;
+    padding: 4px 8px;
+    position: relative;
+    top: 120px;
+  }
+}
+
+.container, .container-fluid:not(:first-of-type) {
+  padding: 10px 25px;
+  background-color: $off-black;
+}
+
+#landing {
+  margin-top: 50px;
+  border-radius: 10px;
+  color: $off-white;
+  h1 {
+    color: $pink;
+  }
+  #start {
+    color: $off-white;
+    background-color: $green;
+    padding: 15px 25px;
+    margin: 30px 0;
+    border-radius: 20px;
+  }
+}
+
+.fblogin {
+  margin: 30px auto 15px;
+  width: 150px;
   height: auto;
 }
 
@@ -17,26 +84,41 @@ header {
   display: none;
 }
 
-#landing {
-  background: #39A2AE;
-
+.hidden {
+  display: none;
 }
+
+aside {
+  position: relative;
+  //padding on #generator
+  top: -25px;
+  left: 10px;
+  //height set in jQuery
+  padding-top: 20px;
+  background-color: $dark-grey;
+  border-left: 2px dotted $green;
+  box-shadow: -1px 0 10px black;
+}
+
 #generator {
-  background: #CC998D;
   padding: 25px;
   display: none;
 }
 .color-swatch{
   width: 100%;
+  //height set in jQuery
   margin: 0;
 }
 
 a {
-  color: #00B7FF;
 }
 
 #fonts {
-  font-size: 1.2em;
+  font-size: 1.3em;
+
+  h1 {
+    color: $pink;
+  }
 
   article:not(:last-child) {
     margin-bottom: 60px;
