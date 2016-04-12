@@ -1,6 +1,6 @@
 $(function() {
 //MYBAG DROPDOWN
-$('#myBags').on('click', function(){
+$('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
   $('#colors').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');

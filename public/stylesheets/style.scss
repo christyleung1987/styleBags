@@ -1,14 +1,12 @@
+$off-white: #e7e7e7;
+$off-black: #1e1e1e;
+$dark-grey: #272826;
 
-$light-grey: #2C292D;
-$grey: #272826;
-$dark-grey: #232323;
-$off-white: #E5FFF9;
-$mint: #2dffce;
-
-//not used (yet)
-$dark-mint: #198E73;
-$light-mint: #73e2c9;
-$light-purple: #E5BAFF;
+$pink: #c22d69;
+$purple: #7d338c;
+$blue: #3163ac;
+$green: #00a376;
+$yellow: #f4b800;
 
 html, body {
   height: 100%;
@@ -16,44 +14,60 @@ html, body {
 }
 body {
   color: $off-white;
-  background-color: $grey;
+  background-color: $dark-grey;
   font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#border {
+  border-bottom: 10px solid $blue;
+}
+
 header {
-  background-color: $dark-purple;
-  border-bottom: 20px double $mint;
+  background-color: $dark-grey;
+  border-bottom: 10px solid $green;
   color: $off-white;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
 
   h1 {
-    color: $mint;
+    color: $yellow;
   }
 
-  #myBags {
+  ul {
+    float: left;
+  }
+
+  #bags {
     float: right;
       color: $off-white;
-      background-color: $dark-purple;
+      border:4px dashed $purple;
+      text-shadow: 2px 2px 3px black;
+      background-color: $off-black;
       border-radius: 10px;
+      font-size: .8em;
       padding: 4px 8px;
-      margin-bottom: 5px;
+      position: relative;
+      top: 55px;
   }
 }
 
 .container, .container-fluid:not(:first-of-type) {
-  background-color: $dark-grey;
+  padding: 10px 25px;
+  background-color: $off-black;
 }
 
 #landing {
   margin-top: 50px;
+  border-radius: 10px;
   color: $off-white;
   h1 {
-    color: $mint;
+    color: $pink;
   }
   #start {
     color: $off-white;
-    background-color: $dark-purple;
+    background-color: $green;
     padding: 15px 25px;
-    margin: 50px 0;
+    margin: 30px 0;
     border-radius: 20px;
   }
 }
@@ -78,8 +92,8 @@ aside {
   left: 10px;
   //height set in jQuery
   padding-top: 20px;
-  background-color: $dark-purple;
-  border-left: 2px dotted $mint;
+  background-color: $dark-grey;
+  border-left: 2px dotted $green;
   box-shadow: -1px 0 10px black;
 }
 
@@ -94,14 +108,13 @@ aside {
 }
 
 a {
-  color: $mint;
 }
 
 #fonts {
   font-size: 1.3em;
 
   h1 {
-    color: $mint;
+    color: $pink;
   }
 
   article:not(:last-child) {
