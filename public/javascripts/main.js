@@ -108,6 +108,13 @@ var color;
       $('#color6').css('background-color', `${colors[5]}`);
   }
 
+  //To check whether the color generator is locked. First if THIS div has both .color-swatch and .locked, do nothing, else run the color generator.
+  // if ($(".color-swatch").siblings().hasClass("locked")) {
+  // // logic here
+  //   return false;
+  // }
+
+
   // COLOR Generator jQuery
 
   $('#start').on('click', function(){
@@ -188,41 +195,44 @@ var color;
 
   // change ammount of color divs shown based on user input
   $('#color-ammt').on('click', function(){
-    console.log($('#color-number').val());
-    colors = [];
-    colorsGenerator();
-    rgb2hex(colors);
-    if ($('#color-number').val() < 4) {
-      $('#color6').hide();
-      $('#color5').hide();
-      $('#color4').hide();
-      colors.pop();
-      colors.pop();
-      colors.pop();
-      console.log(colors);
-      $('#rgbs').val(colors);
-    } else if ($('#color-number').val() < 5) {
-      $('#color6').hide();
-      $('#color5').hide();
-      $('#color4').show();
-      colors.pop();
-      colors.pop();
-      console.log(colors);
-      $('#rgbs').val(colors);
-    } else if ($('#color-number').val() < 6) {
-      $('#color6').hide();
-      $('#color5').show();
-      $('#color4').show();
-      colors.pop();
-      console.log(colors);
-      $('#rgbs').val(colors);
-    } else {
-      $('#color6').show();
-      $('#color5').show();
-      $('#color4').show();
-      console.log(colors);
-      $('#rgbs').val(colors);
+    if ($('.color-swatch').siblings().hasClass('.color-swatch .locked')){
+      console.log("I'm working!");
     }
+      console.log($('#color-number').val());
+      colors = [];
+      colorsGenerator();
+      rgb2hex(colors);
+      if ($('#color-number').val() < 4) {
+        $('#color6').hide();
+        $('#color5').hide();
+        $('#color4').hide();
+        colors.pop();
+        colors.pop();
+        colors.pop();
+        console.log(colors);
+        $('#rgbs').val(colors);
+      } else if ($('#color-number').val() < 5) {
+        $('#color6').hide();
+        $('#color5').hide();
+        $('#color4').show();
+        colors.pop();
+        colors.pop();
+        console.log(colors);
+        $('#rgbs').val(colors);
+      } else if ($('#color-number').val() < 6) {
+        $('#color6').hide();
+        $('#color5').show();
+        $('#color4').show();
+        colors.pop();
+        console.log(colors);
+        $('#rgbs').val(colors);
+      } else {
+        $('#color6').show();
+        $('#color5').show();
+        $('#color4').show();
+        console.log(colors);
+        $('#rgbs').val(colors);
+      }
   });
 
   // Locking and unlocking color divs
@@ -236,8 +246,16 @@ var color;
     $(this).parent().parent().toggleClass('locked');
     $(this).toggleClass('fa-lock fa-unlock');
   });
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+  var clickedDiv = []
+  function clickDiv(){
+    divNames.forEach(function(){
+      if ($(".color-swatch").siblings().hasClass("locked")) {
+        clickedDiv.push('#color[i]')
+      }
+    })
+  }
+  console.log(clickedDiv);
   // SET COLOR SWATCH & ASIDE HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
@@ -250,5 +268,12 @@ var color;
     var asideHeight = $(window).height() - $('header').height();
     $('aside').css('height', asideHeight+'px');
   }).resize();
+
+
+  // Setting font colors to gen colors
+  $('.fontHeader').on('click', function() {
+
+  });
+
 
 });
