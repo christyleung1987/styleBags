@@ -293,7 +293,6 @@ var color;
 
 
   // COLOR Generator jQuery
-
   $('#start').on('click', function(){
     $(this).parent().hide();
     $('#generator').css('display', 'block');

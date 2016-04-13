@@ -251,6 +251,7 @@ div[id^="savedFont"] {
 .color-swatch{
   width: 100%;
   //height set in jQuery
+  min-height: 30px;
   margin: 0;
 }
 

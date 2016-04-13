@@ -176,6 +176,7 @@ div[id^="savedFont"] {
 
 .color-swatch {
   width: 100%;
+  min-height: 30px;
   margin: 0; }
 
 #fonts {
