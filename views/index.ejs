@@ -3,10 +3,7 @@
   <link href='https://fonts.googleapis.com/css?family=<%=fontFamily1Plus%>:400,400italic,700|<%=fontFamily2Plus%>:400,400italic,700|<%=fontFamily3Plus%>:400,400italic,700' rel='stylesheet' type='text/css'>
 </div>
 
-<div id="border">
-  <header class="container-fluid">
-
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -24,7 +21,7 @@
                   <label for="email">Password</label>
                   <input class="form-control" type="password" name="password" id="password" required>
                 </div>
-                <input class="btn btn-default" type="submit">
+                <input class="btn btn-default redirection" type="submit">
               </form>
               <a href="/auth/facebook"><img src="images/connectfb.jpg" class="fblogin" alt="Login with Facebook"></a>
         </div>
@@ -49,7 +46,7 @@
                     <label for="password">Password</label>
                     <input class="form-control" type="password" name="password" id="password" required>
                   </div>
-                  <input class="btn btn-default" type="submit">
+                  <input class="btn btn-default redirection" type="submit">
                 </form>
                 <a href="/auth/facebook"><img src="images/connectfb.jpg" class="fblogin" alt="Login with Facebook"></a>
         </div>
@@ -57,7 +54,8 @@
     </div>
   </div>
 
-
+<div class="animated bounceInDown" id="border">
+  <header class="container-fluid">
     <div id="logo"><img src="images/logo.png" alt="logo" /><span>StyleBags</sp></div>
     <% if(global.currentUser){ %>
     <a href="/logout"><button class="btn btn-primary btn-sm">Log out</button></a>
@@ -65,26 +63,26 @@
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signupModal">Signup</button>
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Login</button>
       <% } %>
-    <button id="bags" class="hidden">StyleBag ▼</button>
+    <button id="bags" class="hidden">StyleBag<span>▼</span></button>
   </header>
 </div>
 
 <section id="landing" class="container">
   <h1>About StyleBags</h1>
   <p>Welcome to StyleBags, a web application built in General Assembly's Web Development Immersive course (cohort 4 whatwhat!) using the Node.JS / Express.JS / EJS stack.</p>
-  <p>After clicking "START", you may generate color palletes (ColorBags) and view random Google Fonts. After logging in or signing up, you may save ColorBags and also save fonts into your FontBag. All of your ColorBags and your FontBag make your StyleBag.</p>
+  <p>On this fabulous site, you may generate color palletes (ColorBags) and view random Google Fonts. After logging in or signing up, you may save ColorBags and also save fonts into your FontBag. All of your ColorBags and your FontBag make your StyleBag.</p>
   <h2>How it Works</h2>
-  <p>Begin by choosing the number of colors you would like in your ColorBag. If you like a color, lock it in place with a mouse click (which prevents you from altering the number of colors). Activate the color generator by pressing the <b>right arrow & c keys</b> or activate the font randomizer by pressing the <b>right arrow & f keys</b>.
-  <p>Located above the color generator, click on the "Gallery" button to view random ColorBags other users have saved.</p>
-  <p>To reveal your ColorBags and FontBag, click on the "StyleBag" link in the header. LET'S GET STARTED! :)</p>
+  <p>After clicking "START", begin by choosing the number of colors you would like in your ColorBag. Activate the color generator by pressing the <b>right arrow & c keys</b> or activate the font randomizer by pressing the <b>right arrow & f keys</b>.
+  <p>To reveal your ColorBags and FontBag, click on the "StyleBag" link in the header. This is where you can edit a ColorBag title or delete or a ColorBags or font. To view and/or save random ColorBags other users have saved, click on the "Gallery" button located above the color generator. Click the logo to come back to this page!</p>
+  <p>LET'S GET STARTED! :)</p>
   <button id="start">START</button>
 </section>
 
-<section id="generator" class="container-fluid">
+<section id="generator" class="container-fluid animated fadeIn">
   <div class="row">
       <div id="color-generator" class="col-xs-12 col-md-6">
         <button class="switch">Gallery</button>
-        <form class="form-group">
+        <div class="form-group">
           <label for="color-number">How many colors do you need?</label>
           <select class="form-control" id="color-number">
             <option class="color-ammt">6</option>
@@ -93,24 +91,24 @@
             <option class="color-ammt">3</option>
           </select>
           <input type="Submit" id="color-ammt"/>
-        </form>
+        </div>
         <div class="color-swatch" id="color1">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode1"></span><span id="hexCode1"></span></span></p>
+          <p><span class="colorCodes"><span id="rgbCode1"></span><span id="hexCode1"></span></span></p>
         </div>
         <div class="color-swatch" id="color2">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode2"></span><span id="hexCode2"></span></span></p>
+          <p><span class="colorCodes"><span id="rgbCode2"></span><span id="hexCode2"></span></span></p>
         </div>
         <div class="color-swatch" id="color3">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode3"></span><span id="hexCode3"></span></span></p>
+          <p><span class="colorCodes"><span id="rgbCode3"></span><span id="hexCode3"></span></span></p>
         </div>
         <div class="color-swatch" id="color4">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode4"></span><span id="hexCode4"></span></span></p>
+          <p><span class="colorCodes"><span id="rgbCode4"></span><span id="hexCode4"></span></span></p>
         </div>
         <div class="color-swatch" id="color5">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode5"></span><span id="hexCode5"></span></span></p>
+          <p><span class="colorCodes"><span id="rgbCode5"></span><span id="hexCode5"></span></span></p>
         </div>
         <div class="color-swatch" id="color6">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode6"></span><span id="hexCode6"></span></span></p>
+          <p><span class="colorCodes"><span id="rgbCode6"></span><span id="hexCode6"></span></span></p>
         </div>
         <% if(global.currentUser){ %>
           <form id="colorBag" action="/colorbags" method="post">
@@ -126,21 +124,26 @@
         <!-- <div class="row"> -->
         <div>
           <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
           </div>
           <div class="col-xs-6 randcolor">
-          </div>
-        <!-- </div> -->
-        <!-- <div class="row"> -->
-          <div class="col-xs-6 randcolor">
-          </div>
-          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
           </div>
         <!-- </div> -->
         <!-- <div class="row"> -->
           <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
           </div>
           <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
+          </div>
         <!-- </div> -->
+        <!-- <div class="row"> -->
+          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
+          </div>
+          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
         </div>
         <button id="randomize">RANDOMIZE</button>
       </div>
@@ -185,15 +188,15 @@
       <input id="fontsArray" type="hidden" value="<%= fonts %>"/>
     </div>
 
-    <aside class="col-xs-12 col-md-2 hidden">
+    <aside class="col-xs-12 col-md-2 hidden animated slideInRight">
       <% if(global.currentUser){ %>
       <div id="userColorBags">
         <h4 class="text-center">ColorBags<span>show all▼</span></h4>
-        <p>loading ...</p>
+        <p class="loading">loading ...</p>
       </div>
       <div id="userFonts">
         <h4 class="text-center">FontBag<span>show all▼</span></h4>
-        <p>loading ...<p>
+        <p class="loading">loading ...<p>
       </div>
       <% } else { %>
         <p>Please login or sign up to save ColorBags and to save fonts into your FontBag.</p>

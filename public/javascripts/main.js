@@ -12,6 +12,11 @@ $('#bags').on('click', function(){
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
+  // if ($('#bags').hasClass('hidden')) {
+  //   $('#bags span').html('▼');
+  // } else {
+  //   $('#bags span').html('▲');
+  // }
 });
 
 // SHOW ALL
@@ -56,10 +61,11 @@ function displayColorBags(colorbags) {
   } else {
     //loop through colorbags
     for (var i = colorbags.length; i--;) {
+      var colorbag = colorbags[i];
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><button>Edit</button><button>x</button><div id="bag-rgb${i}"></div></div> `);
+      $('#userColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -74,6 +80,30 @@ function displayColorBags(colorbags) {
     }
   }
 }
+
+// DELETE colorbag from saved bags
+  $('#userColorBags').on('click', '#deleteSavedColorbag', function(){
+    var deleteColorbagId = $(this).parent().data('colorbag-id');
+    $(this).parent().remove();
+    deleteColorbag(deleteColorbagId);
+  })
+
+  var deleteColorbag = function(deleteColorbagId){
+    $.ajax({
+      url: '/colorbags/' + deleteColorbagId,
+      method: 'DELETE',
+      data: {}
+    })
+    .done(function(data) {
+      console.log('Deleted colorbag: ', data);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.log('Uh oh');
+      console.log(jqXHR, textStatus, errorThrown);
+    })
+    .always(function() {
+    });
+  }
 
 function displaySixBags(colorbags) {
   console.log(colorbags);
@@ -165,6 +195,47 @@ function sixBags(){
 // }
 // displaySixBags();
 
+
+// DISPLAY NEWLY SAVED COLORBAGS IN ASIDE
+$('#saveColorBag').click(function(e){
+  e.preventDefault();
+  e.stopPropagation();
+
+  var name = $('#colorBagName').val();
+  var rgbs = $('#rgbs').val();
+  var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');
+  var rgbsArray = rgbsStringSplit.split('split');
+  var rgbTotal = rgbsArray.length;
+  $('#userColorBags').prepend(`<li><strong>${name}</strong>: ${interests}</li>`);
+  for (var j = 0; j <= rgbTotal; j++) {
+    //-20 is left & right padding on aside
+    var width = 100 / rgbTotal;
+    $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>` );
+  }
+  $('#colorBagName').val('');
+
+  $.ajax({
+    url: '/colorbags',
+    method: 'POST',
+    data: {
+      name: name,
+      rgbs: rgbs
+    }
+  })
+  .done(function(nerd) {
+    console.log('New nerd: ', nerd);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log('uh oh');
+    console.log(jqXHR, textStatus, errorThrown);
+    alert("FAILED");
+  })
+  .always(function() {
+  });
+});
+
+
+
 // GET & DISPLAY FONTBAG
 function savedFonts(){
   $.ajax({
@@ -189,12 +260,13 @@ function displayFontBag(fonts) {
     return;
   } else {
     for (var i = fonts.length; i--;) {
+      var font = fonts[i];
       var name = fonts[i].fontName;
       //for Google stylesheet
       var fontPlus = name.replace(/ /g, "+");
       fontPluses.push(fontPlus);
       $('#userFonts p').remove();
-      $('#userFonts').append(`<div id="savedFont${i}"><h3 style="font-family:${name};">${name}</h3><button>x</button></div>`);
+      $('#userFonts').append(`<div id="savedFont${i}" data-font-id="${font._id}"><h3 style="font-family:${name};">${name}</h3><button class="btn" id="deleteSavedFont">x</button></div>`);
       if (i >= fonts.length - 4) {
         $(`#savedFont${i}`).addClass('always-visible');
       } else {
@@ -203,6 +275,30 @@ function displayFontBag(fonts) {
     }
   }
 }
+
+// DELETE font from saved bags
+  $('#userFonts').on('click', '#deleteSavedFont', function(){
+    var deleteFontId = $(this).parent().data('font-id');
+    $(this).parent().remove();
+    deleteFont(deleteFontId);
+  })
+
+  var deleteFont = function(deleteFontId){
+    $.ajax({
+      url: '/fonts/' + deleteFontId,
+      method: 'DELETE',
+      data: {}
+    })
+    .done(function(data) {
+      console.log('Deleted font: ', data);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.log('Uh oh');
+      console.log(jqXHR, textStatus, errorThrown);
+    })
+    .always(function() {
+    });
+  }
 
 var colors = [];
 
@@ -288,7 +384,6 @@ var color;
 
 
   // COLOR Generator jQuery
-
   $('#start').on('click', function(){
     $(this).parent().hide();
     $('#generator').css('display', 'block');
@@ -365,39 +460,35 @@ var color;
   });
 
   // change ammount of color divs shown based on user input
-  $('#color-ammt').on('click', function(){
-      console.log($('#color-number').val());
-      // colors = [];
-      // colorsGenerator();
-      // rgb2hex(colors);
-      if ($('#color-number').val() < 4) {
-        $('#color6').hide();
-        $('#color5').hide();
-        $('#color4').hide();
-        colors.pop();
-        colors.pop();
-        colors.pop();
-        $('#rgbs').val(colors);
-      } else if ($('#color-number').val() < 5) {
-        $('#color6').hide();
-        $('#color5').hide();
-        $('#color4').show();
-        colors.pop();
-        colors.pop();
-        $('#rgbs').val(colors);
-      } else if ($('#color-number').val() < 6) {
-        $('#color6').hide();
-        $('#color5').show();
-        $('#color4').show();
-        colors.pop();
-        $('#rgbs').val(colors);
-      } else {
-        $('#color6').show();
-        $('#color5').show();
-        $('#color4').show();
-        $('#rgbs').val(colors);
-      }
-  });
+    $('#color-ammt').on('click', function(){
+        if ($('#color-number').val() < 4) {
+          $('#color6').hide();
+          $('#color5').hide();
+          $('#color4').hide();
+          colors.pop();
+          colors.pop();
+          colors.pop();
+          $('#rgbs').val(colors);
+        } else if ($('#color-number').val() < 5) {
+          $('#color6').hide();
+          $('#color5').hide();
+          $('#color4').show();
+          colors.pop();
+          colors.pop();
+          $('#rgbs').val(colors);
+        } else if ($('#color-number').val() < 6) {
+          $('#color6').hide();
+          $('#color5').show();
+          $('#color4').show();
+          colors.pop();
+          $('#rgbs').val(colors);
+        } else {
+          $('#color6').show();
+          $('#color5').show();
+          $('#color4').show();
+          $('#rgbs').val(colors);
+        }
+    });
 
   // Locking and unlocking color divs
   $('.fa-unlock').on('click', function(){

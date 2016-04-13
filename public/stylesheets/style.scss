@@ -174,7 +174,7 @@ aside {
   }
 
   // loading text
-  #userColorBags p, #userFonts p {
+  .loading {
     letter-spacing: 2px;
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
   }
@@ -185,14 +185,16 @@ div[id^="colorbag"] {
   width: 100%;
 
   button:first-of-type {
+    padding: 3px 4px;
     position: absolute;
     right: 25px;
-    top: -3px;
+    top: -5px;
     border-radius: 3px;
     color: $yellow;
     background-color: $dark-grey;
     border: 1px solid $off-white;
     font-size: .7em;
+    margin-right: 4px;
 
     &:hover {
       color: $dark-grey;
@@ -201,9 +203,10 @@ div[id^="colorbag"] {
   }
 
   button:last-of-type {
+    padding: 3px 7px;
     position: absolute;
     right: 0;
-    top: -3px;
+    top: -5px;
     color: red;
     border-radius: 3px;
     background-color: $dark-grey;
@@ -251,6 +254,7 @@ div[id^="savedFont"] {
 .color-swatch{
   width: 100%;
   //height set in jQuery
+  min-height: 30px;
   margin: 0;
 }
 
