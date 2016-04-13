@@ -9,7 +9,9 @@ $('#bags').on('click', function(){
 $('#bags').one('click', function() {
   savedBags();
 });
-
+$('#gallery').on('click', function(){
+  sixBags();
+})
 $('#userColorBags h4 span').on('click', function() {
   $('div[id^="colorbag"]:not(.always-visible)').toggleClass('hidden');
 
@@ -65,46 +67,50 @@ function displayColorBags(colorbags) {
   }
 }
 
-// function sixBags(){
-//   $.ajax({
-//     url: '/all',
-//     method: 'GET',
-//     data: {},
-//     dataType: 'json'
-//   })
-//   .done(function(colorbags) {
-//     displaySixBags(colorbags);
-//   })
-//   .fail(function(jqXHR, textStatus, errorThrown) {
-//     console.log(jqXHR, textStatus, errorThrown);
-//       $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>")
-//   })
-// }
+function displaySixBags(colorbags) {
+  if (!colorbags) {
+    return;
+  } else {
+    // loop through colorbags
+    console.log(colorbags);
+    var sixColor = [];
+    for (var i = colorbags.length; i--;) {
+      var name = colorbags[i].name;
+      var rgbTotal = colorbags[i].rgbs.length;
+      $('#randColor6').remove();
+      $('#randColor6').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div>`);
+      if (i >= colorbags.length - 4) {
+        $(`#colorbag${i}`).addClass('always-visible');
+      } else {
+        $(`#colorbag${i}`).addClass('hidden');
+      }
+      //loop through rgb array
+      for (var j = 0; j <= rgbTotal; j++) {
+        //-20 is left & right padding on aside
+        var width = 100 / rgbTotal;
+        $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>`);
+      }
+    }
+  }
+}
 
-// function displaySixBags(colorbags) {
-//   if (!colorbags) {
-//     return;
-//   } else {
-//     // loop through colorbags
-//     for (var i = colorbags.length; i--;) {
-//       var name = colorbags[i].name;
-//       var rgbTotal = colorbags[i].rgbs.length;
-//       $('#userColorBags p').remove();
-//       $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div>`);
-//       if (i >= colorbags.length - 4) {
-//         $(`#colorbag${i}`).addClass('always-visible');
-//       } else {
-//         $(`#colorbag${i}`).addClass('hidden');
-//       }
-//       //loop through rgb array
-//       for (var j = 0; j <= rgbTotal; j++) {
-//         //-20 is left & right padding on aside
-//         var width = 100 / rgbTotal;
-//         $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>`);
-//       }
-//     }
-//   }
-// }
+function sixBags(){
+  $.ajax({
+    url: '/colorBags/all',
+    method: 'GET',
+    data: {},
+    dataType: 'json'
+  })
+  .done(function(colorbags) {
+    displaySixBags(colorbags);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log(jqXHR, textStatus, errorThrown);
+      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>")
+  })
+}
+
+
 
 // function displaySixBags(Colorbag){
 //   console.log(Colorbag);

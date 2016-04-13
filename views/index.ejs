@@ -83,7 +83,7 @@
 <section id="generator" class="container-fluid">
   <div class="row">
       <div id="color-generator" class="col-xs-12 col-md-6">
-        <button class="switch">Gallery</button>
+        <button class="switch" id="gallery">Gallery</button>
 
         <form>
           How many colors do you need?(3-6)
@@ -118,28 +118,28 @@
         <% } %>
       </div>
       <div id="gallery" class="col-xs-12 col-md-6 hidden">
-        <button class="switch">Gallery</button>
+        <button class="switch" id="randColor6">Gallery</button>
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-6 randcolor">
             first random
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-6 randcolor">
             second random
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-6 randcolor">
             third random
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-6 randcolor">
             fourth random
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-6 randcolor">
             fifth random
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-6 randcolor">
             sixth random
         </div>
         <button id="randomize">RANDOMIZE</button>
