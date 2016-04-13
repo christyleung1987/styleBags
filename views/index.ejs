@@ -84,29 +84,33 @@
   <div class="row">
       <div id="color-generator" class="col-xs-12 col-md-6">
         <button class="switch">Gallery</button>
-
-        <form>
-          How many colors do you need?(3-6)
-          <input id="color-number" value="6"/>
-          <button type="button" id="color-ammt">Submit</button>
+        <form class="form-group">
+          <label for="color-number">How many colors do you need?</label>
+          <select class="form-control" id="color-number">
+            <option>6</option>
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+          </select>
+          <input type="Submit" id="color-ammt"/>
         </form>
         <div class="color-swatch" id="color1">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode1"></span><span id="hexCode1"></span></span></p>
         </div>
         <div class="color-swatch" id="color2">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode2"></span><span id="hexCode2"></span></span></p>
         </div>
         <div class="color-swatch" id="color3">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode3"></span><span id="hexCode3"></span></span></p>
         </div>
         <div class="color-swatch" id="color4">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode4"></span><span id="hexCode4"></span></span></p>
         </div>
         <div class="color-swatch" id="color5">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode5"></span><span id="hexCode5"></span></span></p>
         </div>
         <div class="color-swatch" id="color6">
-          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="fontHeader">Change heading color!</span><span class="fontPara">Change the paragraph color!</span><span class="fontBG">Change the background color!</span></p>
+          <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode6"></span><span id="hexCode6"></span></span></p>
         </div>
         <% if(global.currentUser){ %>
           <form id="colorBag" action="/colorbags" method="post">
