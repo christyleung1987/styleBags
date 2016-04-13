@@ -1,14 +1,17 @@
 $(function() {
+
+var fontPluses = [];
+
 // MY BAGS DROPDOWN
+$('#bags').one('click', function() {
+  savedColorBags();
+  savedFonts();
+});
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
-});
-$('#bags').one('click', function() {
-  savedColorBags();
-  savedFonts();
 });
 
 // SHOW ALL
@@ -83,6 +86,8 @@ function savedFonts(){
   })
   .done(function(fonts) {
     displayFontBag(fonts);
+    var fontsForGoogle = fontPluses.join('|');
+    $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
@@ -129,7 +134,7 @@ var color;
     colors.push(color);
   }
 
-  console.log(colors);
+  console.log("colors",colors);
 
   var hexCodes = [];
 
@@ -218,10 +223,10 @@ var color;
   function fontGenerator(){
     var fonts = [];
     fonts.push($('#fontsArray').val());
-    console.log(fonts);
+    console.log("fonts",fonts);
     var fonts = fonts[0].toString();
     var fontsArray = fonts.split(",");
-    console.log(fontsArray);
+    console.log("fontsArray",fontsArray);
     var fontFamily1 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
     var fontFamily2 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
     var fontFamily3 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
