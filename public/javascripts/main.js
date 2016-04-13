@@ -1,14 +1,17 @@
 $(function() {
+
+var fontPluses = [];
+
 // MY BAGS DROPDOWN
+$('#bags').one('click', function() {
+  savedColorBags();
+  savedFonts();
+});
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
-});
-$('#bags').one('click', function() {
-  savedColorBags();
-  savedFonts();
 });
 
 // SHOW ALL
@@ -84,14 +87,14 @@ function displaySixBags(colorbags) {
       var colorData = Math.floor(Math.random()*colorbags.length);
       var name = colorbags[colorData].name;
       var rgbTotal = colorbags[colorData].rgbs.length;
-
-      $(`.randcolor:nth-of-type(${i})`).append(`<div id="colorbag${colorData}"><h5>${name}</h5><div id="bag-rgb${colorData}"></div></div>`);
+      $(`#gallery .row .randcolor:nth-of-type(${i}) p`).remove();
+      $(`#gallery .row .randcolor:nth-of-type(${i})`).append(`<div id="colorbag${colorData}"><h5>${name}</h5><div id="bag-rgb${colorData}"></div></div>`);
 
       //loop through rgb array
       for (var j = 0; j <= rgbTotal; j++) {
         //-20 is left & right padding on aside
         var width = 100 / rgbTotal;
-        $(`#bag-rgb${colorData}`).append(`<div id="rgb${j}" style="background-color:${colorbags[colorData].rgbs[j]};width:${width}%"></div>`);
+        //$(`#bag-rgb${colorData}`).append(`<div id="rgb${j}" style="background-color:${colorbags[colorData].rgbs[j]};width:${width}%"></div>`);
       }
       sixColor.push(colorbags[colorData]);
     }
@@ -152,6 +155,8 @@ function savedFonts(){
   })
   .done(function(fonts) {
     displayFontBag(fonts);
+    var fontsForGoogle = fontPluses.join('|');
+    $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
@@ -165,8 +170,11 @@ function displayFontBag(fonts) {
   } else {
     for (var i = fonts.length; i--;) {
       var name = fonts[i].fontName;
+      //for Google stylesheet
+      var fontPlus = name.replace(/ /g, "+");
+      fontPluses.push(fontPlus);
       $('#userFonts p').remove();
-      $('#userFonts').append(`<div id="savedFont${i}"><h5>${name}</h5><button>Delete</button></div>`);
+      $('#userFonts').append(`<div id="savedFont${i}"><h3 style="font-family:${name};">${name}</h3><button>x</button></div>`);
       if (i >= fonts.length - 4) {
         $(`#savedFont${i}`).addClass('always-visible');
       } else {
@@ -198,12 +206,12 @@ var color;
     colors.push(color);
   }
 
-  console.log(colors);
+  console.log("colors",colors);
 
   var hexCodes = [];
 
   function rgb2hex(arr){
-    var hexCodes=[];
+    hexCodes=[];
       arr.forEach(function(color){
           var sepColorHexCodes=[];
           color = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
@@ -216,13 +224,19 @@ var color;
           var hexColor = ("#" + ("0" + parseInt(sepColorHexCodes[0],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[1],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[2],16).toString(16)).slice(-2));
           hexCodes.push(hexColor);
       })
-    $('#hexCodes').val(hexCodes);
+    $('#hexCode1').empty().append(`${hexCodes[0]}`);
+    $('#hexCode2').empty().append(`${hexCodes[1]}`);
+    $('#hexCode3').empty().append(`${hexCodes[2]}`);
+    $('#hexCode4').empty().append(`${hexCodes[3]}`);
+    $('#hexCode5').empty().append(`${hexCodes[4]}`);
+    $('#hexCode6').empty().append(`${hexCodes[5]}`);
   }
 
 
-  var num = $('#color-number').val() || 6;
+  var num = 6 || $('#color-number').val();
 
   function randomColors(val){
+    colors = [];
     for (var i=1; i<=val; i++){
       var color = randomColor();
       colors.push(color);
@@ -232,12 +246,18 @@ var color;
 
   function colorsGenerator(){
     randomColors(num);
-      $('#color1').css('background-color', `${colors[0]}`);
-      $('#color2').css('background-color', `${colors[1]}`);
-      $('#color3').css('background-color', `${colors[2]}`);
-      $('#color4').css('background-color', `${colors[3]}`);
-      $('#color5').css('background-color', `${colors[4]}`);
-      $('#color6').css('background-color', `${colors[5]}`);
+      $('#color1').css('background-color', `${colors[0]}`)
+      $('#rgbCode1').empty().append(`${colors[0]}`);
+      $('#color2').css('background-color', `${colors[1]}`)
+      $('#rgbCode2').empty().append(`${colors[1]}`);
+      $('#color3').css('background-color', `${colors[2]}`)
+      $('#rgbCode3').empty().append(`${colors[2]}`);
+      $('#color4').css('background-color', `${colors[3]}`)
+      $('#rgbCode4').empty().append(`${colors[3]}`);
+      $('#color5').css('background-color', `${colors[4]}`)
+      $('#rgbCode5').empty().append(`${colors[4]}`);
+      $('#color6').css('background-color', `${colors[5]}`)
+      $('#rgbCode6').empty().append(`${colors[5]}`);
   }
 
   //To check whether the color generator is locked. First if THIS div has both .color-swatch and .locked, do nothing, else run the color generator.
@@ -256,7 +276,6 @@ var color;
 
     colors=[];
     colorsGenerator();
-
     rgb2hex(colors);
     $('#save-colors').val(colors);
 
@@ -276,10 +295,10 @@ var color;
   function fontGenerator(){
     var fonts = [];
     fonts.push($('#fontsArray').val());
-    console.log(fonts);
+    console.log("fonts",fonts);
     var fonts = fonts[0].toString();
     var fontsArray = fonts.split(",");
-    console.log(fontsArray);
+    console.log("fontsArray",fontsArray);
     var fontFamily1 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
     var fontFamily2 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
     var fontFamily3 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
@@ -341,7 +360,6 @@ var color;
         colors.pop();
         colors.pop();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else if ($('#color-number').val() < 5) {
         $('#color6').hide();
@@ -349,20 +367,17 @@ var color;
         $('#color4').show();
         colors.pop();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else if ($('#color-number').val() < 6) {
         $('#color6').hide();
         $('#color5').show();
         $('#color4').show();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else {
         $('#color6').show();
         $('#color5').show();
         $('#color4').show();
-        console.log(colors);
         $('#rgbs').val(colors);
       }
   });

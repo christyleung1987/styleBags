@@ -117,6 +117,8 @@ aside {
     font-size: 1.1em;
     line-height: 1.6em;
     margin-top: 15px; }
+  aside h3 {
+    font-size: 1.2em; }
   aside #userColorBags p, aside #userFonts p {
     letter-spacing: 2px;
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
@@ -152,6 +154,21 @@ div[id^="colorbag"] {
     display: inline-block;
     height: 25px;
     margin-bottom: -5px; }
+
+div[id^="savedFont"] {
+  position: relative; }
+  div[id^="savedFont"] button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: red;
+    border-radius: 3px;
+    background-color: #272826;
+    border: 1px solid #e7e7e7;
+    font-size: .7em; }
+    div[id^="savedFont"] button:hover {
+      color: #272826;
+      background-color: red; }
 
 #generator {
   padding: 25px;
