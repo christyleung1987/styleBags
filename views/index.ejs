@@ -3,10 +3,7 @@
   <link href='https://fonts.googleapis.com/css?family=<%=fontFamily1Plus%>:400,400italic,700|<%=fontFamily2Plus%>:400,400italic,700|<%=fontFamily3Plus%>:400,400italic,700' rel='stylesheet' type='text/css'>
 </div>
 
-<div id="border">
-  <header class="container-fluid">
-
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -57,7 +54,8 @@
     </div>
   </div>
 
-
+<div class="animated bounceInDown" id="border">
+  <header class="container-fluid">
     <div id="logo"><img src="images/logo.png" alt="logo" /><span>StyleBags</sp></div>
     <% if(global.currentUser){ %>
     <a href="/logout"><button class="btn btn-primary btn-sm">Log out</button></a>
@@ -80,11 +78,11 @@
   <button id="start">START</button>
 </section>
 
-<section id="generator" class="container-fluid">
+<section id="generator" class="container-fluid animated fadeIn">
   <div class="row">
       <div id="color-generator" class="col-xs-12 col-md-6">
         <button class="switch">Gallery</button>
-        <form class="form-group">
+        <div class="form-group">
           <label for="color-number">How many colors do you need?</label>
           <select class="form-control" id="color-number">
             <option class="color-ammt">6</option>
@@ -93,7 +91,7 @@
             <option class="color-ammt">3</option>
           </select>
           <input type="Submit" id="color-ammt"/>
-        </form>
+        </div>
         <div class="color-swatch" id="color1">
           <p><i class="fa fa-unlock fa-3x" aria-hidden="true"></i><span class="colorCodes"><span id="rgbCode1"></span><span id="hexCode1"></span></span></p>
         </div>
@@ -189,7 +187,7 @@
       <input id="fontsArray" type="hidden" value="<%= fonts %>"/>
     </div>
 
-    <aside class="col-xs-12 col-md-2 hidden">
+    <aside class="col-xs-12 col-md-2 hidden animated slideInRight">
       <% if(global.currentUser){ %>
       <div id="userColorBags">
         <h4 class="text-center">ColorBags<span>show all▼</span></h4>
