@@ -45,6 +45,26 @@ function displayColorBags(colorbags) {
   }
 }
 
+function displaySixBags(colorbags) {
+  console.log('49', colorbags);
+  colorbags.forEach(function(colorbag){
+    if (!colorbag) {
+      return;
+    } else {
+      var colorData = Math.floor(Math.random()*256);
+      for (var i = 0; i <= 6; i++) {
+        var name = colorbags[i].name;
+        $('aside').append(`<div class="colorbag"><h4>${name}</h4><div class="colorbag-rgb" id="colorbag${i}"></div></div>`);
+        for (var j = 0; j <= colorbags[i].rgbs.length; j++) {
+          console.log(`#colorbag${i}`)
+          $(`#colorbag${i}`).append(`<div class="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};"></div>`);
+          console.log('61', colorData[i]);
+        }
+      }
+    }
+  })
+}
+displaySixBags();
 var colors = [];
 
 // GENERATOR / GALLERY SWITCH
