@@ -145,7 +145,12 @@ var color;
           var hexColor = ("#" + ("0" + parseInt(sepColorHexCodes[0],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[1],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[2],16).toString(16)).slice(-2));
           hexCodes.push(hexColor);
       })
-    $('#hexCodes').val(hexCodes);
+    $('#color1').append(`${hexCodes[0]}`);
+    $('#color2').append(`${hexCodes[1]}`);
+    $('#color3').append(`${hexCodes[2]}`);
+    $('#color4').append(`${hexCodes[3]}`);
+    $('#color5').append(`${hexCodes[4]}`);
+    $('#color6').append(`${hexCodes[5]}`);
   }
 
 
@@ -161,12 +166,12 @@ var color;
 
   function colorsGenerator(){
     randomColors(num);
-      $('#color1').css('background-color', `${colors[0]}`);
-      $('#color2').css('background-color', `${colors[1]}`);
-      $('#color3').css('background-color', `${colors[2]}`);
-      $('#color4').css('background-color', `${colors[3]}`);
-      $('#color5').css('background-color', `${colors[4]}`);
-      $('#color6').css('background-color', `${colors[5]}`);
+      $('#color1').css('background-color', `${colors[0]}`).append(`${colors[0]}`);
+      $('#color2').css('background-color', `${colors[1]}`).append(`${colors[1]}`);
+      $('#color3').css('background-color', `${colors[2]}`).append(`${colors[2]}`);
+      $('#color4').css('background-color', `${colors[3]}`).append(`${colors[3]}`);
+      $('#color5').css('background-color', `${colors[4]}`).append(`${colors[4]}`);
+      $('#color6').css('background-color', `${colors[5]}`).append(`${colors[5]}`);
   }
 
   //To check whether the color generator is locked. First if THIS div has both .color-swatch and .locked, do nothing, else run the color generator.
@@ -185,7 +190,6 @@ var color;
 
     colors=[];
     colorsGenerator();
-
     rgb2hex(colors);
     $('#save-colors').val(colors);
 
