@@ -58,26 +58,71 @@ function displayColorBags(colorbags) {
   }
 }
 
-function displaySixBags(colorbags) {
-  console.log('49', colorbags);
-  colorbags.forEach(function(colorbag){
-    if (!colorbag) {
-      return;
-    } else {
-      var colorData = Math.floor(Math.random()*256);
-      for (var i = 0; i <= 6; i++) {
-        var name = colorbags[i].name;
-        $('aside').append(`<div class="colorbag"><h4>${name}</h4><div class="colorbag-rgb" id="colorbag${i}"></div></div>`);
-        for (var j = 0; j <= colorbags[i].rgbs.length; j++) {
-          console.log(`#colorbag${i}`)
-          $(`#colorbag${i}`).append(`<div class="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};"></div>`);
-          console.log('61', colorData[i]);
-        }
-      }
-    }
-  })
-}
-displaySixBags();
+// function sixBags(){
+//   $.ajax({
+//     url: '/all',
+//     method: 'GET',
+//     data: {},
+//     dataType: 'json'
+//   })
+//   .done(function(colorbags) {
+//     displaySixBags(colorbags);
+//   })
+//   .fail(function(jqXHR, textStatus, errorThrown) {
+//     console.log(jqXHR, textStatus, errorThrown);
+//       $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>")
+//   })
+// }
+
+// function displaySixBags(colorbags) {
+//   if (!colorbags) {
+//     return;
+//   } else {
+//     // loop through colorbags
+//     for (var i = colorbags.length; i--;) {
+//       var name = colorbags[i].name;
+//       var rgbTotal = colorbags[i].rgbs.length;
+//       $('#userColorBags p').remove();
+//       $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div>`);
+//       if (i >= colorbags.length - 4) {
+//         $(`#colorbag${i}`).addClass('always-visible');
+//       } else {
+//         $(`#colorbag${i}`).addClass('hidden');
+//       }
+//       //loop through rgb array
+//       for (var j = 0; j <= rgbTotal; j++) {
+//         //-20 is left & right padding on aside
+//         var width = 100 / rgbTotal;
+//         $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>`);
+//       }
+//     }
+//   }
+// }
+
+// function displaySixBags(Colorbag){
+//   console.log(Colorbag);
+// }
+
+// function displaySixBags(colorbags) {
+//   console.log('49', colorbags);
+//   colorbags.forEach(function(colorbag){
+//     if (!colorbag) {
+//       return;
+//     } else {
+//       var colorData = Math.floor(Math.random()*256);
+//       for (var i = 0; i <= 6; i++) {
+//         var name = colorbags[i].name;
+//         $('aside').append(`<div class="colorbag"><h4>${name}</h4><div class="colorbag-rgb" id="colorbag${i}"></div></div>`);
+//         for (var j = 0; j <= colorbags[i].rgbs.length; j++) {
+//           console.log(`#colorbag${i}`)
+//           $(`#colorbag${i}`).append(`<div class="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};"></div>`);
+//           console.log('61', colorData[i]);
+//         }
+//       }
+//     }
+//   })
+// }
+// displaySixBags();
 var colors = [];
 
 // GENERATOR / GALLERY SWITCH
