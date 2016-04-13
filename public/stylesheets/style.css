@@ -90,7 +90,6 @@ header {
   display: none; }
 
 aside {
-  z-index: 10;
   position: relative;
   top: -25px;
   left: 10px;
@@ -100,7 +99,7 @@ aside {
   box-shadow: -1px 0 10px black;
   overflow: scroll; }
   aside h4 {
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     text-shadow: 1px 1px 1px black;
     text-shadow: 1px 1px 4px #3163ac; }
     aside h4 span {
@@ -123,11 +122,36 @@ aside {
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
 
 div[id^="colorbag"] {
-  width: 100%;
-  margin-bottom: -30px; }
+  position: relative;
+  width: 100%; }
+  div[id^="colorbag"] button:first-of-type {
+    position: absolute;
+    right: 25px;
+    top: -3px;
+    border-radius: 3px;
+    color: #f4b800;
+    background-color: #272826;
+    border: 1px solid #e7e7e7;
+    font-size: .7em; }
+    div[id^="colorbag"] button:first-of-type:hover {
+      color: #272826;
+      background-color: #f4b800; }
+  div[id^="colorbag"] button:last-of-type {
+    position: absolute;
+    right: 0;
+    top: -3px;
+    color: red;
+    border-radius: 3px;
+    background-color: #272826;
+    border: 1px solid #e7e7e7;
+    font-size: .7em; }
+    div[id^="colorbag"] button:last-of-type:hover {
+      color: #272826;
+      background-color: red; }
   div[id^="colorbag"] div[id^="rgb"] {
     display: inline-block;
-    height: 40px; }
+    height: 25px;
+    margin-bottom: -5px; }
 
 #generator {
   padding: 25px;
