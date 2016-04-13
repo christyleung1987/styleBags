@@ -56,10 +56,11 @@ function displayColorBags(colorbags) {
   } else {
     //loop through colorbags
     for (var i = colorbags.length; i--;) {
+      var colorbag = colorbags[i];
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><button>Edit</button><button>x</button><div id="bag-rgb${i}"></div></div> `);
+      $('#userColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -75,6 +76,30 @@ function displayColorBags(colorbags) {
   }
 }
 
+// DELETE colorbag from saved bags
+  $('#userColorBags').on('click', '#deleteSavedColorbag', function(){
+    var deleteColorbagId = $(this).parent().data('colorbag-id');
+    console.log($(this).parent().data('colorbag-id'));
+    $(this).parent().remove();
+    deleteTodo(deleteColorbagId);
+  })
+
+  var deleteTodo = function(deleteColorbagId){
+    $.ajax({
+      url: '/colorbags/' + deleteColorbagId,
+      method: 'DELETE',
+      data: {}
+    })
+    .done(function(data) {
+      console.log('Deleted colorbag: ', data);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.log('Uh oh');
+      console.log(jqXHR, textStatus, errorThrown);
+    })
+    .always(function() {
+    });
+  }
 
 function displaySixBags(colorbags) {
   if (!colorbags) {

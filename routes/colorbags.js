@@ -35,4 +35,14 @@ router.post('/', function(req, res, next) {
   });
 });
 
+// Delete from /colorbags/:id
+router.delete('/:id', function(req, res, next) {
+  cosole.log(req.params.id);
+  Todo.findByIdAndRemove(req.params.id, function(err) {
+    if (err) console.log(err);
+
+    res.status(200).json({});
+  });
+});
+
 module.exports = router;
