@@ -132,7 +132,7 @@ var color;
   var hexCodes = [];
 
   function rgb2hex(arr){
-    var hexCodes=[];
+    hexCodes=[];
       arr.forEach(function(color){
           var sepColorHexCodes=[];
           color = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
@@ -145,18 +145,19 @@ var color;
           var hexColor = ("#" + ("0" + parseInt(sepColorHexCodes[0],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[1],16).toString(16)).slice(-2) + ("0" + parseInt(sepColorHexCodes[2],16).toString(16)).slice(-2));
           hexCodes.push(hexColor);
       })
-    $('#color1').append(`${hexCodes[0]}`);
-    $('#color2').append(`${hexCodes[1]}`);
-    $('#color3').append(`${hexCodes[2]}`);
-    $('#color4').append(`${hexCodes[3]}`);
-    $('#color5').append(`${hexCodes[4]}`);
-    $('#color6').append(`${hexCodes[5]}`);
+    $('#hexCode1').empty().append(`${hexCodes[0]}`);
+    $('#hexCode2').empty().append(`${hexCodes[1]}`);
+    $('#hexCode3').empty().append(`${hexCodes[2]}`);
+    $('#hexCode4').empty().append(`${hexCodes[3]}`);
+    $('#hexCode5').empty().append(`${hexCodes[4]}`);
+    $('#hexCode6').empty().append(`${hexCodes[5]}`);
   }
 
 
   var num = 6 || $('#color-number').val();
 
   function randomColors(val){
+    colors = [];
     for (var i=1; i<=val; i++){
       var color = randomColor();
       colors.push(color);
@@ -166,12 +167,18 @@ var color;
 
   function colorsGenerator(){
     randomColors(num);
-      $('#color1').css('background-color', `${colors[0]}`).append(`${colors[0]}`);
-      $('#color2').css('background-color', `${colors[1]}`).append(`${colors[1]}`);
-      $('#color3').css('background-color', `${colors[2]}`).append(`${colors[2]}`);
-      $('#color4').css('background-color', `${colors[3]}`).append(`${colors[3]}`);
-      $('#color5').css('background-color', `${colors[4]}`).append(`${colors[4]}`);
-      $('#color6').css('background-color', `${colors[5]}`).append(`${colors[5]}`);
+      $('#color1').css('background-color', `${colors[0]}`)
+      $('#rgbCode1').empty().append(`${colors[0]}`);
+      $('#color2').css('background-color', `${colors[1]}`)
+      $('#rgbCode2').empty().append(`${colors[1]}`);
+      $('#color3').css('background-color', `${colors[2]}`)
+      $('#rgbCode3').empty().append(`${colors[2]}`);
+      $('#color4').css('background-color', `${colors[3]}`)
+      $('#rgbCode4').empty().append(`${colors[3]}`);
+      $('#color5').css('background-color', `${colors[4]}`)
+      $('#rgbCode5').empty().append(`${colors[4]}`);
+      $('#color6').css('background-color', `${colors[5]}`)
+      $('#rgbCode6').empty().append(`${colors[5]}`);
   }
 
   //To check whether the color generator is locked. First if THIS div has both .color-swatch and .locked, do nothing, else run the color generator.
