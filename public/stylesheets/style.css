@@ -119,7 +119,7 @@ aside {
     margin-top: 15px; }
   aside h3 {
     font-size: 1.2em; }
-  aside #userColorBags p, aside #userFonts p {
+  aside .loading {
     letter-spacing: 2px;
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
 
