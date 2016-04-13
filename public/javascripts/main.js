@@ -53,10 +53,11 @@ function displayColorBags(colorbags) {
   } else {
     //loop through colorbags
     for (var i = colorbags.length; i--;) {
-      var name = colorbags[i].name;
-      var rgbTotal = colorbags[i].rgbs.length;
+      var colorbag = colors[i];
+      var name = colorbag.name;
+      var rgbTotal = colorbag.rgbs.length;
       $('#userColorBags p').remove();
-      $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><button>Edit</button><button>x</button><div id="bag-rgb${i}"></div></div> `);
+      $('#userColorBags').append(`<div id="colorbag${i}" class="colorbag"><h5>${name}</h5><button id="editColorBag">Edit</button><button class="btn" id="deleteColorBag">x</button><div id="bag-rgb${i}"></div></div> `);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -94,9 +95,10 @@ function displayFontBag(fonts) {
     return;
   } else {
     for (var i = fonts.length; i--;) {
-      var name = fonts[i].fontName;
+      var font = fonts[i];
+      var name = font.fontName;
       $('#userFonts p').remove();
-      $('#userFonts').append(`<div id="savedFont${i}"><h5>${name}</h5><button>Delete</button></div>`);
+      $('#userFonts').append(`<div id="savedFont${i}"><h5>${name}</h5><button id="deleteFont">Delete</button></div>`);
       if (i >= fonts.length - 4) {
         $(`#savedFont${i}`).addClass('always-visible');
       } else {
@@ -267,13 +269,10 @@ var color;
 
   // change ammount of color divs shown based on user input
   $('#color-ammt').on('click', function(){
-    if ($('.color-swatch').siblings().hasClass('.color-swatch .locked')){
-      console.log("I'm working!");
-    }
       console.log($('#color-number').val());
-      colors = [];
-      colorsGenerator();
-      rgb2hex(colors);
+      // colors = [];
+      // colorsGenerator();
+      // rgb2hex(colors);
       if ($('#color-number').val() < 4) {
         $('#color6').hide();
         $('#color5').hide();
@@ -281,7 +280,6 @@ var color;
         colors.pop();
         colors.pop();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else if ($('#color-number').val() < 5) {
         $('#color6').hide();
@@ -289,20 +287,17 @@ var color;
         $('#color4').show();
         colors.pop();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else if ($('#color-number').val() < 6) {
         $('#color6').hide();
         $('#color5').show();
         $('#color4').show();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else {
         $('#color6').show();
         $('#color5').show();
         $('#color4').show();
-        console.log(colors);
         $('#rgbs').val(colors);
       }
   });
