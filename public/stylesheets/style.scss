@@ -77,7 +77,6 @@ header {
   }
 
   #bags {
-    float: right;
     color: $off-white;
     border: 3px dashed $yellow;
     text-shadow: 2px 2px 3px black;
@@ -85,8 +84,9 @@ header {
     border-radius: 10px;
     font-size: .7em;
     padding: 4px 8px;
-    position: relative;
-    top: 110px;
+    position: absolute;
+    top: 120px;
+    right: 30px;
   }
 }
 
@@ -96,17 +96,22 @@ header {
 }
 
 #landing {
-  margin-top: 50px;
+  margin-top: 30px;
   border-radius: 10px;
   color: $off-white;
   h1 {
     color: $yellow;
   }
+
+  h2, b {
+    color: $blue;
+  }
   #start {
     color: $off-white;
     background-color: $green;
+    text-shadow: 1px 1px 2px $off-black;
     padding: 15px 25px;
-    margin: 30px 0;
+    margin: 20px 0;
     border-radius: 20px;
   }
 }
