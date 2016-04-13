@@ -84,12 +84,11 @@ function displayColorBags(colorbags) {
 // DELETE colorbag from saved bags
   $('#userColorBags').on('click', '#deleteSavedColorbag', function(){
     var deleteColorbagId = $(this).parent().data('colorbag-id');
-    console.log($(this).parent().data('colorbag-id'));
     $(this).parent().remove();
-    deleteTodo(deleteColorbagId);
+    deleteColorbag(deleteColorbagId);
   })
 
-  var deleteTodo = function(deleteColorbagId){
+  var deleteColorbag = function(deleteColorbagId){
     $.ajax({
       url: '/colorbags/' + deleteColorbagId,
       method: 'DELETE',
@@ -240,12 +239,13 @@ function displayFontBag(fonts) {
     return;
   } else {
     for (var i = fonts.length; i--;) {
+      var font = fonts[i];
       var name = fonts[i].fontName;
       //for Google stylesheet
       var fontPlus = name.replace(/ /g, "+");
       fontPluses.push(fontPlus);
       $('#userFonts p').remove();
-      $('#userFonts').append(`<div id="savedFont${i}"><h3 style="font-family:${name};">${name}</h3><button>x</button></div>`);
+      $('#userFonts').append(`<div id="savedFont${i}" data-font-id="${font._id}"><h3 style="font-family:${name};">${name}</h3><button class="btn" id="deleteSavedFont">x</button></div>`);
       if (i >= fonts.length - 4) {
         $(`#savedFont${i}`).addClass('always-visible');
       } else {
@@ -254,6 +254,30 @@ function displayFontBag(fonts) {
     }
   }
 }
+
+// DELETE font from saved bags
+  $('#userFonts').on('click', '#deleteSavedFont', function(){
+    var deleteFontId = $(this).parent().data('font-id');
+    $(this).parent().remove();
+    deleteFont(deleteFontId);
+  })
+
+  var deleteFont = function(deleteFontId){
+    $.ajax({
+      url: '/fonts/' + deleteFontId,
+      method: 'DELETE',
+      data: {}
+    })
+    .done(function(data) {
+      console.log('Deleted font: ', data);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.log('Uh oh');
+      console.log(jqXHR, textStatus, errorThrown);
+    })
+    .always(function() {
+    });
+  }
 
 var colors = [];
 
