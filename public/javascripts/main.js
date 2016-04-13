@@ -11,11 +11,6 @@ $('#bags').one('click', function() {
   savedFonts();
 });
 
-$('#gallery').on('click', function(){
-  sixBags();
-})
-
-
 // SHOW ALL
 
 $('#userColorBags h4 span').on('click', function() {
@@ -84,35 +79,30 @@ function displaySixBags(colorbags) {
     return;
   } else {
     // loop through colorbags
-    console.log(colorbags);
     var sixColor = [];
-    for (var i = colorbags.length; i--;) {
-      var name = colorbags[i].name;
-      var rgbTotal = colorbags[i].rgbs.length;
-      $('#randColor6').remove();
-      $('#randColor6').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div>`);
-      if (i >= colorbags.length - 4) {
-        $(`#colorbag${i}`).addClass('always-visible');
-      } else {
-        $(`#colorbag${i}`).addClass('hidden');
-      }
+    for (var i = 1; i < 7; i++) {
+      var colorData = Math.floor(Math.random()*colorbags.length);
+      var name = colorbags[colorData].name;
+      var rgbTotal = colorbags[colorData].rgbs.length;
+
+      $(`.randcolor:nth-of-type(${i})`).append(`<div id="colorbag${colorData}"><h5>${name}</h5><div id="bag-rgb${colorData}"></div></div>`);
+
       //loop through rgb array
       for (var j = 0; j <= rgbTotal; j++) {
         //-20 is left & right padding on aside
         var width = 100 / rgbTotal;
-        $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>`);
+        $(`#bag-rgb${colorData}`).append(`<div id="rgb${j}" style="background-color:${colorbags[colorData].rgbs[j]};width:${width}%"></div>`);
       }
+      sixColor.push(colorbags[colorData]);
     }
+    // return(sixColor);
+    console.log('107', sixColor);
   }
 }
 
 function sixBags(){
   $.ajax({
     url: '/colorBags/all',
-// GET & DISPLAY FONTBAG
-function savedFonts(){
-  $.ajax({
-    url: '/fonts',
     method: 'GET',
     data: {},
     dataType: 'json'
@@ -153,6 +143,13 @@ function savedFonts(){
 // }
 // displaySixBags();
 
+function savedFonts(){
+  $.ajax({
+    url: '/fonts',
+    method: 'GET',
+    data: {},
+    dataType: 'json'
+  })
   .done(function(fonts) {
     displayFontBag(fonts);
   })
@@ -185,6 +182,7 @@ var colors = [];
 $('.switch').on('click', function() {
   $('#color-generator').toggleClass('hidden');
   $('#gallery').toggleClass('hidden');
+  sixBags();
 })
 
 var color;
