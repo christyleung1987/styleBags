@@ -20,9 +20,26 @@ header {
   margin-bottom: 8px;
   padding: 10px 0 10px 0; }
   header #logo {
-    float: left;
-    width: 200px;
-    height: auto; }
+    float: left; }
+    header #logo:hover {
+      cursor: pointer; }
+      header #logo:hover span {
+        color: #3163ac;
+        border-color: #00a376; }
+    header #logo img {
+      display: inline-block;
+      height: 100px;
+      width: auto; }
+    header #logo span {
+      font-size: 2.7em;
+      color: #00a376;
+      display: inline-block;
+      text-shadow: 1px 1px 2px black;
+      text-shadow: 2px 2px 3px black;
+      border-bottom: 15px dotted #3163ac;
+      font-family: Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: bold; }
   header ul {
     float: left; }
     header ul li {
@@ -48,7 +65,7 @@ header {
   border-radius: 10px;
   color: #e7e7e7; }
   #landing h1 {
-    color: #c22d69; }
+    color: #f4b800; }
   #landing #start {
     color: #e7e7e7;
     background-color: #00a376;
@@ -101,7 +118,7 @@ div[id^="colorbag"] {
 #fonts {
   font-size: 1.3em; }
   #fonts h1 {
-    color: #c22d69; }
+    color: #f4b800; }
   #fonts form {
     float: right;
     border: 1px solid #e7e7e7;

@@ -2,8 +2,6 @@ $off-white: #e7e7e7;
 $off-black: #1e1e1e;
 $dark-grey: #272826;
 
-$pink: #c22d69;
-$purple: #7d338c;
 $blue: #3163ac;
 $green: #00a376;
 $yellow: #f4b800;
@@ -36,8 +34,32 @@ header {
 
   #logo {
     float: left;
-    width: 200px;
-    height: auto;
+
+    &:hover {
+      cursor: pointer;
+
+      span {
+        color:$blue;
+        border-color: $green;
+      }
+    }
+
+    img {
+      display: inline-block;
+      height: 100px;
+      width: auto;
+    }
+    span {
+      font-size: 2.7em;
+      color: $green;
+      display: inline-block;
+      text-shadow: 1px 1px 2px black;
+      text-shadow: 2px 2px 3px black;
+      border-bottom: 15px dotted $blue;
+      font-family: Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: bold;
+    }
   }
 
   ul {
@@ -73,7 +95,7 @@ header {
   border-radius: 10px;
   color: $off-white;
   h1 {
-    color: $pink;
+    color: $yellow;
   }
   #start {
     color: $off-white;
@@ -148,7 +170,7 @@ a {
   font-size: 1.3em;
 
   h1 {
-    color: $pink;
+    color: $yellow;
   }
 
   form {
