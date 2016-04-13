@@ -5,7 +5,10 @@ html, body {
 body {
   color: #e7e7e7;
   background-color: #272826;
-  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 1.8em "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+p {
+  line-height: 1.5em; }
 
 #border {
   border-bottom: 10px solid #3163ac; }
@@ -27,14 +30,14 @@ header {
   header #bags {
     float: right;
     color: #e7e7e7;
-    border: 4px dashed #7d338c;
+    border: 3px dashed #f4b800;
     text-shadow: 2px 2px 3px black;
     background-color: #1e1e1e;
     border-radius: 10px;
-    font-size: .8em;
+    font-size: .7em;
     padding: 4px 8px;
     position: relative;
-    top: 120px; }
+    top: 122px; }
 
 .container, .container-fluid:not(:first-of-type) {
   padding: 10px 25px;
@@ -65,17 +68,27 @@ aside {
   position: relative;
   top: -25px;
   left: 10px;
-  padding-top: 20px;
+  padding-top: 10px;
   background-color: #272826;
   border-left: 2px dotted #00a376;
   box-shadow: -1px 0 10px black;
   overflow: scroll; }
-
-.colorbag-rgb {
-  width: 100%; }
-  .colorbag-rgb div[class^="rgb"] {
+  aside h4 {
     display: inline-block;
-    height: 50px; }
+    padding: 0 6px 4px 6px;
+    text-shadow: 1px 1px 4px black;
+    text-shadow: 2px 2px 1px #3163ac; }
+  aside p {
+    font-size: 1.1em;
+    line-height: 1.6em;
+    margin-top: 15px; }
+
+div[id^="colorbag"] {
+  width: 100%;
+  margin-bottom: -30px; }
+  div[id^="colorbag"] div[id^="rgb"] {
+    display: inline-block;
+    height: 40px; }
 
 #generator {
   padding: 25px;

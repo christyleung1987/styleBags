@@ -16,7 +16,11 @@ html, body {
 body {
   color: $off-white;
   background-color: $dark-grey;
-  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1.8em "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+p {
+  line-height: 1.5em;
 }
 
 #border {
@@ -48,14 +52,14 @@ header {
   #bags {
     float: right;
     color: $off-white;
-    border: 4px dashed $purple;
+    border: 3px dashed $yellow;
     text-shadow: 2px 2px 3px black;
     background-color: $off-black;
     border-radius: 10px;
-    font-size: .8em;
+    font-size: .7em;
     padding: 4px 8px;
     position: relative;
-    top: 120px;
+    top: 122px;
   }
 }
 
@@ -96,19 +100,33 @@ aside {
   top: -25px;
   left: 10px;
   //height set in jQuery
-  padding-top: 20px;
+  padding-top: 10px;
   background-color: $dark-grey;
   border-left: 2px dotted $green;
   box-shadow: -1px 0 10px black;
   overflow: scroll;
+
+  h4 {
+    display: inline-block;
+    padding: 0 6px 4px 6px;
+    text-shadow: 1px 1px 4px black;
+    text-shadow: 2px 2px 1px $blue;
+  }
+
+  p {
+    font-size: 1.1em;
+    line-height: 1.6em;
+    margin-top: 15px;
+  }
 }
 
-.colorbag-rgb {
+div[id^="colorbag"] {
   width: 100%;
+  margin-bottom: -30px;
 
-  div[class^="rgb"] {
+  div[id^="rgb"] {
     display: inline-block;
-    height: 50px;
+    height: 40px;
     //width set in jQuery;
   }
 }
