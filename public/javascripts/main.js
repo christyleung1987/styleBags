@@ -343,39 +343,35 @@ var color;
   });
 
   // change ammount of color divs shown based on user input
-  $('#color-ammt').on('click', function(){
-      console.log($('#color-number').val());
-      // colors = [];
-      // colorsGenerator();
-      // rgb2hex(colors);
-      if ($('#color-number').val() < 4) {
-        $('#color6').hide();
-        $('#color5').hide();
-        $('#color4').hide();
-        colors.pop();
-        colors.pop();
-        colors.pop();
-        $('#rgbs').val(colors);
-      } else if ($('#color-number').val() < 5) {
-        $('#color6').hide();
-        $('#color5').hide();
-        $('#color4').show();
-        colors.pop();
-        colors.pop();
-        $('#rgbs').val(colors);
-      } else if ($('#color-number').val() < 6) {
-        $('#color6').hide();
-        $('#color5').show();
-        $('#color4').show();
-        colors.pop();
-        $('#rgbs').val(colors);
-      } else {
-        $('#color6').show();
-        $('#color5').show();
-        $('#color4').show();
-        $('#rgbs').val(colors);
-      }
-  });
+    $('#color-ammt').on('click', function(){
+        if ($('#color-number').val() < 4) {
+          $('#color6').hide();
+          $('#color5').hide();
+          $('#color4').hide();
+          colors.pop();
+          colors.pop();
+          colors.pop();
+          $('#rgbs').val(colors);
+        } else if ($('#color-number').val() < 5) {
+          $('#color6').hide();
+          $('#color5').hide();
+          $('#color4').show();
+          colors.pop();
+          colors.pop();
+          $('#rgbs').val(colors);
+        } else if ($('#color-number').val() < 6) {
+          $('#color6').hide();
+          $('#color5').show();
+          $('#color4').show();
+          colors.pop();
+          $('#rgbs').val(colors);
+        } else {
+          $('#color6').show();
+          $('#color5').show();
+          $('#color4').show();
+          $('#rgbs').val(colors);
+        }
+    });
 
   // Locking and unlocking color divs
   $('.fa-unlock').on('click', function(){
