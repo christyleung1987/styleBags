@@ -54,7 +54,7 @@ header {
     font-size: .7em;
     padding: 4px 8px;
     position: relative;
-    top: 122px; }
+    top: 110px; }
 
 .container, .container-fluid:not(:first-of-type) {
   padding: 10px 25px;
@@ -93,12 +93,15 @@ aside {
   overflow: scroll; }
   aside h4 {
     padding-bottom: 5px;
-    text-shadow: 1px 1px 4px black;
-    text-shadow: 2px 2px 1px #3163ac; }
+    text-shadow: 1px 1px 1px black;
+    text-shadow: 1px 1px 4px #3163ac; }
   aside p {
     font-size: 1.1em;
     line-height: 1.6em;
     margin-top: 15px; }
+  aside #userColorBags p, aside #userFonts p {
+    letter-spacing: 2px;
+    font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
 
 div[id^="colorbag"] {
   width: 100%;
