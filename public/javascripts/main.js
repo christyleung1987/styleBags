@@ -15,7 +15,6 @@ $('#bags').on('click', function(){
 });
 
 // SHOW ALL
-
 $('#userColorBags h4 span').on('click', function() {
   $('div[id^="colorbag"]:not(.always-visible)').toggleClass('hidden');
   if ($('div[id^="colorbag"]:nth-of-type(5)').hasClass('hidden')) {
@@ -146,6 +145,7 @@ function sixBags(){
 // }
 // displaySixBags();
 
+// GET & DISPLAY FONTBAG
 function savedFonts(){
   $.ajax({
     url: '/fonts',
@@ -169,10 +169,12 @@ function displayFontBag(fonts) {
     return;
   } else {
     for (var i = fonts.length; i--;) {
-      var font = fonts[i];
-      var name = font.fontName;
+      var name = fonts[i].fontName;
+      //for Google stylesheet
+      var fontPlus = name.replace(/ /g, "+");
+      fontPluses.push(fontPlus);
       $('#userFonts p').remove();
-      $('#userFonts').append(`<div id="savedFont${i}"><h5>${name}</h5><button id="deleteFont">Delete</button></div>`);
+      $('#userFonts').append(`<div id="savedFont${i}"><h3 style="font-family:${name};">${name}</h3><button>x</button></div>`);
       if (i >= fonts.length - 4) {
         $(`#savedFont${i}`).addClass('always-visible');
       } else {
@@ -419,5 +421,3 @@ var color;
 
 
 });
-
-
