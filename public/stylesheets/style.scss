@@ -32,6 +32,11 @@ header {
   margin-bottom: 8px;
   padding: 10px 0 10px 0;
 
+  button, button h2 {
+    float: right;
+    margin: 0 5px;
+  }
+
   #logo {
     float: left;
 

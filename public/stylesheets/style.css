@@ -19,6 +19,9 @@ header {
   color: #e7e7e7;
   margin-bottom: 8px;
   padding: 10px 0 10px 0; }
+  header button, header button h2 {
+    float: right;
+    margin: 0 5px; }
   header #logo {
     float: left; }
     header #logo:hover {
