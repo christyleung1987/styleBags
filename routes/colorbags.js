@@ -35,6 +35,15 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/* PUT /colorbags/:id/edit */
+router.put('/:id/edit', function(req, res, next) {
+  ColorBag.findByIdAndUpdate(req.params.id, { name: req.params.name }, function(err, colorbag) {
+    if (err) console.log(err);
+
+    res.json(colorbag);
+  });
+});
+
 // Delete from /colorbags/:id
 router.delete('/:id', function(req, res, next) {
   console.log(req.params.id);
