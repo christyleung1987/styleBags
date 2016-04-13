@@ -2,8 +2,6 @@ $off-white: #e7e7e7;
 $off-black: #1e1e1e;
 $dark-grey: #272826;
 
-$pink: #c22d69;
-$purple: #7d338c;
 $blue: #3163ac;
 $green: #00a376;
 $yellow: #f4b800;
@@ -16,7 +14,11 @@ html, body {
 body {
   color: $off-white;
   background-color: $dark-grey;
-  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1.8em "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+p {
+  line-height: 1.5em;
 }
 
 #border {
@@ -30,10 +32,39 @@ header {
   margin-bottom: 8px;
   padding: 10px 0 10px 0;
 
+  button, button h2 {
+    float: right;
+    margin: 0 5px;
+  }
+
   #logo {
     float: left;
-    width: 200px;
-    height: auto;
+
+    &:hover {
+      cursor: pointer;
+
+      span {
+        color:$blue;
+        border-color: $green;
+      }
+    }
+
+    img {
+      display: inline-block;
+      height: 100px;
+      width: auto;
+    }
+    span {
+      font-size: 2.7em;
+      color: $green;
+      display: inline-block;
+      text-shadow: 1px 1px 2px black;
+      text-shadow: 2px 2px 3px black;
+      border-bottom: 15px dotted $blue;
+      font-family: Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: bold;
+    }
   }
 
   ul {
@@ -46,16 +77,16 @@ header {
   }
 
   #bags {
-    float: right;
     color: $off-white;
-    border: 4px dashed $purple;
+    border: 3px dashed $yellow;
     text-shadow: 2px 2px 3px black;
     background-color: $off-black;
     border-radius: 10px;
-    font-size: .8em;
+    font-size: .7em;
     padding: 4px 8px;
-    position: relative;
+    position: absolute;
     top: 120px;
+    right: 30px;
   }
 }
 
@@ -65,17 +96,22 @@ header {
 }
 
 #landing {
-  margin-top: 50px;
+  margin-top: 30px;
   border-radius: 10px;
   color: $off-white;
   h1 {
-    color: $pink;
+    color: $yellow;
+  }
+
+  h2, b {
+    color: $blue;
   }
   #start {
     color: $off-white;
     background-color: $green;
+    text-shadow: 1px 1px 2px $off-black;
     padding: 15px 25px;
-    margin: 30px 0;
+    margin: 20px 0;
     border-radius: 20px;
   }
 }
@@ -91,24 +127,44 @@ header {
 }
 
 aside {
+  z-index: 10;
   position: relative;
   //padding on #generator
   top: -25px;
   left: 10px;
   //height set in jQuery
-  padding-top: 20px;
+  padding-top: 10px;
   background-color: $dark-grey;
   border-left: 2px dotted $green;
   box-shadow: -1px 0 10px black;
   overflow: scroll;
+
+  h4 {
+    padding-bottom: 5px;
+    text-shadow: 1px 1px 1px black;
+    text-shadow: 1px 1px 4px $blue;
+  }
+
+  p {
+    font-size: 1.1em;
+    line-height: 1.6em;
+    margin-top: 15px;
+  }
+
+  // loading text
+  #userColorBags p, #userFonts p {
+    letter-spacing: 2px;
+    font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+  }
 }
 
-.colorbag-rgb {
+div[id^="colorbag"] {
   width: 100%;
+  margin-bottom: -30px;
 
-  div[class^="rgb"] {
+  div[id^="rgb"] {
     display: inline-block;
-    height: 50px;
+    height: 40px;
     //width set in jQuery;
   }
 }
@@ -130,7 +186,20 @@ a {
   font-size: 1.3em;
 
   h1 {
-    color: $pink;
+    color: $yellow;
+  }
+
+  form {
+    float: right;
+    border: 1px solid $off-white;
+    color: $off-white;
+    border-radius: 5px;
+    position: relative;
+    left: -10%;
+
+    .saveFont {
+      background: $dark-grey;
+    }
   }
 
   article:not(:last-child) {

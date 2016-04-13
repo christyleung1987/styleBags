@@ -5,7 +5,10 @@ html, body {
 body {
   color: #e7e7e7;
   background-color: #272826;
-  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 1.8em "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+p {
+  line-height: 1.5em; }
 
 #border {
   border-bottom: 10px solid #3163ac; }
@@ -16,41 +19,64 @@ header {
   color: #e7e7e7;
   margin-bottom: 8px;
   padding: 10px 0 10px 0; }
+  header button, header button h2 {
+    float: right;
+    margin: 0 5px; }
   header #logo {
-    float: left;
-    width: 200px;
-    height: auto; }
+    float: left; }
+    header #logo:hover {
+      cursor: pointer; }
+      header #logo:hover span {
+        color: #3163ac;
+        border-color: #00a376; }
+    header #logo img {
+      display: inline-block;
+      height: 100px;
+      width: auto; }
+    header #logo span {
+      font-size: 2.7em;
+      color: #00a376;
+      display: inline-block;
+      text-shadow: 1px 1px 2px black;
+      text-shadow: 2px 2px 3px black;
+      border-bottom: 15px dotted #3163ac;
+      font-family: Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: bold; }
   header ul {
     float: left; }
     header ul li {
       display: inline; }
   header #bags {
-    float: right;
     color: #e7e7e7;
-    border: 4px dashed #7d338c;
+    border: 3px dashed #f4b800;
     text-shadow: 2px 2px 3px black;
     background-color: #1e1e1e;
     border-radius: 10px;
-    font-size: .8em;
+    font-size: .7em;
     padding: 4px 8px;
-    position: relative;
-    top: 120px; }
+    position: absolute;
+    top: 120px;
+    right: 30px; }
 
 .container, .container-fluid:not(:first-of-type) {
   padding: 10px 25px;
   background-color: #1e1e1e; }
 
 #landing {
-  margin-top: 50px;
+  margin-top: 30px;
   border-radius: 10px;
   color: #e7e7e7; }
   #landing h1 {
-    color: #c22d69; }
+    color: #f4b800; }
+  #landing h2, #landing b {
+    color: #3163ac; }
   #landing #start {
     color: #e7e7e7;
     background-color: #00a376;
+    text-shadow: 1px 1px 2px #1e1e1e;
     padding: 15px 25px;
-    margin: 30px 0;
+    margin: 20px 0;
     border-radius: 20px; }
 
 .fblogin {
@@ -62,20 +88,33 @@ header {
   display: none; }
 
 aside {
+  z-index: 10;
   position: relative;
   top: -25px;
   left: 10px;
-  padding-top: 20px;
+  padding-top: 10px;
   background-color: #272826;
   border-left: 2px dotted #00a376;
   box-shadow: -1px 0 10px black;
   overflow: scroll; }
+  aside h4 {
+    padding-bottom: 5px;
+    text-shadow: 1px 1px 1px black;
+    text-shadow: 1px 1px 4px #3163ac; }
+  aside p {
+    font-size: 1.1em;
+    line-height: 1.6em;
+    margin-top: 15px; }
+  aside #userColorBags p, aside #userFonts p {
+    letter-spacing: 2px;
+    font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
 
-.colorbag-rgb {
-  width: 100%; }
-  .colorbag-rgb div[class^="rgb"] {
+div[id^="colorbag"] {
+  width: 100%;
+  margin-bottom: -30px; }
+  div[id^="colorbag"] div[id^="rgb"] {
     display: inline-block;
-    height: 50px; }
+    height: 40px; }
 
 #generator {
   padding: 25px;
@@ -88,7 +127,16 @@ aside {
 #fonts {
   font-size: 1.3em; }
   #fonts h1 {
-    color: #c22d69; }
+    color: #f4b800; }
+  #fonts form {
+    float: right;
+    border: 1px solid #e7e7e7;
+    color: #e7e7e7;
+    border-radius: 5px;
+    position: relative;
+    left: -10%; }
+    #fonts form .saveFont {
+      background: #272826; }
   #fonts article:not(:last-child) {
     margin-bottom: 60px; }
 
