@@ -10,6 +10,13 @@ router.get('/', function(req, res, next) {
   });
 })
 
+router.get('/all', function(req, res, next) {
+  ColorBag.find(function(err, colorbags) {
+    if (err) console.log(err);
+    res.json(colorbags);
+  });
+})
+
 router.post('/', function(req, res, next) {
   var rgbsString = req.body.rgbs;
   var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');

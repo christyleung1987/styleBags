@@ -15,6 +15,7 @@ $('#bags').on('click', function(){
 });
 
 // SHOW ALL
+
 $('#userColorBags h4 span').on('click', function() {
   $('div[id^="colorbag"]:not(.always-visible)').toggleClass('hidden');
   if ($('div[id^="colorbag"]:nth-of-type(5)').hasClass('hidden')) {
@@ -75,7 +76,76 @@ function displayColorBags(colorbags) {
   }
 }
 
-// GET & DISPLAY FONTBAG
+
+function displaySixBags(colorbags) {
+  if (!colorbags) {
+    return;
+  } else {
+    // loop through colorbags
+    var sixColor = [];
+    for (var i = 1; i < 7; i++) {
+      var colorData = Math.floor(Math.random()*colorbags.length);
+      var name = colorbags[colorData].name;
+      var rgbTotal = colorbags[colorData].rgbs.length;
+      $(`#gallery .row .randcolor:nth-of-type(${i}) p`).remove();
+      $(`#gallery .row .randcolor:nth-of-type(${i})`).append(`<div id="colorbag${colorData}"><h5>${name}</h5><div id="bag-rgb${colorData}"></div></div>`);
+
+      //loop through rgb array
+      for (var j = 0; j <= rgbTotal; j++) {
+        //-20 is left & right padding on aside
+        var width = 100 / rgbTotal;
+        //$(`#bag-rgb${colorData}`).append(`<div id="rgb${j}" style="background-color:${colorbags[colorData].rgbs[j]};width:${width}%"></div>`);
+      }
+      sixColor.push(colorbags[colorData]);
+    }
+    // return(sixColor);
+    console.log('107', sixColor);
+  }
+}
+
+function sixBags(){
+  $.ajax({
+    url: '/colorBags/all',
+    method: 'GET',
+    data: {},
+    dataType: 'json'
+  })
+  .done(function(colorbags) {
+    displaySixBags(colorbags);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log(jqXHR, textStatus, errorThrown);
+      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>")
+  })
+}
+
+
+
+// function displaySixBags(Colorbag){
+//   console.log(Colorbag);
+// }
+
+// function displaySixBags(colorbags) {
+//   console.log('49', colorbags);
+//   colorbags.forEach(function(colorbag){
+//     if (!colorbag) {
+//       return;
+//     } else {
+//       var colorData = Math.floor(Math.random()*256);
+//       for (var i = 0; i <= 6; i++) {
+//         var name = colorbags[i].name;
+//         $('aside').append(`<div class="colorbag"><h4>${name}</h4><div class="colorbag-rgb" id="colorbag${i}"></div></div>`);
+//         for (var j = 0; j <= colorbags[i].rgbs.length; j++) {
+//           console.log(`#colorbag${i}`)
+//           $(`#colorbag${i}`).append(`<div class="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};"></div>`);
+//           console.log('61', colorData[i]);
+//         }
+//       }
+//     }
+//   })
+// }
+// displaySixBags();
+
 function savedFonts(){
   $.ajax({
     url: '/fonts',
@@ -118,6 +188,7 @@ var colors = [];
 $('.switch').on('click', function() {
   $('#color-generator').toggleClass('hidden');
   $('#gallery').toggleClass('hidden');
+  sixBags();
 })
 
 var color;
@@ -348,3 +419,5 @@ var color;
 
 
 });
+
+
