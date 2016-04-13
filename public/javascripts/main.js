@@ -1,14 +1,17 @@
 $(function() {
+
+var fontPluses = [];
+
 // MY BAGS DROPDOWN
+$('#bags').one('click', function() {
+  savedColorBags();
+  savedFonts();
+});
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
-});
-$('#bags').one('click', function() {
-  savedColorBags();
-  savedFonts();
 });
 
 // SHOW ALL
@@ -82,6 +85,8 @@ function savedFonts(){
   })
   .done(function(fonts) {
     displayFontBag(fonts);
+    var fontsForGoogle = fontPluses.join('|');
+    $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
@@ -95,8 +100,11 @@ function displayFontBag(fonts) {
   } else {
     for (var i = fonts.length; i--;) {
       var name = fonts[i].fontName;
+      //for Google stylesheet
+      var fontPlus = name.replace(/ /g, "+");
+      fontPluses.push(fontPlus);
       $('#userFonts p').remove();
-      $('#userFonts').append(`<div id="savedFont${i}"><h5>${name}</h5><button>Delete</button></div>`);
+      $('#userFonts').append(`<div id="savedFont${i}"><h3 style="font-family:${name};">${name}</h3><button>x</button></div>`);
       if (i >= fonts.length - 4) {
         $(`#savedFont${i}`).addClass('always-visible');
       } else {
@@ -127,7 +135,7 @@ var color;
     colors.push(color);
   }
 
-  console.log(colors);
+  console.log("colors",colors);
 
   var hexCodes = [];
 
@@ -205,10 +213,10 @@ var color;
   function fontGenerator(){
     var fonts = [];
     fonts.push($('#fontsArray').val());
-    console.log(fonts);
+    console.log("fonts",fonts);
     var fonts = fonts[0].toString();
     var fontsArray = fonts.split(",");
-    console.log(fontsArray);
+    console.log("fontsArray",fontsArray);
     var fontFamily1 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
     var fontFamily2 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
     var fontFamily3 = fontsArray[Math.floor(Math.random()*fontsArray.length)];
@@ -270,7 +278,6 @@ var color;
         colors.pop();
         colors.pop();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else if ($('#color-number').val() < 5) {
         $('#color6').hide();
@@ -278,20 +285,17 @@ var color;
         $('#color4').show();
         colors.pop();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else if ($('#color-number').val() < 6) {
         $('#color6').hide();
         $('#color5').show();
         $('#color4').show();
         colors.pop();
-        console.log(colors);
         $('#rgbs').val(colors);
       } else {
         $('#color6').show();
         $('#color5').show();
         $('#color4').show();
-        console.log(colors);
         $('#rgbs').val(colors);
       }
   });
