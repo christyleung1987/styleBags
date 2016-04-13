@@ -12,6 +12,11 @@ $('#bags').on('click', function(){
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
+  // if ($('#bags').hasClass('hidden')) {
+  //   $('#bags span').html('▼');
+  // } else {
+  //   $('#bags span').html('▲');
+  // }
 });
 
 // SHOW ALL
@@ -169,6 +174,47 @@ function sixBags(){
 //   })
 // }
 // displaySixBags();
+
+
+// DISPLAY NEWLY SAVED COLORBAGS IN ASIDE
+$('#saveColorBag').click(function(e){
+  e.preventDefault();
+  e.stopPropagation();
+
+  var name = $('#colorBagName').val();
+  var rgbs = $('#rgbs').val();
+  var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');
+  var rgbsArray = rgbsStringSplit.split('split');
+  var rgbTotal = rgbsArray.length;
+  $('#userColorBags').prepend(`<li><strong>${name}</strong>: ${interests}</li>`);
+  for (var j = 0; j <= rgbTotal; j++) {
+    //-20 is left & right padding on aside
+    var width = 100 / rgbTotal;
+    $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>` );
+  }
+  $('#colorBagName').val('');
+
+  $.ajax({
+    url: '/colorbags',
+    method: 'POST',
+    data: {
+      name: name,
+      rgbs: rgbs
+    }
+  })
+  .done(function(nerd) {
+    console.log('New nerd: ', nerd);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log('uh oh');
+    console.log(jqXHR, textStatus, errorThrown);
+    alert("FAILED");
+  })
+  .always(function() {
+  });
+});
+
+
 
 // GET & DISPLAY FONTBAG
 function savedFonts(){
