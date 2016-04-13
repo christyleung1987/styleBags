@@ -108,7 +108,7 @@ var color;
   }
 
 
-  var num = $('#color-number').val() || 6;
+  var num = 6 || $('#color-number').val();
 
   function randomColors(val){
     for (var i=1; i<=val; i++){
