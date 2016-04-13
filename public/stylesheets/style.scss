@@ -107,8 +107,7 @@ aside {
   overflow: scroll;
 
   h4 {
-    display: inline-block;
-    padding: 0 6px 4px 6px;
+    padding-bottom: 5px;
     text-shadow: 1px 1px 4px black;
     text-shadow: 2px 2px 1px $blue;
   }
@@ -149,6 +148,19 @@ a {
 
   h1 {
     color: $pink;
+  }
+
+  form {
+    float: right;
+    border: 1px solid $off-white;
+    color: $off-white;
+    border-radius: 5px;
+    position: relative;
+    left: -10%;
+
+    .saveFont {
+      background: $dark-grey;
+    }
   }
 
   article:not(:last-child) {

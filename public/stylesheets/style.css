@@ -74,8 +74,7 @@ aside {
   box-shadow: -1px 0 10px black;
   overflow: scroll; }
   aside h4 {
-    display: inline-block;
-    padding: 0 6px 4px 6px;
+    padding-bottom: 5px;
     text-shadow: 1px 1px 4px black;
     text-shadow: 2px 2px 1px #3163ac; }
   aside p {
@@ -102,6 +101,15 @@ div[id^="colorbag"] {
   font-size: 1.3em; }
   #fonts h1 {
     color: #c22d69; }
+  #fonts form {
+    float: right;
+    border: 1px solid #e7e7e7;
+    color: #e7e7e7;
+    border-radius: 5px;
+    position: relative;
+    left: -10%; }
+    #fonts form .saveFont {
+      background: #272826; }
   #fonts article:not(:last-child) {
     margin-bottom: 60px; }
 

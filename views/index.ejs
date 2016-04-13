@@ -109,13 +109,6 @@
         <% if(global.currentUser){ %>
           <form id="colorBag" action="/colorbags" method="post">
             <input id="colorBagName" type="text" name="colorBagName" placeholder="Color Bag Name" />
-
-            <input id="rgbs" name="rgbs" type="text"/>
-            <input type="text" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-            <input type="text" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-            <input class="result"></input>
-            <button>Save</button>
-
             <input id="rgbs" name="rgbs" type="hidden"/>
             <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
             <input type="submit" name="saveColorBag" value="Save" />
@@ -152,40 +145,40 @@
     </div>
     <div id="fonts" class="col-xs-12 col-md-6 text-center">
       <article style="font-family:<%=fontFamily1%>">
-      <% if(global.currentUser){ %>
-        <form id="font" action="/fonts" method="post">
-          <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily1%>"/>
-          <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-          <input type="submit" name="saveFont" value="Save" />
-        </form>
-      <% } %>
         <h1><%= fontFamily1 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
+        <% if(global.currentUser){ %>
+          <form action="/fonts" method="post">
+            <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily1%>"/>
+            <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+            <input type="submit" name="saveFont" class="saveFont" value="Save" />
+          </form>
+        <% } %>
       </article>
       <article style="font-family:<%=fontFamily2%>">
-      <% if(global.currentUser){ %>
-         <form id="font" action="/fonts" method="post">
-           <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily2%>"/>
-           <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-           <input type="submit" name="saveFont" value="Save" />
-         </form>
-        <% } %>
         <h1><%= fontFamily2 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
+        <% if(global.currentUser){ %>
+          <form action="/fonts" method="post">
+           <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily2%>"/>
+           <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+           <input type="submit" name="saveFont" class="saveFont" value="Save" />
+          </form>
+        <% } %>
       </article>
       <article style="font-family:<%=fontFamily3%>">
-      <% if(global.currentUser){ %>
-       <form id="font" action="/fonts" method="post">
-         <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily3%>"/>
-         <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-         <input type="submit" name="saveFont" value="Save" />
-       </form>
-      <% } %>
       <h1><%= fontFamily3 %></h1>
         <p><i>italicized goodness</i></p>
         <p>Grumpy Wizards make toxic brew for the Evil Queen and Jack</p>
+        <% if(global.currentUser){ %>
+         <form action="/fonts" method="post">
+           <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily3%>"/>
+           <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+           <input type="submit" name="saveFont" class="saveFont" value="Save" />
+         </form>
+        <% } %>
       </article>
       <input id="fontsArray" type="hidden" value="<%= fonts %>"/>
     </div>
@@ -193,10 +186,10 @@
     <aside class="col-xs-12 col-md-2 hidden">
       <% if(global.currentUser){ %>
       <div id="userColorBags">
-        <div class="text-center"><h4>Saved ColorBags</h4></div>
+        <h4 class="text-center">Saved ColorBags</h4>
       </div>
       <div id="userFonts">
-        <div class="text-center"><h4>Your FontBag</h4></div>
+        <h4 class="text-center">Your FontBag</h4>
       </div>
       <% } else { %>
         <p>Please login or sign up to save ColorBags and to save fonts into your FontBag.</p>
