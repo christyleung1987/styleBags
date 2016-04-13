@@ -65,6 +65,7 @@ header {
   display: none; }
 
 aside {
+  z-index: 10;
   position: relative;
   top: -25px;
   left: 10px;

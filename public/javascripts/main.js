@@ -13,8 +13,6 @@ $('#userColorBags h4').on('click', function() {
   $('div[id^="colorbag"]:not(.always-visible)').toggleClass('hidden');
 });
 
-  //$('div[id^="colorbag"]:nth-of-type').toggleClass('hidden');
-
 $('#userFonts h4').on('click', function() {
   //show fonts 5+
 })
@@ -43,6 +41,7 @@ function displayColorBags(colorbags) {
     for (var i = colorbags.length; i--;) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
+      $('#userColorBags p').remove();
       $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div>`);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
@@ -134,6 +133,7 @@ var color;
   $('#start').on('click', function(){
     $(this).parent().hide();
     $('#generator').css('display', 'block');
+    $('#bags').removeClass('hidden');
 
     colors=[];
     colorsGenerator();

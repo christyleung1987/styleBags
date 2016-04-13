@@ -95,6 +95,7 @@ header {
 }
 
 aside {
+  z-index: 10;
   position: relative;
   //padding on #generator
   top: -25px;
