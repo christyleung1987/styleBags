@@ -56,11 +56,10 @@ function displayColorBags(colorbags) {
   } else {
     //loop through colorbags
     for (var i = colorbags.length; i--;) {
-      var colorbag = colors[i];
-      var name = colorbag.name;
-      var rgbTotal = colorbag.rgbs.length;
+      var name = colorbags[i].name;
+      var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#userColorBags').append(`<div id="colorbag${i}" class="colorbag"><h5>${name}</h5><button id="editColorBag">Edit</button><button class="btn" id="deleteColorBag">x</button><div id="bag-rgb${i}"></div></div> `);
+      $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><button>Edit</button><button>x</button><div id="bag-rgb${i}"></div></div> `);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
