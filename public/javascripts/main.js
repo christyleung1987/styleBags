@@ -127,28 +127,49 @@ function displayColorBags(colorbags) {
   }
 
 function displaySixBags(colorbags) {
+  console.log(colorbags);
   if (!colorbags) {
     return;
   } else {
     // loop through colorbags
+    var usedColorDataIndexes = [];
     var sixColor = [];
-    for (var i = 1; i < 7; i++) {
+    function getRandomColorbag(){
       var colorData = Math.floor(Math.random()*colorbags.length);
-      var name = colorbags[colorData].name;
-      var rgbTotal = colorbags[colorData].rgbs.length;
-      $(`#gallery .row .randcolor:nth-of-type(${i}) p`).remove();
-      $(`#gallery .row .randcolor:nth-of-type(${i})`).append(`<div id="colorbag${colorData}"><h5>${name}</h5><div id="bag-rgb${colorData}"></div></div>`);
+      console.log('colorData', colorData);
+      console.log('found', usedColorDataIndexes.indexOf(colorData));
+
+      while (usedColorDataIndexes.indexOf(colorData) > -1) {
+        return getRandomColorbag();
+      }
+
+      usedColorDataIndexes.push(colorData);
+
+      return {
+        index: colorData,
+        colorbag: colorbags[colorData]
+      };
+    }
+    for (var i = 1; i < 7; i++) {
+      var colorObject = getRandomColorbag();
+
+      console.log(usedColorDataIndexes);
+
+      var name = colorObject.colorbag.name;
+      var rgbTotal = colorObject.colorbag.rgbs.length;
+      // $(`.randcolor:nth-of-type(${i}) p`).remove();
+      $(`.randcolor:nth-of-type(${i})`).empty().append(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div>`);
 
       //loop through rgb array
-      for (var j = 0; j <= rgbTotal; j++) {
+      for (var j = 0; j < rgbTotal; j++) {
         //-20 is left & right padding on aside
         var width = 100 / rgbTotal;
-        //$(`#bag-rgb${colorData}`).append(`<div id="rgb${j}" style="background-color:${colorbags[colorData].rgbs[j]};width:${width}%"></div>`);
+        $(`#bag-rgb${colorObject.index}`).append(`<div id="rgb${j}" style="background-color:${colorObject.colorbag.rgbs[j]};width:${width}%"></div>`);
       }
-      sixColor.push(colorbags[colorData]);
+      sixColor.push(color);
     }
-    // return(sixColor);
-    console.log('107', sixColor);
+
+    console.log('102', sixColor);
   }
 }
 
