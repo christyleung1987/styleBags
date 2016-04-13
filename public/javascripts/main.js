@@ -9,11 +9,18 @@ $('#bags').on('click', function(){
 $('#bags').one('click', function() {
   savedBags();
 });
-$('#userColorBags h4').on('click', function() {
+
+$('#userColorBags h4 span').on('click', function() {
   $('div[id^="colorbag"]:not(.always-visible)').toggleClass('hidden');
+
+  if ($('div[id^="colorbag"]:nth-of-type(5)').hasClass('hidden')) {
+    $('#userColorBags h4 span').html('show all▼');
+  } else {
+    $('#userColorBags h4 span').html('show less▲');
+  }
 });
 
-$('#userFonts h4').on('click', function() {
+$('#userFonts h4 span').on('click', function() {
   //show fonts 5+
 })
 
@@ -42,7 +49,7 @@ function displayColorBags(colorbags) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div>`);
+      $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div> <button> Edit </button><button> Delete </button>`);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -52,7 +59,7 @@ function displayColorBags(colorbags) {
       for (var j = 0; j <= rgbTotal; j++) {
         //-20 is left & right padding on aside
         var width = 100 / rgbTotal;
-        $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>`);
+        $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>` );
       }
     }
   }
