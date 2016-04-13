@@ -9,11 +9,18 @@ $('#bags').on('click', function(){
 $('#bags').one('click', function() {
   savedBags();
 });
-$('#userColorBags h4').on('click', function() {
+
+$('#userColorBags h4 span').on('click', function() {
   $('div[id^="colorbag"]:not(.always-visible)').toggleClass('hidden');
+
+  if ($('div[id^="colorbag"]:nth-of-type(5)').hasClass('hidden')) {
+    $('#userColorBags h4 span').html('show all▼');
+  } else {
+    $('#userColorBags h4 span').html('show less▲');
+  }
 });
 
-$('#userFonts h4').on('click', function() {
+$('#userFonts h4 span').on('click', function() {
   //show fonts 5+
 })
 
