@@ -49,7 +49,7 @@ function displayColorBags(colorbags) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div>`);
+      $('#userColorBags').append(`<div id="colorbag${i}"><h5>${name}</h5><div id="bag-rgb${i}"></div></div> <button> Edit </button><button> Delete </button>`);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -59,7 +59,7 @@ function displayColorBags(colorbags) {
       for (var j = 0; j <= rgbTotal; j++) {
         //-20 is left & right padding on aside
         var width = 100 / rgbTotal;
-        $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>`);
+        $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>` );
       }
     }
   }
