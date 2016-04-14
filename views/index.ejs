@@ -106,6 +106,27 @@
 
 <section id="generator" class="container-fluid animated fadeIn">
   <div class="row">
+
+    <aside class="col-xs-12 col-md-2 col-md-push-10 hidden animated slideInRight">
+      <% if(global.currentUser){ %>
+      <div id="userColorBags">
+        <h4 class="text-center">ColorBags<span>show all▼</span></h4>
+        <div id="appendNewColorBag"></div>
+        <div id="appendSavedColorBags"></div>
+        <p class="loading">loading ...</p>
+      </div>
+      <div id="userFonts">
+        <h4 class="text-center">FontBag<span>show all▼</span></h4>
+        <div id="appendNewFont"></div>
+        <div id="appendSavedFonts"></div>
+        <p class="loading">loading ...<p>
+      </div>
+      <% } else { %>
+        <p>Please login or sign up to save ColorBags and to save fonts into your FontBag.</p>
+      <% } %>
+    </aside>
+
+
       <div id="color-generator" class="col-xs-12 col-md-6">
         <button class="switch">Gallery</button>
         <div class="form-group">
@@ -226,25 +247,6 @@
       </article>
       <input id="fontsArray" type="hidden" value="<%= fonts %>"/>
     </div>
-
-    <aside class="col-xs-12 col-md-2 hidden animated slideInRight">
-      <% if(global.currentUser){ %>
-      <div id="userColorBags">
-        <h4 class="text-center">ColorBags<span>show all▼</span></h4>
-        <div id="appendNewColorBag"></div>
-        <div id="appendSavedColorBags"></div>
-        <p class="loading">loading ...</p>
-      </div>
-      <div id="userFonts">
-        <h4 class="text-center">FontBag<span>show all▼</span></h4>
-        <div id="appendNewFont"></div>
-        <div id="appendSavedFonts"></div>
-        <p class="loading">loading ...<p>
-      </div>
-      <% } else { %>
-        <p>Please login or sign up to save ColorBags and to save fonts into your FontBag.</p>
-      <% } %>
-    </aside>
 
   </div>
 </<section>

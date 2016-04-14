@@ -207,14 +207,13 @@ aside {
   position: relative;
   //padding on #generator
   top: -25px;
-  left: 10px;
+  border: 2px dotted $green;
+  border-top: none;
+  border-radius: 0px 0px 25px 25px;
   //height set in jQuery
   padding-top: 10px;
   background-color: $dark-grey;
-  border-left: 2px dotted $green;
-  box-shadow: -1px 0 10px black;
   overflow: scroll;
-  margin-bottom: -25px;
 
   h4 {
     padding-bottom: 10px;
@@ -372,9 +371,15 @@ div[id^="savedFont"] {
     margin-bottom: 40px;
   }
 }
-// //change
-// .saveColorBag{
-//   float: right;
-//   margin-top: 10px;
-//   color: black;
-// }
+
+@media (min-width: 992px) {
+  aside {
+    border-radius: 0;
+    right: 0;
+    border-bottom: none;
+    border-left: 1px dotted $green;
+    border-right: 1px dotted $green;
+    box-shadow: -1px 0 10px black;
+    margin-bottom: -25px;
+  }
+}

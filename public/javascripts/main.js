@@ -6,9 +6,19 @@ var fontPluses = [];
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
   asideHeight();
-  $('#color-generator').toggleClass('col-md-6 col-md-5');
-  $('#gallery').toggleClass('col-md-6 col-md-5');
-  $('#fonts').toggleClass('col-md-6 col-md-5');
+  if ($(window).width() >= 992) {
+    if (!$('aside').hasClass('slideInRight')) {
+      $('aside').addClass('slideInRight');
+    }
+    $('#color-generator').toggleClass('col-md-6 col-md-5');
+    $('#color-generator').toggleClass('col-md-pull-2');
+    $('#gallery').toggleClass('col-md-6 col-md-5');
+    $('#gallery').toggleClass('col-md-pull-2');
+    $('#fonts').toggleClass('col-md-6 col-md-5');
+    $('#fonts').toggleClass('col-md-pull-2');
+  } else {
+    $('aside').removeClass('slideInRight');
+  }
   if ($('aside').hasClass('hidden')) {
     $('#bags span').html('▼');
   } else {
@@ -536,6 +546,7 @@ var color;
   $('#logo').on('click', function(){
     $('#generator').css('display', 'none');
     $('#bags').addClass('hidden');
+    $('body').css('background-color', '#272826');
     $('#landing').show();
   });
 
@@ -670,6 +681,15 @@ var color;
   $(window).resize(function() {
     swatchHeight();
     asideHeight();
+
+    if ($(window).width() <= 992) {
+      if (!$('aside').hasClass('hidden')) {
+        $('aside').attr('class', 'col-xs-12 col-md-2 col-md-push-10 hidden animated');
+      };
+      $('#color-generator').attr('class', 'col-xs-12 col-md-6');
+      $('#gallery').attr('class', 'col-xs-12 col-md-6 hidden');
+      $('#fonts').attr('class', 'col-xs-12 col-md-6 text-center');
+    }
   }).resize();
 
   function swatchHeight() {
@@ -688,7 +708,6 @@ var color;
 
   function asideHeight() {
     var asideHeight;
-
     var minAsideHeight = $(window).height() - $('#border').height() - 10;
 
     var colorGenHeight = $('#color-generator').height();
@@ -699,8 +718,14 @@ var color;
     } else {
       asideHeight = fontsHeight + 30;
     }
-    $('aside').css('height', asideHeight+'px');
-    $('aside').css('min-height', minAsideHeight+'px');
+
+    if ($(window).width() >= 992) {
+      $('aside').css('height', asideHeight+'px');
+      $('aside').css('min-height', minAsideHeight+'px');
+    } else {
+      $('aside').css('min-height', '100px');
+      $('aside').css('max-height', minAsideHeight+'px');
+    }
   };
 
 
