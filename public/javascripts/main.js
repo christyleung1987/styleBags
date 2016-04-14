@@ -4,7 +4,6 @@ var fontPluses = [];
 
 // MY BAGS DROPDOWN
 $('#bags').one('click', function() {
-  savedColorBags();
   savedFonts();
 });
 $('#bags').on('click', function(){
@@ -38,6 +37,7 @@ $('#userFonts h4 span').on('click', function() {
   }
 })
 
+var userColorBagsCount;
 // GET & DISPLAY SAVED COLORBAGS
 function savedColorBags(){
   $.ajax({
@@ -48,6 +48,7 @@ function savedColorBags(){
   })
   .done(function(colorbags) {
     displayColorBags(colorbags);
+    userColorBagsCount = colorbags.length;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
@@ -175,42 +176,46 @@ function sixBags(){
 // }
 // displaySixBags();
 
-
 // DISPLAY NEWLY SAVED COLORBAGS IN ASIDE
 $('#saveColorBag').click(function(e){
   e.preventDefault();
   e.stopPropagation();
 
+  var userId = $('#userId').val();
   var name = $('#colorBagName').val();
-  var rgbs = $('#rgbs').val();
+  var rgbsString = $('#rgbs').val();
   var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');
-  var rgbsArray = rgbsStringSplit.split('split');
-  var rgbTotal = rgbsArray.length;
-  $('#userColorBags').prepend(`<li><strong>${name}</strong>: ${interests}</li>`);
-  for (var j = 0; j <= rgbTotal; j++) {
-    //-20 is left & right padding on aside
-    var width = 100 / rgbTotal;
-    $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>` );
-  }
-  $('#colorBagName').val('');
+  var rgbs = rgbsStringSplit.split('split');
+  var rgbTotal = rgbs.length;
 
   $.ajax({
     url: '/colorbags',
     method: 'POST',
     data: {
       name: name,
-      rgbs: rgbs
+      rgbsString: rgbsString,
+      userId: userId
     }
   })
-  .done(function(nerd) {
-    console.log('New nerd: ', nerd);
+  .done(function(colorbag) {
+    console.log("New colorbag: ", colorbag);
+    $('#colorBagName').val('');
+    userColorBagsCount++;
+    $('#appendNewColorBag').append(`<div id="colorbag${userColorBagsCount}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${userColorBagsCount}"></div> </div> `);
+    for (var j = 0; j <= rgbTotal; j++) {
+      //-20 is left & right padding on aside
+      var width = 100 / rgbTotal;
+      $(`#bag-rgb${userColorBagsCount}`).append(`<div id="rgb${j}" style="background-color:${colorbag.rgbs[j]};width:${width}%"></div>` );
+    }
+    // $('#userColorBags div[id^="colorbag"].always-visible:last-of-type').addClass('hidden');
+    // $('#userColorBags div[id^="colorbag"].always-visible:last-of-type').removeClass('always-hidden');
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log('uh oh');
     console.log(jqXHR, textStatus, errorThrown);
-    alert("FAILED");
   })
   .always(function() {
+
   });
 });
 
@@ -343,6 +348,9 @@ var color;
     $(this).parent().hide();
     $('#generator').css('display', 'block');
     $('#bags').removeClass('hidden');
+    if ($('#userId').val()) {
+      savedColorBags();
+    }
 
     colors=[];
     colorsGenerator();

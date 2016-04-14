@@ -58,7 +58,7 @@
   <header class="container-fluid">
     <div id="logo"><img src="images/logo.png" alt="logo" /><span>StyleBags</sp></div>
     <% if(global.currentUser){ %>
-    <a href="/logout"><button class="btn btn-primary btn-sm">Log out</button></a>
+    <a href="/logout"><button class="btn btn-primary btn-sm" id="logout">Log out</button></a>
     <% } else { %>
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signupModal">Signup</button>
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Login</button>
@@ -114,8 +114,8 @@
           <form id="colorBag" action="/colorbags" method="post">
             <input id="colorBagName" type="text" name="colorBagName" placeholder="Color Bag Name" />
             <input id="rgbs" name="rgbs" type="hidden"/>
-            <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-            <input type="submit" name="saveColorBag" value="Save" />
+            <input type="hidden" name="userId" id="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+            <input type="submit" name="saveColorBag" id="saveColorBag" value="Save" />
           </form>
         <% } %>
       </div>
@@ -191,6 +191,7 @@
       <% if(global.currentUser){ %>
       <div id="userColorBags">
         <h4 class="text-center">ColorBags<span>show all▼</span></h4>
+        <div id="appendNewColorBag"></div>
         <p class="loading">loading ...</p>
       </div>
       <div id="userFonts">
