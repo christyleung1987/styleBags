@@ -177,6 +177,7 @@
           <form action="/fonts" method="post">
             <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily1%>"/>
             <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+            <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily1%>"/>
             <input type="submit" name="saveFont" class="saveFont" value="Save" />
           </form>
         <% } %>
@@ -189,6 +190,7 @@
           <form action="/fonts" method="post">
            <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily2%>"/>
            <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+           <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily2%>"/>
            <input type="submit" name="saveFont" class="saveFont" value="Save" />
           </form>
         <% } %>
@@ -201,6 +203,7 @@
          <form action="/fonts" method="post">
            <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily3%>"/>
            <input type="hidden" name="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
+           <input type="hidden" name="fontName" id="fontName" value="<%=fontFamily3%>"/>
            <input type="submit" name="saveFont" class="saveFont" value="Save" />
          </form>
         <% } %>
@@ -213,10 +216,13 @@
       <div id="userColorBags">
         <h4 class="text-center">ColorBags<span>show all▼</span></h4>
         <div id="appendNewColorBag"></div>
+        <div id="appendSavedColorBags"></div>
         <p class="loading">loading ...</p>
       </div>
       <div id="userFonts">
         <h4 class="text-center">FontBag<span>show all▼</span></h4>
+        <div id="appendNewFont"></div>
+        <div id="appendSavedFonts"></div>
         <p class="loading">loading ...<p>
       </div>
       <% } else { %>
