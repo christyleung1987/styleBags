@@ -140,7 +140,6 @@ function editColorbag(updateColorbagId, updateColorbagName){
     }
   })
   .done(function(data) {
-    console.log(data.name);
     $(`.${updateColorbagId}`).children('h5').text(`${updateColorbagName}`);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
@@ -200,15 +199,23 @@ function displaySixBags(colorbags) {
       console.log(usedColorDataIndexes);
 
       var name = colorObject.colorbag.name;
+      var rgbs = colorObject.colorbag.rgbs;
       var rgbTotal = colorObject.colorbag.rgbs.length;
+      var userId = $('#userId').val();
 
-      $(`.randcolor:nth-of-type(${i})`).empty().prepend(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div><input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />`);
+      $(`.randcolor:nth-of-type(${i})`).empty().prepend(`<div class="colorbagGallery" id="colorbag${colorObject.index}"><h5>${name}</h5><div class="me" id="bag-rgb${colorObject.index}"></div></div><input class="rgbs" type="hidden" value="${rgbs}"/>`)
+      if (userId != null) {
+        $(`.randcolor:nth-of-type(${i})`).append(`<input type="submit" name="saveColorBag" class="saveColorBagGallery" value="Save" />`)
+      };
 
       //loop through rgb array
+      var colorbagColors = [];
       for (var j = 0; j < rgbTotal; j++) {
         //-20 is left & right padding on aside
         var width = 100 / rgbTotal;
+        // colorbagColors.push(rgbs);
         $(`#bag-rgb${colorObject.index}`).append(`<div id="rgb${j}" style="background-color:${colorObject.colorbag.rgbs[j]};width:${width}%"></div>`);
+
       }
       sixColor.push(color);
     }
@@ -216,6 +223,60 @@ function displaySixBags(colorbags) {
     console.log('102', sixColor);
   }
 }
+
+// SAVE colorbag from gallery
+$('.randcolor').on('click', ('.saveColorBagGallery'), (function(e){
+  e.preventDefault();
+  e.stopPropagation();
+
+  var userId = $('#userId').val();
+  var name = $(this).siblings('.colorbagGallery').children('h5').text();
+  var rgbsString = $(this).siblings('.rgbs').val();
+  var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');
+  var rgbs = rgbsStringSplit.split('split');
+  var rgbTotal = rgbs.length;
+  console.log("HELLO");
+
+  console.log(name);
+
+  $.ajax({
+    url: '/colorbags',
+    method: 'POST',
+    data: {
+      name: name,
+      rgbsString: rgbsString,
+      userId: userId
+    }
+  })
+  .done(function(colorbag) {
+    console.log("New colorbag: ", colorbag);
+    $('#colorBagName').val('');
+    userColorBagsCount++;
+    $('#appendNewColorBag').prepend(`<div id="colorbag${userColorBagsCount}" class="savedColorBags always-visible" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${userColorBagsCount}"></div> </div> `);
+    for (var j = 0; j <= rgbTotal; j++) {
+      //-20 is left & right padding on aside
+      var width = 100 / rgbTotal;
+      console.log(colorbag);
+      $(`#bag-rgb${userColorBagsCount}`).append(`<div id="rgb${j}" style="background-color:${colorbag.rgbs[j]};width:${width}%"></div>` );
+    }
+
+    if (savefirstcolor == 0) {
+      $('#userColorBags div div.always-visible:nth-of-type(4)').addClass('hidden');
+      $('#userColorBags div div.always-visible:nth-of-type(4)').removeClass('always-visible');
+    } else if (savefirstcolor == 1) {
+      $('#userColorBags div div.always-visible:nth-of-type(3)').addClass('hidden');
+      $('#userColorBags div div.always-visible:nth-of-type(3)').removeClass('always-visible');
+    }
+    savefirstcolor++;
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log('uh oh');
+    console.log(jqXHR, textStatus, errorThrown);
+  })
+  .always(function() {
+
+  });
+}));
 
 function sixBags(){
   $.ajax({
@@ -264,6 +325,8 @@ var savefirstcolor = 0;
 $('.saveColorBag').click(function(e){
   e.preventDefault();
   e.stopPropagation();
+
+  div[id^=""]
 
   var userId = $('#userId').val();
   var name = $('#colorBagName').val();
