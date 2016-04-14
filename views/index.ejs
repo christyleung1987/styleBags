@@ -120,9 +120,10 @@
           <% if(global.currentUser){ %>
             <form id="colorBag" action="/colorbags" method="post">
               <input id="colorBagName" type="text" name="colorBagName" placeholder="ColorBag Name" />
-              <input id="rgbs" name="rgbs" type="hidden"/>
+              <input id="rgbs" name="rgbs" type="text"/>
               <input type="hidden" name="userId" id="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
-              <input type="submit" name="saveColorBag" id="saveColorBag" value="Save" />
+ <!-- change -->
+              <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
             </form>
           <% } %>
         </div>
@@ -153,25 +154,32 @@
         <div>
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
+<!-- change -->
+            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
           </div>
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
-          </div>
-        <!-- </div> -->
-        <!-- <div class="row"> -->
-          <div class="col-xs-6 randcolor">
-            <p class="loading">loading ...</p>
-          </div>
-          <div class="col-xs-6 randcolor">
-            <p class="loading">loading ...</p>
+            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
           </div>
         <!-- </div> -->
         <!-- <div class="row"> -->
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
+            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
           </div>
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
+            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+          </div>
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
+            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+          </div>
+          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
+            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
         </div>
         <button id="randomize">RANDOMIZE</button>
       </div>
@@ -239,4 +247,4 @@
     </aside>
 
   </div>
-</section>
+</<section>
