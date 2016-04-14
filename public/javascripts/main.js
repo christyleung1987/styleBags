@@ -131,8 +131,11 @@ $('.editColorbag').on('click', function(){
 function editColorbag(updateColorbagId){
   $.ajax({
     url: '/colorbags/edit',
-    method: 'PUT',
+    method: 'POST',
     data: {
+      id: updateColorbagId,
+      name: $('#colorbagName').val(),
+      _method: 'PUT'
     }
   })
   .done(function(data) {
@@ -157,6 +160,12 @@ $('.fontPara').on('click', function() {
   var color = $(this).siblings('.rgbCode').text();
   console.log($(this));
   $('article p').css('color', color);
+});
+
+$('.fontBack').on('click', function() {
+  var color = $(this).siblings('.rgbCode').text();
+  console.log($(this));
+  $('article').css('background-color', color);
 });
 
 function displaySixBags(colorbags) {
