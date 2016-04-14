@@ -13,6 +13,43 @@ p {
 #border {
   border-bottom: 10px solid #3163ac; }
 
+#color-ammt {
+  border-radius: 5px;
+  font-size: .8em;
+  color: #00a376;
+  border: 1px solid #e7e7e7;
+  background: #1e1e1e; }
+  #color-ammt:hover {
+    color: #1e1e1e;
+    background: #00a376; }
+
+#color-generator .switch, #gallery .switch {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #e7e7e7;
+  background: #1e1e1e;
+  color: #f4b800;
+  font-size: .9em;
+  margin-bottom: 20px;
+  text-transform: uppercase; }
+  #color-generator .switch:hover, #gallery .switch:hover {
+    background: #f4b800;
+    color: #1e1e1e; }
+
+#randomize {
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #e7e7e7;
+  background: #1e1e1e;
+  color: #f4b800;
+  font-size: .9em;
+  float: right;
+  margin-top: 20px; }
+  #randomize:hover {
+    background: #f4b800;
+    color: #1e1e1e; }
+
 header {
   background-color: #272826;
   border-bottom: 10px solid #00a376;
@@ -58,6 +95,27 @@ header {
     position: absolute;
     top: 120px;
     right: 30px; }
+    header #bags:hover {
+      background-color: #272826; }
+
+#colorBagName {
+  border-radius: 5px 0 0 5px;
+  color: #3163ac;
+  font-size: .9em;
+  text-shadow: 1px 1px 2px black;
+  padding: 5px;
+  border: 1px solid #e7e7e7;
+  background-color: #1e1e1e; }
+
+#saveColorBag {
+  border: 1px solid #e7e7e7;
+  padding: 3px;
+  color: #00a376;
+  background-color: #1e1e1e;
+  border-radius: 0 5px 5px 0; }
+  #saveColorBag:hover {
+    color: #1e1e1e;
+    background-color: #00a376; }
 
 .container, .container-fluid:not(:first-of-type) {
   padding: 10px 25px 0px;

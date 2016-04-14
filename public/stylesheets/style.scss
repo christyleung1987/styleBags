@@ -25,6 +25,52 @@ p {
   border-bottom: 10px solid $blue;
 }
 
+#color-ammt {
+  border-radius: 5px;
+  font-size: .8em;
+  color: $green;
+  border: 1px solid $off-white;
+  background: $off-black;
+
+  &:hover {
+    color: $off-black;
+    background: $green;
+  }
+}
+
+#color-generator .switch, #gallery .switch {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid $off-white;
+  background: $off-black;
+  color: $yellow;
+  font-size: .9em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+
+  &:hover {
+    background: $yellow;
+    color: $off-black;
+  }
+}
+
+#randomize {
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid $off-white;
+  background: $off-black;
+  color: $yellow;
+  font-size: .9em;
+  float: right;
+  margin-top: 20px;
+
+  &:hover {
+    background: $yellow;
+    color: $off-black;
+  }
+}
+
 header {
   background-color: $dark-grey;
   border-bottom: 10px solid $green;
@@ -87,6 +133,33 @@ header {
     position: absolute;
     top: 120px;
     right: 30px;
+
+    &:hover {
+      background-color: $dark-grey;
+    }
+  }
+}
+
+#colorBagName {
+  border-radius: 5px 0 0 5px;
+  color: $blue;
+  font-size: .9em;
+  text-shadow: 1px 1px 2px black;
+  padding: 5px;
+  border: 1px solid $off-white;
+  background-color: $off-black;
+}
+
+#saveColorBag {
+  border: 1px solid $off-white;
+  padding: 3px;
+  color: $green;
+  background-color: $off-black;
+  border-radius: 0 5px 5px 0;
+
+  &:hover {
+    color: $off-black;
+    background-color: $green;
   }
 }
 
