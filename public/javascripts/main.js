@@ -665,5 +665,14 @@ var color;
 
   });
 
-
+  $('#userColorBags')
+    .on('click', 'div[id^="rgb"]', function() {
+      var $color = $(this);
+      var $container = $color.closest('.savedColorbags');
+      var $label = $('.color-label', $container);
+      if (!$label.length) {
+        $label = $('<div class="color-label"></div>').appendTo($container);
+      }
+      $label.text($color.css('background-color'));
+    });
 });
