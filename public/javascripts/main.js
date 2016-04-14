@@ -409,6 +409,12 @@ $('.switch').on('click', function() {
 
 var color;
 
+$('#randomize').on('click', function() {
+  // $('#color-generator').toggleClass('hidden');
+  sixBags();
+})
+
+var color;
 
 // COLOR GENERATOR functions
   function randomColor(){
