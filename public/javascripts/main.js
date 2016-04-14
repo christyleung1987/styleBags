@@ -3,9 +3,6 @@ $(function() {
 var fontPluses = [];
 
 // MY BAGS DROPDOWN
-$('#bags').one('click', function() {
-  savedFonts();
-});
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
   $('#color-generator').toggleClass('col-md-6 col-md-5');
@@ -47,10 +44,13 @@ function savedColorBags(){
     dataType: 'json'
   })
   .done(function(colorbags) {
-    displayColorBags(colorbags);
+    //we use this variable somewhere else
     userColorBagsCount = colorbags.length;
     if (userColorBagsCount == 0) {
       $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>");
+    } else {
+      $('#appendSavedColorBags').empty();
+      displayColorBags(colorbags);
     }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
@@ -191,7 +191,6 @@ function sixBags(){
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
-      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>")
   })
 }
 
@@ -288,6 +287,7 @@ function savedFonts(){
     if (userFontsCount == 0) {
       $('#userFonts').html("<p>You haven't saved any fonts.</p>");
     } else {
+      $('#appendSavedFonts').empty();
       displayFontBag(fonts);
       var fontsForGoogle = fontPluses.join('|');
       $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
@@ -474,6 +474,7 @@ var color;
     $('#bags').removeClass('hidden');
     if ($('#userId').val()) {
       savedColorBags();
+      savedFonts();
     }
 
     colors=[];

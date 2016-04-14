@@ -123,6 +123,15 @@ aside {
     letter-spacing: 2px;
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
 
+#colorBag {
+  float: right; }
+
+#color-number {
+  width: 40px; }
+
+#color-number, #color-ammt, label[for=color-number] {
+  display: inline-block; }
+
 div[id^="colorbag"] {
   position: relative;
   width: 100%; }
