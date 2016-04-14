@@ -200,7 +200,7 @@ function displaySixBags(colorbags) {
       var name = colorObject.colorbag.name;
       var rgbTotal = colorObject.colorbag.rgbs.length;
 
-      $(`.randcolor:nth-of-type(${i})`).empty().prepend(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div><input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />`);
+      $(`.randcolor:nth-of-type(${i})`).empty().prepend(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div><input type="submit" name="saveColorBag" id="saveColorBag{i}" class="saveColorBag" value="Save" />`);
 
       //loop through rgb array
       for (var j = 0; j < rgbTotal; j++) {
