@@ -266,6 +266,7 @@ $('#saveColorBag').click(function(e){
     for (var j = 0; j <= rgbTotal; j++) {
       //-20 is left & right padding on aside
       var width = 100 / rgbTotal;
+      console.log(colorbag);
       $(`#bag-rgb${userColorBagsCount}`).append(`<div id="rgb${j}" style="background-color:${colorbag.rgbs[j]};width:${width}%"></div>` );
     }
 
@@ -362,7 +363,7 @@ $('.saveFont').click(function(e){
       $('#userFonts div div.always-visible:nth-of-type(3)').addClass('hidden');
       $('#userFonts div div.always-visible:nth-of-type(3)').removeClass('always-visible');
     }
-    savefirstFont++;
+    savefirstfont++;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log('uh oh');
@@ -561,6 +562,7 @@ var color;
 
       } else if (keys[39] && keys[70]) {
         fontGenerator();
+        asideHeight();
       }
     }
   }).keyup(function(e) {
@@ -655,14 +657,18 @@ var color;
     }
     console.log(countSwatches);
     var swatchQuantity = $('.color-swatch').length;
-    //75 is #geneartor padding + 25px for padding on bottom
-    var totalSwatchHeight = $(document).height() - $('#swatches').offset().top;
+    var totalSwatchHeight = $(window).height() - $('#swatches').offset().top;
     var singleSwatchHeight = totalSwatchHeight / countSwatches;
     $('.color-swatch').css('height', singleSwatchHeight+'px');
   };
 
   function asideHeight() {
-    var asideHeight = $('#color-generator').height() + 40;
+    var asideHeight;
+    if ($('#color-generator').height() >= $('#fonts').height()) {
+      asideHeight = $('#color-generator').height() + 30;
+    } else {
+      asideHeight = $('#fonts').height() + 30;
+    }
     $('aside').css('height', asideHeight+'px');
   };
 
@@ -672,14 +678,5 @@ var color;
 
   });
 
-  $('#userColorBags')
-    .on('click', 'div[id^="rgb"]', function() {
-      var $color = $(this);
-      var $container = $color.closest('.savedColorbags');
-      var $label = $('.color-label', $container);
-      if (!$label.length) {
-        $label = $('<div class="color-label"></div>').appendTo($container);
-      }
-      $label.text($color.css('background-color'));
-    });
+
 });

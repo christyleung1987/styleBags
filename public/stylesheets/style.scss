@@ -130,11 +130,6 @@ header {
   display: none;
 }
 
-section .row {
-margin-bottom: 0;
-padding-bottom: 0;
-}
-
 aside {
   position: relative;
   //padding on #generator
@@ -146,6 +141,7 @@ aside {
   border-left: 2px dotted $green;
   box-shadow: -1px 0 10px black;
   overflow: scroll;
+  margin-bottom: -25px;
 
   h4 {
     padding-bottom: 10px;
@@ -264,11 +260,6 @@ div[id^="savedFont"] {
   }
 }
 
-div.row {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
 #generator {
   padding: 25px 25px 0 25px;
   display: none;
@@ -280,7 +271,8 @@ div.row {
   margin: 0;
 }
 
-a {
+#swatches {
+  margin-bottom: 20px;
 }
 
 #fonts {
@@ -301,10 +293,6 @@ a {
     .saveFont {
       background: $dark-grey;
     }
-  }
-
-  article:first-of-type {
-    margin-top: -20px;
   }
 
   article:not(:last-child) {
