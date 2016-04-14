@@ -192,7 +192,7 @@ function displaySixBags(colorbags) {
       var rgbTotal = colorObject.colorbag.rgbs.length;
 //changes// took out .empty() int front of .append and uncommented the .remove///////////////////////////////////////////////////////////////////////
       $(`.randcolor:nth-of-type(${i}) p`).remove();
-      $(`.randcolor:nth-of-type(${i})`).append(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div>`);
+      $(`.randcolor:nth-of-type(${i})`).prepend(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div>`);
 
       //loop through rgb array
       for (var j = 0; j < rgbTotal; j++) {
