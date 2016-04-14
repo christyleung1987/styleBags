@@ -499,6 +499,7 @@ var color;
       savedColorBags();
       savedFonts();
     }
+    $('body').css('background-color', '#1e1e1e');
 
     colors=[];
     colorsGenerator();
@@ -660,9 +661,6 @@ var color;
     var totalSwatchHeight = $('#fonts').height() - 80;
     var singleSwatchHeight = totalSwatchHeight / countSwatches;
     $('.color-swatch').css('height', singleSwatchHeight+'px');
-
-    var genMinHeight = $(window).height() - $('#border').height();
-    $('#generator').css('height', genMinHeight)
   };
 
   function asideHeight() {
