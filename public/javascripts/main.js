@@ -4,7 +4,6 @@ var fontPluses = [];
 
 // MY BAGS DROPDOWN
 $('#bags').one('click', function() {
-  savedColorBags();
   savedFonts();
 });
 $('#bags').on('click', function(){
@@ -12,11 +11,11 @@ $('#bags').on('click', function(){
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
-  // if ($('#bags').hasClass('hidden')) {
-  //   $('#bags span').html('▼');
-  // } else {
-  //   $('#bags span').html('▲');
-  // }
+  if ($('aside').hasClass('hidden')) {
+    $('#bags span').html('▼');
+  } else {
+    $('#bags span').html('▲');
+  }
 });
 
 // SHOW ALL
@@ -38,6 +37,7 @@ $('#userFonts h4 span').on('click', function() {
   }
 })
 
+var userColorBagsCount;
 // GET & DISPLAY SAVED COLORBAGS
 function savedColorBags(){
   $.ajax({
@@ -48,10 +48,14 @@ function savedColorBags(){
   })
   .done(function(colorbags) {
     displayColorBags(colorbags);
+    userColorBagsCount = colorbags.length;
+    if (userColorBagsCount == 0) {
+      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>");
+    }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
-      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>")
+      console.log('error');
   })
 }
 
@@ -65,7 +69,11 @@ function displayColorBags(colorbags) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
+<<<<<<< HEAD
       $('#userColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}" data-colorbag-name="${colorbag.name}"> <h5>${name}</h5><button class="btn editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
+=======
+      $('#appendSavedColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
+>>>>>>> 20d32c90187f59e0e663b8a69a0056f4f90886a9
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -96,6 +104,8 @@ function displayColorBags(colorbags) {
     })
     .done(function(data) {
       console.log('Deleted colorbag: ', data);
+      $('div[id^="colorbag"]:nth-of-type(5)').addClass('always-visible');
+      $('div[id^="colorbag"]:nth-of-type(5)').removeClass('hidden');
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
       console.log('Uh oh');
@@ -229,47 +239,58 @@ function sixBags(){
 // }
 // displaySixBags();
 
-
 // DISPLAY NEWLY SAVED COLORBAGS IN ASIDE
+var savefirstcolor = 0;
 $('#saveColorBag').click(function(e){
   e.preventDefault();
   e.stopPropagation();
 
+  var userId = $('#userId').val();
   var name = $('#colorBagName').val();
-  var rgbs = $('#rgbs').val();
+  var rgbsString = $('#rgbs').val();
   var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');
-  var rgbsArray = rgbsStringSplit.split('split');
-  var rgbTotal = rgbsArray.length;
-  $('#userColorBags').prepend(`<li><strong>${name}</strong>: ${interests}</li>`);
-  for (var j = 0; j <= rgbTotal; j++) {
-    //-20 is left & right padding on aside
-    var width = 100 / rgbTotal;
-    $(`#bag-rgb${i}`).append(`<div id="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};width:${width}%"></div>` );
-  }
-  $('#colorBagName').val('');
+  var rgbs = rgbsStringSplit.split('split');
+  var rgbTotal = rgbs.length;
 
   $.ajax({
     url: '/colorbags',
     method: 'POST',
     data: {
       name: name,
-      rgbs: rgbs
+      rgbsString: rgbsString,
+      userId: userId
     }
   })
-  .done(function(nerd) {
-    console.log('New nerd: ', nerd);
+  .done(function(colorbag) {
+    console.log("New colorbag: ", colorbag);
+    $('#colorBagName').val('');
+    userColorBagsCount++;
+    $('#appendNewColorBag').prepend(`<div id="colorbag${userColorBagsCount}" class="savedColorBags always-visible" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${userColorBagsCount}"></div> </div> `);
+    for (var j = 0; j <= rgbTotal; j++) {
+      //-20 is left & right padding on aside
+      var width = 100 / rgbTotal;
+      $(`#bag-rgb${userColorBagsCount}`).append(`<div id="rgb${j}" style="background-color:${colorbag.rgbs[j]};width:${width}%"></div>` );
+    }
+
+    if (savefirstcolor == 0) {
+      $('#userColorBags div div.always-visible:nth-of-type(4)').addClass('hidden');
+      $('#userColorBags div div.always-visible:nth-of-type(4)').removeClass('always-visible');
+    } else if (savefirstcolor == 1) {
+      $('#userColorBags div div.always-visible:nth-of-type(3)').addClass('hidden');
+      $('#userColorBags div div.always-visible:nth-of-type(3)').removeClass('always-visible');
+    }
+    savefirstcolor++;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log('uh oh');
     console.log(jqXHR, textStatus, errorThrown);
-    alert("FAILED");
   })
   .always(function() {
+
   });
 });
 
-
-
+var userFontsCount;
 // GET & DISPLAY FONTBAG
 function savedFonts(){
   $.ajax({
@@ -279,13 +300,18 @@ function savedFonts(){
     dataType: 'json'
   })
   .done(function(fonts) {
-    displayFontBag(fonts);
-    var fontsForGoogle = fontPluses.join('|');
-    $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
+    //variable is used more than once
+    userFontsCount = fonts.length;
+    if (userFontsCount == 0) {
+      $('#userFonts').html("<p>You haven't saved any fonts.</p>");
+    } else {
+      displayFontBag(fonts);
+      var fontsForGoogle = fontPluses.join('|');
+      $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
+    }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
-      $('#userFonts').html("<p>You haven't saved any fonts.</p>")
   })
 }
 
@@ -300,7 +326,7 @@ function displayFontBag(fonts) {
       var fontPlus = name.replace(/ /g, "+");
       fontPluses.push(fontPlus);
       $('#userFonts p').remove();
-      $('#userFonts').append(`<div id="savedFont${i}" data-font-id="${font._id}"><h3 style="font-family:${name};">${name}</h3><button class="btn" id="deleteSavedFont">x</button></div>`);
+      $('#appendSavedFonts').append(`<div id="savedFont${i}" data-font-id="${font._id}"><h3 style="font-family:${name};">${name}</h3><button class="btn" id="deleteSavedFont">x</button></div>`);
       if (i >= fonts.length - 4) {
         $(`#savedFont${i}`).addClass('always-visible');
       } else {
@@ -310,7 +336,46 @@ function displayFontBag(fonts) {
   }
 }
 
-// DELETE font from saved bags
+// DISPLAY NEWLY SAVED FONTS IN ASIDE
+var savefirstfont = 0;
+$('.saveFont').click(function(e){
+  e.preventDefault();
+  e.stopPropagation();
+
+  var userId = $('#userId').val();
+  var fontName = $(this).prev().val();
+
+  $.ajax({
+    url: '/fonts',
+    method: 'POST',
+    data: {
+      fontName: fontName,
+      userId: userId
+    }
+  })
+  .done(function(font) {
+    userFontsCount++;
+    $('#appendNewFont').prepend(`<div id="savedFont${userFontsCount}" class="always-visible" data-font-id="${font._id}"><h3 style="font-family:${fontName};">${fontName}</h3><button class="btn" id="deleteSavedFont">x</button></div>`);
+    if (savefirstfont == 0) {
+      $('#userFonts div div.always-visible:nth-of-type(4)').addClass('hidden');
+      $('#userFonts div div.always-visible:nth-of-type(4)').removeClass('always-visible');
+    } else if (savefirstfont == 1) {
+      //doesn't work
+      $('#userFonts div div.always-visible:nth-of-type(3)').addClass('hidden');
+      $('#userFonts div div.always-visible:nth-of-type(3)').removeClass('always-visible');
+    }
+    savefirstFont++;
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log('uh oh');
+    console.log(jqXHR, textStatus, errorThrown);
+  })
+  .always(function() {
+
+  });
+});
+
+// DELETE FONTS
   $('#userFonts').on('click', '#deleteSavedFont', function(){
     var deleteFontId = $(this).parent().data('font-id');
     $(this).parent().remove();
@@ -325,6 +390,8 @@ function displayFontBag(fonts) {
     })
     .done(function(data) {
       console.log('Deleted font: ', data);
+      $('div[id^="savedFont"]:nth-of-type(5)').addClass('always-visible');
+      $('div[id^="savedFont"]:nth-of-type(5)').removeClass('hidden');
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
       console.log('Uh oh');
@@ -422,6 +489,9 @@ var color;
     $(this).parent().hide();
     $('#generator').css('display', 'block');
     $('#bags').removeClass('hidden');
+    if ($('#userId').val()) {
+      savedColorBags();
+    }
 
     colors=[];
     colorsGenerator();

@@ -18,12 +18,13 @@ router.get('/all', function(req, res, next) {
 })
 
 router.post('/', function(req, res, next) {
-  var rgbsString = req.body.rgbs;
+  var rgbsString = req.body.rgbsString;
   var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');
   var rgbs = rgbsStringSplit.split('split');
+  console.log(rgbs);
 
   var newColorBag = ColorBag({
-      name: req.body.colorBagName,
+      name: req.body.name,
       rgbs: rgbs,
       userId: req.body.userId
   });
