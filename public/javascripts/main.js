@@ -666,18 +666,18 @@ var color;
   function asideHeight() {
     var asideHeight;
 
-    var genHeight = $('#generator').height();
+    var minAsideHeight = $(window).height() - $('#border').height() - 10;
+
     var colorGenHeight = $('#color-generator').height();
     var fontsHeight = $('#fonts').height();
 
-    if (genHeight >= colorGenHeight && genHeight >= fontsHeight) {
-      asideHeight = genHeight + 25;
-    } else if (colorGenHeight >= fontsHeight) {
+    if (colorGenHeight >= fontsHeight) {
       asideHeight = colorGenHeight + 30;
     } else {
       asideHeight = fontsHeight + 30;
     }
     $('aside').css('height', asideHeight+'px');
+    $('aside').css('min-height', minAsideHeight+'px');
   };
 
 
