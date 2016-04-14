@@ -70,7 +70,7 @@ function displayColorBags(colorbags) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#appendSavedColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
+      $('#appendSavedColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}" data-colorbag-name="${name}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -87,7 +87,7 @@ function displayColorBags(colorbags) {
 }
 
 // DELETE colorbag from saved bags
-  $('#userColorBags').on('click', '.deleteSavedColorbag', function(){
+  $('#appendSavedColorBags').on('click', '#deleteSavedColorbag', function(){
     var deleteColorbagId = $(this).parent().data('colorbag-id');
     $(this).parent().remove();
     deleteColorbag(deleteColorbagId);
@@ -113,23 +113,24 @@ function displayColorBags(colorbags) {
   }
 
 // Passing colorbag name to edit modal
-$('#userColorBags').on('click', '.editSavedColorbag', function() {
+$('#appendSavedColorBags').on('click', '#editSavedColorbag', function() {
   var colorbagName = $(this).parent().data('colorbag-name');
+  console.log(colorbagName);
   var colorbagId = $(this).parent().data('colorbag-id');
+  console.log(colorbagId);
   $(".editColorbagName #colorbagName").val(colorbagName);
   $(".colorbagId #colorbagId").val(colorbagId);
 });
 
 // Edit a colorbag name
-$('#editColorbagModal').on('click', '.editColorbag', function(){
+$('.editColorbag').on('click', function(){
   var updateColorbagId = $('#colorbagId').val();
-  console.log(updateColorbagId);
   editColorbag(updateColorbagId);
   })
 
 function editColorbag(updateColorbagId){
   $.ajax({
-    url: '/colorbags/' + updateColorbagId + '/edit',
+    url: '/colorbags/edit',
     method: 'PUT',
     data: {
     }
