@@ -49,10 +49,13 @@ function savedColorBags(){
   .done(function(colorbags) {
     displayColorBags(colorbags);
     userColorBagsCount = colorbags.length;
+    if (userColorBagsCount == 0) {
+      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>");
+    }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
-      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>")
+      console.log('error');
   })
 }
 
@@ -280,14 +283,18 @@ function savedFonts(){
     dataType: 'json'
   })
   .done(function(fonts) {
-    displayFontBag(fonts);
+    //variable is used more than once
     userFontsCount = fonts.length;
-    var fontsForGoogle = fontPluses.join('|');
-    $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
+    if (userFontsCount == 0) {
+      $('#userFonts').html("<p>You haven't saved any fonts.</p>");
+    } else {
+      displayFontBag(fonts);
+      var fontsForGoogle = fontPluses.join('|');
+      $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
+    }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
-      $('#userFonts').html("<p>You haven't saved any fonts.</p>")
   })
 }
 
