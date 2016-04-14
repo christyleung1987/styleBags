@@ -110,7 +110,7 @@
         <button class="switch">Gallery</button>
         <div class="form-group">
           <label for="color-number"># of colors: </label>
-          <select class="form-control" id="color-number">
+          <select onchange="this.form.submit()" class="form-control" id="color-number">
             <option class="color-ammt">6</option>
             <option class="color-ammt">5</option>
             <option class="color-ammt">4</option>
@@ -155,31 +155,31 @@
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
 <!-- change -->
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+
           </div>
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
-          </div>
-        <!-- </div> -->
-        <!-- <div class="row"> -->
-          <div class="col-xs-6 randcolor">
-            <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
-          </div>
-          <div class="col-xs-6 randcolor">
-            <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+
           </div>
         <!-- </div> -->
         <!-- <div class="row"> -->
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+
           </div>
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+
+          </div>
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
+
+          </div>
+          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
+
         </div>
         <button id="randomize">RANDOMIZE</button>
       </div>
