@@ -18,20 +18,30 @@ router.get('/all', function(req, res, next) {
 })
 
 router.post('/', function(req, res, next) {
-  var rgbsString = req.body.rgbs;
+  var rgbsString = req.body.rgbsString;
   var rgbsStringSplit = rgbsString.replace(/,r/g, 'splitr');
   var rgbs = rgbsStringSplit.split('split');
+  console.log(rgbs);
 
   var newColorBag = ColorBag({
-      name: req.body.colorBagName,
+      name: req.body.name,
       rgbs: rgbs,
       userId: req.body.userId
   });
 
   newColorBag.save(function(err, user) {
     if (err) console.log(err);
-    //res.redirect('/');
-    res.json(newColorBag);
+    res.status(200).json({});
+    // res.json(newColorBag);
+  });
+});
+
+/* PUT /colorbags/:id/edit */
+router.put('/colorbags/:id/edit', function(req, res, next) {
+  ColorBag.findByIdAndUpdate(req.body.id, { name: req.body.name }, function(err, colorbag) {
+    if (err) console.log(err);
+
+    res.redirect('/');
   });
 });
 
