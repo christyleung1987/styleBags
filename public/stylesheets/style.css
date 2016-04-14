@@ -147,6 +147,24 @@ header {
 .hidden {
   display: none; }
 
+.randcolor {
+  position: relative; }
+  .randcolor .saveColorBagGallery {
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    text-transform: uppercase;
+    font-size: .8em;
+    border: 1px solid #e7e7e7;
+    color: #00a376;
+    background-color: #1e1e1e; }
+    .randcolor .saveColorBagGallery:hover {
+      color: #1e1e1e;
+      background-color: #00a376; }
+  .randcolor:not(.dontaddmargin) {
+    margin-bottom: 70px; }
+
 aside {
   padding: 15px;
   position: relative;
