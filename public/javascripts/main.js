@@ -648,14 +648,14 @@ var color;
     }
     console.log(countSwatches);
     var swatchQuantity = $('.color-swatch').length;
-    //25 is to give the illusion of padding at the bottom
-    var totalSwatchHeight = $(window).height() - $('#swatches').offset().top - 25;
+    //75 is #geneartor padding + 25px for padding on bottom
+    var totalSwatchHeight = $(document).height() - $('#swatches').offset().top;
     var singleSwatchHeight = totalSwatchHeight / countSwatches;
     $('.color-swatch').css('height', singleSwatchHeight+'px');
   };
 
   function asideHeight() {
-    var asideHeight = $(window).height() - $('#border').height();
+    var asideHeight = $('#color-generator').height() + 40;
     $('aside').css('height', asideHeight+'px');
   };
 
