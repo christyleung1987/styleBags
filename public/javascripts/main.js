@@ -66,7 +66,7 @@ function displayColorBags(colorbags) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#userColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
+      $('#userColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -85,12 +85,11 @@ function displayColorBags(colorbags) {
 // DELETE colorbag from saved bags
   $('#userColorBags').on('click', '#deleteSavedColorbag', function(){
     var deleteColorbagId = $(this).parent().data('colorbag-id');
-    console.log($(this).parent().data('colorbag-id'));
     $(this).parent().remove();
-    deleteTodo(deleteColorbagId);
+    deleteColorbag(deleteColorbagId);
   })
 
-  var deleteTodo = function(deleteColorbagId){
+  var deleteColorbag = function(deleteColorbagId){
     $.ajax({
       url: '/colorbags/' + deleteColorbagId,
       method: 'DELETE',
@@ -107,29 +106,71 @@ function displayColorBags(colorbags) {
     });
   }
 
+// Edit a Colorbag name
+  var editColorbagName = function(colorbagId){
+
+    $.ajax({
+      url: '/colorbags/' + colorbagId + '/edit',
+      method: 'PUT',
+      data: {
+      }
+    })
+    .done(function(data) {
+      console.log('The updated colorbag: ', data);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.log('Uh oh');
+      console.log(jqXHR, textStatus, errorThrown);
+    })
+    .always(function() {
+
+    });
+  }
+
 function displaySixBags(colorbags) {
+  console.log(colorbags);
   if (!colorbags) {
     return;
   } else {
     // loop through colorbags
+    var usedColorDataIndexes = [];
     var sixColor = [];
-    for (var i = 1; i < 7; i++) {
+    function getRandomColorbag(){
       var colorData = Math.floor(Math.random()*colorbags.length);
-      var name = colorbags[colorData].name;
-      var rgbTotal = colorbags[colorData].rgbs.length;
-      $(`#gallery .row .randcolor:nth-of-type(${i}) p`).remove();
-      $(`#gallery .row .randcolor:nth-of-type(${i})`).append(`<div id="colorbag${colorData}"><h5>${name}</h5><div id="bag-rgb${colorData}"></div></div>`);
+      console.log('colorData', colorData);
+      console.log('found', usedColorDataIndexes.indexOf(colorData));
+
+      while (usedColorDataIndexes.indexOf(colorData) > -1) {
+        return getRandomColorbag();
+      }
+
+      usedColorDataIndexes.push(colorData);
+
+      return {
+        index: colorData,
+        colorbag: colorbags[colorData]
+      };
+    }
+    for (var i = 1; i < 7; i++) {
+      var colorObject = getRandomColorbag();
+
+      console.log(usedColorDataIndexes);
+
+      var name = colorObject.colorbag.name;
+      var rgbTotal = colorObject.colorbag.rgbs.length;
+      // $(`.randcolor:nth-of-type(${i}) p`).remove();
+      $(`.randcolor:nth-of-type(${i})`).empty().append(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div>`);
 
       //loop through rgb array
-      for (var j = 0; j <= rgbTotal; j++) {
+      for (var j = 0; j < rgbTotal; j++) {
         //-20 is left & right padding on aside
         var width = 100 / rgbTotal;
-        //$(`#bag-rgb${colorData}`).append(`<div id="rgb${j}" style="background-color:${colorbags[colorData].rgbs[j]};width:${width}%"></div>`);
+        $(`#bag-rgb${colorObject.index}`).append(`<div id="rgb${j}" style="background-color:${colorObject.colorbag.rgbs[j]};width:${width}%"></div>`);
       }
-      sixColor.push(colorbags[colorData]);
+      sixColor.push(color);
     }
-    // return(sixColor);
-    console.log('107', sixColor);
+
+    console.log('102', sixColor);
   }
 }
 
@@ -245,12 +286,13 @@ function displayFontBag(fonts) {
     return;
   } else {
     for (var i = fonts.length; i--;) {
+      var font = fonts[i];
       var name = fonts[i].fontName;
       //for Google stylesheet
       var fontPlus = name.replace(/ /g, "+");
       fontPluses.push(fontPlus);
       $('#userFonts p').remove();
-      $('#userFonts').append(`<div id="savedFont${i}"><h3 style="font-family:${name};">${name}</h3><button>x</button></div>`);
+      $('#userFonts').append(`<div id="savedFont${i}" data-font-id="${font._id}"><h3 style="font-family:${name};">${name}</h3><button class="btn" id="deleteSavedFont">x</button></div>`);
       if (i >= fonts.length - 4) {
         $(`#savedFont${i}`).addClass('always-visible');
       } else {
@@ -259,6 +301,30 @@ function displayFontBag(fonts) {
     }
   }
 }
+
+// DELETE font from saved bags
+  $('#userFonts').on('click', '#deleteSavedFont', function(){
+    var deleteFontId = $(this).parent().data('font-id');
+    $(this).parent().remove();
+    deleteFont(deleteFontId);
+  })
+
+  var deleteFont = function(deleteFontId){
+    $.ajax({
+      url: '/fonts/' + deleteFontId,
+      method: 'DELETE',
+      data: {}
+    })
+    .done(function(data) {
+      console.log('Deleted font: ', data);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.log('Uh oh');
+      console.log(jqXHR, textStatus, errorThrown);
+    })
+    .always(function() {
+    });
+  }
 
 var colors = [];
 

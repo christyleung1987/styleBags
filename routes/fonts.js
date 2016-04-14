@@ -23,4 +23,14 @@ router.post('/', function(req, res, next) {
   });
 });
 
+// Delete from /fonts/:id
+router.delete('/:id', function(req, res, next) {
+  console.log(req.params.id);
+  Font.findByIdAndRemove(req.params.id, function(err) {
+    if (err) console.log(err);
+
+    res.status(200).json({});
+  });
+});
+
 module.exports = router;
