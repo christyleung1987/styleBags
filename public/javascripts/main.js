@@ -5,6 +5,7 @@ var fontPluses = [];
 // MY BAGS DROPDOWN
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
+  asideHeight();
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
@@ -485,6 +486,7 @@ var color;
     $(this).parent().hide();
     $('#generator').css('display', 'block');
     $('#bags').removeClass('hidden');
+    swatchHeight();
     if ($('#userId').val()) {
       savedColorBags();
       savedFonts();
@@ -606,6 +608,7 @@ var color;
           console.log(colors);
           $('#rgbs').val(colors);
         }
+          swatchHeight();
     });
 
   // Locking and unlocking color divs
@@ -632,15 +635,29 @@ var color;
   // SET COLOR SWATCH & ASIDE HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
-    var swatchQuantity = $('.color-swatch').length;
-    //50 is padding on #generator
-    var totalSwatchHeight = $(window).height() - $('header').height() - 50;
-    var singleSwatchHeight = totalSwatchHeight / swatchQuantity;
-    $('.color-swatch').css('height', singleSwatchHeight+'px');
-
-    var asideHeight = $(window).height() - $('header').height();
-    $('aside').css('height', asideHeight+'px');
+    swatchHeight();
+    asideHeight();
   }).resize();
+
+  function swatchHeight() {
+    var countSwatches = 0;
+    for (var i = 1; i <= 6; i++ ) {
+      if ($(`#color${i}`).css('display') !== 'none') {
+        countSwatches++;
+      }
+    }
+    console.log(countSwatches);
+    var swatchQuantity = $('.color-swatch').length;
+    //25 is to give the illusion of padding at the bottom
+    var totalSwatchHeight = $(window).height() - $('#swatches').offset().top - 25;
+    var singleSwatchHeight = totalSwatchHeight / countSwatches;
+    $('.color-swatch').css('height', singleSwatchHeight+'px');
+  };
+
+  function asideHeight() {
+    var asideHeight = $(window).height() - $('#border').height();
+    $('aside').css('height', asideHeight+'px');
+  };
 
 
   // Setting font colors to gen colors
