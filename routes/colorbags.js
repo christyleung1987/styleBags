@@ -30,17 +30,17 @@ router.post('/', function(req, res, next) {
 
   newColorBag.save(function(err, user) {
     if (err) console.log(err);
-    //res.redirect('/');
-    res.json(newColorBag);
+    res.status(200).json({});
+    // res.json(newColorBag);
   });
 });
 
 /* PUT /colorbags/:id/edit */
-router.put('/:id/edit', function(req, res, next) {
-  ColorBag.findByIdAndUpdate(req.params.id, { name: req.params.name }, function(err, colorbag) {
+router.put('/colorbags/:id/edit', function(req, res, next) {
+  ColorBag.findByIdAndUpdate(req.body.id, { name: req.body.name }, function(err, colorbag) {
     if (err) console.log(err);
 
-    res.json(colorbag);
+    res.redirect('/');
   });
 });
 

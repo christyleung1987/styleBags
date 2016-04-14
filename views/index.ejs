@@ -62,13 +62,19 @@
           <h2 class="modal-title" id="myModalLabel">Edit your ColorBag!</h2>
         </div>
         <div class="modal-body">
-          <form method="put" action="/colorbags/:id/edit">
-            <div class="form-group">
-              <label for="email">Name</label>
-              <input class="form-control" type="text" name="email" id="email" placeholder="">
+          <form name="edit-form" id="edit-form">
+            <div class="editColorbagName">
+              <label for="colorbagName">Name</label>
+              <input class="form-control" type="text" name="name" id="colorbagName">
             </div>
-            <input class="btn btn-default redirection" type="submit">
+            <div class="colorbagId">
+              <input class="form-control" type="hidden" name="id" id="colorbagId">
+            </div>
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary btn-create editColorbag">Edit name!</button>
         </div>
       </div>
     </div>
@@ -78,7 +84,7 @@
   <header class="container-fluid">
     <div id="logo"><img src="images/logo.png" alt="logo" /><span>StyleBags</sp></div>
     <% if(global.currentUser){ %>
-    <a href="/logout"><button class="btn btn-primary btn-sm">Log out</button></a>
+      <a href="/logout"><button class="btn btn-primary btn-sm">Log out</button></a>
     <% } else { %>
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signupModal">Signup</button>
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Login</button>
