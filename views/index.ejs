@@ -109,7 +109,7 @@
       <div id="color-generator" class="col-xs-12 col-md-6">
         <button class="switch">Gallery</button>
         <div class="form-group">
-          <label for="color-number"># of colors: </label>
+          <label for="color-number"># of colors: </label><br>
           <select class="form-control" id="color-number">
             <option class="color-ammt">6</option>
             <option class="color-ammt">5</option>
@@ -119,11 +119,11 @@
           <input type="Submit" id="color-ammt"/>
           <% if(global.currentUser){ %>
             <form id="colorBag" action="/colorbags" method="post">
-              <input id="colorBagName" type="text" name="colorBagName" placeholder="ColorBag Name" />
-              <input id="rgbs" name="rgbs" type="text"/>
+              <input id="colorBagName" type="text" name="colorBagName" placeholder="ColorBag Name" maxlength="20" />
+              <input id="rgbs" name="rgbs" type="hidden"/>
               <input type="hidden" name="userId" id="userId" value="<%=global.currentUser.id || global.currentUser.facebookId%>"/>
  <!-- change -->
-              <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+              <input type="submit" name="saveColorBag" class="saveColorBag" id="saveColorBag" value="Save" />
             </form>
           <% } %>
         </div>
@@ -149,39 +149,39 @@
         </div>
       </div>
       <div id="gallery" class="col-xs-12 col-md-6 hidden">
-        <button class="switch">Gallery</button>
+        <button class="switch">Generator</button>
         <!-- <div class="row"> -->
         <div>
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
 <!-- change -->
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+
           </div>
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
-          </div>
-        <!-- </div> -->
-        <!-- <div class="row"> -->
-          <div class="col-xs-6 randcolor">
-            <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
-          </div>
-          <div class="col-xs-6 randcolor">
-            <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+
           </div>
         <!-- </div> -->
         <!-- <div class="row"> -->
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+
           </div>
           <div class="col-xs-6 randcolor">
             <p class="loading">loading ...</p>
-            <input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />
+
+          </div>
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
+
+          </div>
+          <div class="col-xs-6 randcolor">
+            <p class="loading">loading ...</p>
+
         </div>
-        <button id="randomize">RANDOMIZE</button>
+        <button id="randomize">Randomize</button>
       </div>
     </div>
     <div id="fonts" class="col-xs-12 col-md-6 text-center">
