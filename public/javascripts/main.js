@@ -131,8 +131,11 @@ $('.editColorbag').on('click', function(){
 function editColorbag(updateColorbagId){
   $.ajax({
     url: '/colorbags/edit',
-    method: 'PUT',
+    method: 'POST',
     data: {
+      id: updateColorbagId,
+      name: $('#colorbagName').val(),
+      _method: 'PUT'
     }
   })
   .done(function(data) {
@@ -146,6 +149,24 @@ function editColorbag(updateColorbagId){
 
   });
 }
+
+$('.fontHeader').on('click', function() {
+  var color = $(this).siblings('.rgbCode').text();
+  console.log($(this));
+  $('h1').css('color', color);
+});
+
+$('.fontPara').on('click', function() {
+  var color = $(this).siblings('.rgbCode').text();
+  console.log($(this));
+  $('article p').css('color', color);
+});
+
+$('.fontBack').on('click', function() {
+  var color = $(this).siblings('.rgbCode').text();
+  console.log($(this));
+  $('article').css('background-color', color);
+});
 
 function displaySixBags(colorbags) {
   console.log(colorbags);
@@ -178,8 +199,8 @@ function displaySixBags(colorbags) {
 
       var name = colorObject.colorbag.name;
       var rgbTotal = colorObject.colorbag.rgbs.length;
-      // $(`.randcolor:nth-of-type(${i}) p`).remove();
-      $(`.randcolor:nth-of-type(${i})`).empty().append(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div>`);
+
+      $(`.randcolor:nth-of-type(${i})`).empty().prepend(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div><input type="submit" name="saveColorBag" class="saveColorBag" value="Save" />`);
 
       //loop through rgb array
       for (var j = 0; j < rgbTotal; j++) {
@@ -238,7 +259,7 @@ function sixBags(){
 
 // DISPLAY NEWLY SAVED COLORBAGS IN ASIDE
 var savefirstcolor = 0;
-$('#saveColorBag').click(function(e){
+$('.saveColorBag').click(function(e){
   e.preventDefault();
   e.stopPropagation();
 
