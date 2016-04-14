@@ -204,6 +204,7 @@ header {
 }
 
 aside {
+  padding: 15px;
   position: relative;
   //padding on #generator
   top: -25px;
@@ -374,6 +375,7 @@ div[id^="savedFont"] {
 
 @media (min-width: 992px) {
   aside {
+    padding: 0px;
     border-radius: 0;
     right: 0;
     border-bottom: none;

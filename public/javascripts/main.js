@@ -748,6 +748,7 @@ var color;
     if ($(window).width() <= 992) {
       if (!$('aside').hasClass('hidden')) {
         $('aside').attr('class', 'col-xs-12 col-md-2 col-md-push-10 hidden animated');
+        $('#bags span').html('▼');
       };
       $('#color-generator').attr('class', 'col-xs-12 col-md-6');
       $('#gallery').attr('class', 'col-xs-12 col-md-6 hidden');
