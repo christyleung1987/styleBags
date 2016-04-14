@@ -70,7 +70,7 @@ function displayColorBags(colorbags) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#appendSavedColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
+      $('#appendSavedColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}" data-colorbag-name="${name}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -87,7 +87,7 @@ function displayColorBags(colorbags) {
 }
 
 // DELETE colorbag from saved bags
-  $('#userColorBags').on('click', '.deleteSavedColorbag', function(){
+  $('#appendSavedColorBags').on('click', '#deleteSavedColorbag', function(){
     var deleteColorbagId = $(this).parent().data('colorbag-id');
     $(this).parent().remove();
     deleteColorbag(deleteColorbagId);
@@ -113,23 +113,24 @@ function displayColorBags(colorbags) {
   }
 
 // Passing colorbag name to edit modal
-$('#userColorBags').on('click', '.editSavedColorbag', function() {
+$('#appendSavedColorBags').on('click', '#editSavedColorbag', function() {
   var colorbagName = $(this).parent().data('colorbag-name');
+  console.log(colorbagName);
   var colorbagId = $(this).parent().data('colorbag-id');
+  console.log(colorbagId);
   $(".editColorbagName #colorbagName").val(colorbagName);
   $(".colorbagId #colorbagId").val(colorbagId);
 });
 
 // Edit a colorbag name
-$('#editColorbagModal').on('click', '.editColorbag', function(){
+$('.editColorbag').on('click', function(){
   var updateColorbagId = $('#colorbagId').val();
-  console.log(updateColorbagId);
   editColorbag(updateColorbagId);
   })
 
 function editColorbag(updateColorbagId){
   $.ajax({
-    url: '/colorbags/' + updateColorbagId + '/edit',
+    url: '/colorbags/edit',
     method: 'PUT',
     data: {
     }
@@ -177,8 +178,9 @@ function displaySixBags(colorbags) {
 
       var name = colorObject.colorbag.name;
       var rgbTotal = colorObject.colorbag.rgbs.length;
-      // $(`.randcolor:nth-of-type(${i}) p`).remove();
-      $(`.randcolor:nth-of-type(${i})`).empty().append(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div>`);
+//changes// took out .empty() int front of .append and uncommented the .remove///////////////////////////////////////////////////////////////////////
+      $(`.randcolor:nth-of-type(${i}) p`).remove();
+      $(`.randcolor:nth-of-type(${i})`).append(`<div id="colorbag${colorObject.index}"><h5>${name}</h5><div id="bag-rgb${colorObject.index}"></div></div>`);
 
       //loop through rgb array
       for (var j = 0; j < rgbTotal; j++) {
@@ -265,6 +267,7 @@ $('#saveColorBag').click(function(e){
     for (var j = 0; j <= rgbTotal; j++) {
       //-20 is left & right padding on aside
       var width = 100 / rgbTotal;
+      console.log(colorbag);
       $(`#bag-rgb${userColorBagsCount}`).append(`<div id="rgb${j}" style="background-color:${colorbag.rgbs[j]};width:${width}%"></div>` );
     }
 
@@ -361,7 +364,7 @@ $('.saveFont').click(function(e){
       $('#userFonts div div.always-visible:nth-of-type(3)').addClass('hidden');
       $('#userFonts div div.always-visible:nth-of-type(3)').removeClass('always-visible');
     }
-    savefirstFont++;
+    savefirstfont++;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log('uh oh');
@@ -497,6 +500,7 @@ var color;
       savedColorBags();
       savedFonts();
     }
+    $('body').css('background-color', '#1e1e1e');
 
     colors=[];
     colorsGenerator();
@@ -560,6 +564,7 @@ var color;
 
       } else if (keys[39] && keys[70]) {
         fontGenerator();
+        asideHeight();
       }
     }
   }).keyup(function(e) {
@@ -652,17 +657,28 @@ var color;
         countSwatches++;
       }
     }
-    console.log(countSwatches);
     var swatchQuantity = $('.color-swatch').length;
-    //75 is #geneartor padding + 25px for padding on bottom
-    var totalSwatchHeight = $(document).height() - $('#swatches').offset().top;
+    //80 accounts for the difference for gallery button and save colorbag form
+    var totalSwatchHeight = $('#fonts').height() - 80;
     var singleSwatchHeight = totalSwatchHeight / countSwatches;
     $('.color-swatch').css('height', singleSwatchHeight+'px');
   };
 
   function asideHeight() {
-    var asideHeight = $('#color-generator').height() + 40;
+    var asideHeight;
+
+    var minAsideHeight = $(window).height() - $('#border').height() - 10;
+
+    var colorGenHeight = $('#color-generator').height();
+    var fontsHeight = $('#fonts').height();
+
+    if (colorGenHeight >= fontsHeight) {
+      asideHeight = colorGenHeight + 30;
+    } else {
+      asideHeight = fontsHeight + 30;
+    }
     $('aside').css('height', asideHeight+'px');
+    $('aside').css('min-height', minAsideHeight+'px');
   };
 
 
@@ -671,14 +687,5 @@ var color;
 
   });
 
-  $('#userColorBags')
-    .on('click', 'div[id^="rgb"]', function() {
-      var $color = $(this);
-      var $container = $color.closest('.savedColorbags');
-      var $label = $('.color-label', $container);
-      if (!$label.length) {
-        $label = $('<div class="color-label"></div>').appendTo($container);
-      }
-      $label.text($color.css('background-color'));
-    });
+
 });
