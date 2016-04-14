@@ -69,7 +69,11 @@ function displayColorBags(colorbags) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
+<<<<<<< HEAD
+      $('#userColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}" data-colorbag-name="${colorbag.name}"> <h5>${name}</h5><button class="btn editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
+=======
       $('#appendSavedColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
+>>>>>>> 20d32c90187f59e0e663b8a69a0056f4f90886a9
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -86,7 +90,7 @@ function displayColorBags(colorbags) {
 }
 
 // DELETE colorbag from saved bags
-  $('#userColorBags').on('click', '#deleteSavedColorbag', function(){
+  $('#userColorBags').on('click', '.deleteSavedColorbag', function(){
     var deleteColorbagId = $(this).parent().data('colorbag-id');
     $(this).parent().remove();
     deleteColorbag(deleteColorbagId);
@@ -111,26 +115,39 @@ function displayColorBags(colorbags) {
     });
   }
 
-// EDIT A COLORBAG NAME
-  var editColorbagName = function(colorbagId){
+// Passing colorbag name to edit modal
+$('#userColorBags').on('click', '.editSavedColorbag', function() {
+  var colorbagName = $(this).parent().data('colorbag-name');
+  var colorbagId = $(this).parent().data('colorbag-id');
+  $(".editColorbagName #colorbagName").val(colorbagName);
+  $(".colorbagId #colorbagId").val(colorbagId);
+});
 
-    $.ajax({
-      url: '/colorbags/' + colorbagId + '/edit',
-      method: 'PUT',
-      data: {
-      }
-    })
-    .done(function(data) {
-      console.log('The updated colorbag: ', data);
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-      console.log('Uh oh');
-      console.log(jqXHR, textStatus, errorThrown);
-    })
-    .always(function() {
+// Edit a colorbag name
+$('#editColorbagModal').on('click', '.editColorbag', function(){
+  var updateColorbagId = $('#colorbagId').val();
+  console.log(updateColorbagId);
+  editColorbag(updateColorbagId);
+  })
 
-    });
-  }
+function editColorbag(updateColorbagId){
+  $.ajax({
+    url: '/colorbags/' + updateColorbagId + '/edit',
+    method: 'PUT',
+    data: {
+    }
+  })
+  .done(function(data) {
+    console.log('The updated colorbag: ', data);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log('Uh oh');
+    console.log(jqXHR, textStatus, errorThrown);
+  })
+  .always(function() {
+
+  });
+}
 
 function displaySixBags(colorbags) {
   console.log(colorbags);
@@ -549,31 +566,48 @@ var color;
 
   // change ammount of color divs shown based on user input
     $('#color-ammt').on('click', function(){
+      colors = [];
         if ($('#color-number').val() < 4) {
           $('#color6').hide();
           $('#color5').hide();
           $('#color4').hide();
-          colors.pop();
-          colors.pop();
-          colors.pop();
+          colors.push($('#rgbCode1').text());
+          colors.push($('#rgbCode2').text());
+          colors.push($('#rgbCode3').text());
+          console.log(colors);
           $('#rgbs').val(colors);
         } else if ($('#color-number').val() < 5) {
           $('#color6').hide();
           $('#color5').hide();
           $('#color4').show();
-          colors.pop();
-          colors.pop();
+          colors.push($('#rgbCode1').text());
+          colors.push($('#rgbCode2').text());
+          colors.push($('#rgbCode3').text());
+          colors.push($('#rgbCode4').text());
+          console.log(colors);
           $('#rgbs').val(colors);
         } else if ($('#color-number').val() < 6) {
           $('#color6').hide();
           $('#color5').show();
           $('#color4').show();
-          colors.pop();
+          colors.push($('#rgbCode1').text());
+          colors.push($('#rgbCode2').text());
+          colors.push($('#rgbCode3').text());
+          colors.push($('#rgbCode4').text());
+          colors.push($('#rgbCode5').text());
+          console.log(colors);
           $('#rgbs').val(colors);
         } else {
           $('#color6').show();
           $('#color5').show();
           $('#color4').show();
+          colors.push($('#rgbCode1').text());
+          colors.push($('#rgbCode2').text());
+          colors.push($('#rgbCode3').text());
+          colors.push($('#rgbCode4').text());
+          colors.push($('#rgbCode5').text());
+          colors.push($('#rgbCode6').text());
+          console.log(colors);
           $('#rgbs').val(colors);
         }
     });

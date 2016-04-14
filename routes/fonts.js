@@ -18,8 +18,7 @@ router.post('/', function(req, res, next) {
 
   newFont.save(function(err, user) {
     if (err) console.log(err);
-    //res.redirect('/');
-    res.json(newFont);
+    res.status(200).json({});
   });
 });
 
