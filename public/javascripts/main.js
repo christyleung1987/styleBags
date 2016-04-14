@@ -70,7 +70,7 @@ function displayColorBags(colorbags) {
       var name = colorbags[i].name;
       var rgbTotal = colorbags[i].rgbs.length;
       $('#userColorBags p').remove();
-      $('#appendSavedColorBags').append(`<div id="colorbag${i}" class="savedColorbags" data-colorbag-id="${colorbag._id}" data-colorbag-name="${name}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
+      $('#appendSavedColorBags').append(`<div id="colorbag${i}" class="savedColorbags ${colorbag._id}" data-colorbag-id="${colorbag._id}" data-colorbag-name="${name}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag" data-toggle="modal" data-target="#editColorbagModal">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${i}"></div> </div> `);
       if (i >= colorbags.length - 4) {
         $(`#colorbag${i}`).addClass('always-visible');
       } else {
@@ -125,21 +125,23 @@ $('#appendSavedColorBags').on('click', '#editSavedColorbag', function() {
 // Edit a colorbag name
 $('.editColorbag').on('click', function(){
   var updateColorbagId = $('#colorbagId').val();
-  editColorbag(updateColorbagId);
+  var updateColorbagName = $('#colorbagName').val();
+  editColorbag(updateColorbagId, updateColorbagName);
   })
 
-function editColorbag(updateColorbagId){
+function editColorbag(updateColorbagId, updateColorbagName){
   $.ajax({
     url: '/colorbags/edit',
     method: 'POST',
     data: {
       id: updateColorbagId,
-      name: $('#colorbagName').val(),
+      name: updateColorbagName,
       _method: 'PUT'
     }
   })
   .done(function(data) {
-    console.log('The updated colorbag: ', data);
+    console.log(data.name);
+    $(`.${updateColorbagId}`).children('h5').text(`${updateColorbagName}`);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log('Uh oh');
