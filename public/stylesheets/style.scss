@@ -91,7 +91,7 @@ header {
 }
 
 .container, .container-fluid:not(:first-of-type) {
-  padding: 10px 25px;
+  padding: 10px 25px 0px;
   background-color: $off-black;
 }
 
@@ -128,6 +128,11 @@ header {
 
 .hidden {
   display: none;
+}
+
+section .row {
+margin-bottom: 0;
+padding-bottom: 0;
 }
 
 aside {
@@ -178,6 +183,18 @@ aside {
     letter-spacing: 2px;
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
   }
+}
+
+#colorBag {
+  float: right;
+}
+
+#color-number {
+  width: 40px;
+}
+
+#color-number, #color-ammt, label[for=color-number] {
+  display: inline-block;
 }
 
 div[id^="colorbag"] {
@@ -247,8 +264,13 @@ div[id^="savedFont"] {
   }
 }
 
+div.row {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
 #generator {
-  padding: 25px;
+  padding: 25px 25px 0 25px;
   display: none;
 }
 .color-swatch{
@@ -281,7 +303,11 @@ a {
     }
   }
 
+  article:first-of-type {
+    margin-top: -20px;
+  }
+
   article:not(:last-child) {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 }

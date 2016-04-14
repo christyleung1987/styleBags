@@ -60,7 +60,7 @@ header {
     right: 30px; }
 
 .container, .container-fluid:not(:first-of-type) {
-  padding: 10px 25px;
+  padding: 10px 25px 0px;
   background-color: #1e1e1e; }
 
 #landing {
@@ -88,6 +88,10 @@ header {
 
 .hidden {
   display: none; }
+
+section .row {
+  margin-bottom: 0;
+  padding-bottom: 0; }
 
 aside {
   position: relative;
@@ -122,6 +126,15 @@ aside {
   aside .loading {
     letter-spacing: 2px;
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
+
+#colorBag {
+  float: right; }
+
+#color-number {
+  width: 40px; }
+
+#color-number, #color-ammt, label[for=color-number] {
+  display: inline-block; }
 
 div[id^="colorbag"] {
   position: relative;
@@ -173,8 +186,12 @@ div[id^="savedFont"] {
       color: #272826;
       background-color: red; }
 
+div.row {
+  padding-bottom: 0;
+  margin-bottom: 0; }
+
 #generator {
-  padding: 25px;
+  padding: 25px 25px 0 25px;
   display: none; }
 
 .color-swatch {
@@ -195,7 +212,9 @@ div[id^="savedFont"] {
     left: -10%; }
     #fonts form .saveFont {
       background: #272826; }
+  #fonts article:first-of-type {
+    margin-top: -20px; }
   #fonts article:not(:last-child) {
-    margin-bottom: 60px; }
+    margin-bottom: 40px; }
 
 /*# sourceMappingURL=style.css.map */

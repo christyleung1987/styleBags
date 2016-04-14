@@ -3,11 +3,9 @@ $(function() {
 var fontPluses = [];
 
 // MY BAGS DROPDOWN
-$('#bags').one('click', function() {
-  savedFonts();
-});
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
+  asideHeight();
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
@@ -47,10 +45,13 @@ function savedColorBags(){
     dataType: 'json'
   })
   .done(function(colorbags) {
-    displayColorBags(colorbags);
+    //we use this variable somewhere else
     userColorBagsCount = colorbags.length;
     if (userColorBagsCount == 0) {
       $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>");
+    } else {
+      $('#appendSavedColorBags').empty();
+      displayColorBags(colorbags);
     }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
@@ -204,7 +205,6 @@ function sixBags(){
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
-      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>")
   })
 }
 
@@ -301,6 +301,7 @@ function savedFonts(){
     if (userFontsCount == 0) {
       $('#userFonts').html("<p>You haven't saved any fonts.</p>");
     } else {
+      $('#appendSavedFonts').empty();
       displayFontBag(fonts);
       var fontsForGoogle = fontPluses.join('|');
       $('#fontsLink').append(`<link href="https://fonts.googleapis.com/css?family=${fontsForGoogle}" rel="stylesheet" type="text/css">`);
@@ -408,6 +409,12 @@ $('.switch').on('click', function() {
 
 var color;
 
+$('#randomize').on('click', function() {
+  // $('#color-generator').toggleClass('hidden');
+  sixBags();
+})
+
+var color;
 
 // COLOR GENERATOR functions
   function randomColor(){
@@ -485,8 +492,10 @@ var color;
     $(this).parent().hide();
     $('#generator').css('display', 'block');
     $('#bags').removeClass('hidden');
+    swatchHeight();
     if ($('#userId').val()) {
       savedColorBags();
+      savedFonts();
     }
 
     colors=[];
@@ -605,6 +614,7 @@ var color;
           console.log(colors);
           $('#rgbs').val(colors);
         }
+          swatchHeight();
     });
 
   // Locking and unlocking color divs
@@ -631,15 +641,29 @@ var color;
   // SET COLOR SWATCH & ASIDE HEIGHT
   //Runs on document load & on resize
   $(window).resize(function() {
-    var swatchQuantity = $('.color-swatch').length;
-    //50 is padding on #generator
-    var totalSwatchHeight = $(window).height() - $('header').height() - 50;
-    var singleSwatchHeight = totalSwatchHeight / swatchQuantity;
-    $('.color-swatch').css('height', singleSwatchHeight+'px');
-
-    var asideHeight = $(window).height() - $('header').height();
-    $('aside').css('height', asideHeight+'px');
+    swatchHeight();
+    asideHeight();
   }).resize();
+
+  function swatchHeight() {
+    var countSwatches = 0;
+    for (var i = 1; i <= 6; i++ ) {
+      if ($(`#color${i}`).css('display') !== 'none') {
+        countSwatches++;
+      }
+    }
+    console.log(countSwatches);
+    var swatchQuantity = $('.color-swatch').length;
+    //75 is #geneartor padding + 25px for padding on bottom
+    var totalSwatchHeight = $(document).height() - $('#swatches').offset().top;
+    var singleSwatchHeight = totalSwatchHeight / countSwatches;
+    $('.color-swatch').css('height', singleSwatchHeight+'px');
+  };
+
+  function asideHeight() {
+    var asideHeight = $('#color-generator').height() + 40;
+    $('aside').css('height', asideHeight+'px');
+  };
 
 
   // Setting font colors to gen colors
@@ -647,5 +671,14 @@ var color;
 
   });
 
-
+  $('#userColorBags')
+    .on('click', 'div[id^="rgb"]', function() {
+      var $color = $(this);
+      var $container = $color.closest('.savedColorbags');
+      var $label = $('.color-label', $container);
+      if (!$label.length) {
+        $label = $('<div class="color-label"></div>').appendTo($container);
+      }
+      $label.text($color.css('background-color'));
+    });
 });
