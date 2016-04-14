@@ -147,6 +147,18 @@ function editColorbag(updateColorbagId){
   });
 }
 
+$('.fontHeader').on('click', function() {
+  var color = $(this).siblings('.rgbCode').text();
+  console.log($(this));
+  $('h1').css('color', color);
+});
+
+$('.fontPara').on('click', function() {
+  var color = $(this).siblings('.rgbCode').text();
+  console.log($(this));
+  $('article p').css('color', color);
+});
+
 function displaySixBags(colorbags) {
   console.log(colorbags);
   if (!colorbags) {
