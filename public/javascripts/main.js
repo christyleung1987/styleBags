@@ -511,6 +511,7 @@ var color;
       savedColorBags();
       savedFonts();
     }
+    $('body').css('background-color', '#1e1e1e');
 
     colors=[];
     colorsGenerator();
@@ -667,21 +668,28 @@ var color;
         countSwatches++;
       }
     }
-    console.log(countSwatches);
     var swatchQuantity = $('.color-swatch').length;
-    var totalSwatchHeight = $(window).height() - $('#swatches').offset().top;
+    //80 accounts for the difference for gallery button and save colorbag form
+    var totalSwatchHeight = $('#fonts').height() - 80;
     var singleSwatchHeight = totalSwatchHeight / countSwatches;
     $('.color-swatch').css('height', singleSwatchHeight+'px');
   };
 
   function asideHeight() {
     var asideHeight;
-    if ($('#color-generator').height() >= $('#fonts').height()) {
-      asideHeight = $('#color-generator').height() + 30;
+
+    var minAsideHeight = $(window).height() - $('#border').height() - 10;
+
+    var colorGenHeight = $('#color-generator').height();
+    var fontsHeight = $('#fonts').height();
+
+    if (colorGenHeight >= fontsHeight) {
+      asideHeight = colorGenHeight + 30;
     } else {
-      asideHeight = $('#fonts').height() + 30;
+      asideHeight = fontsHeight + 30;
     }
     $('aside').css('height', asideHeight+'px');
+    $('aside').css('min-height', minAsideHeight+'px');
   };
 
 
