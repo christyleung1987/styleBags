@@ -11,11 +11,11 @@ $('#bags').on('click', function(){
   $('#color-generator').toggleClass('col-md-6 col-md-5');
   $('#gallery').toggleClass('col-md-6 col-md-5');
   $('#fonts').toggleClass('col-md-6 col-md-5');
-  // if ($('#bags').hasClass('hidden')) {
-  //   $('#bags span').html('▼');
-  // } else {
-  //   $('#bags span').html('▲');
-  // }
+  if ($('aside').hasClass('hidden')) {
+    $('#bags span').html('▼');
+  } else {
+    $('#bags span').html('▲');
+  }
 });
 
 // SHOW ALL
@@ -103,6 +103,8 @@ function displayColorBags(colorbags) {
       console.log(jqXHR, textStatus, errorThrown);
     })
     .always(function() {
+      $('div[id^="colorbag"]:nth-of-type(5)').addClass('always-visible');
+      $('div[id^="colorbag"]:nth-of-type(5)').removeClass('hidden');
     });
   }
 
@@ -242,14 +244,15 @@ $('#saveColorBag').click(function(e){
     console.log("New colorbag: ", colorbag);
     $('#colorBagName').val('');
     userColorBagsCount++;
-    $('#appendNewColorBag').append(`<div id="colorbag${userColorBagsCount}" class="savedColorbags" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${userColorBagsCount}"></div> </div> `);
+    $('#appendNewColorBag').append(`<div id="colorbag${userColorBagsCount}" class="savedColorBags always-visible" data-colorbag-id="${colorbag._id}"> <h5>${name}</h5><button class="btn" id="editSavedColorbag">Edit</button><button class="btn" id="deleteSavedColorbag">x</button><div id="bag-rgb${userColorBagsCount}"></div> </div> `);
     for (var j = 0; j <= rgbTotal; j++) {
       //-20 is left & right padding on aside
       var width = 100 / rgbTotal;
       $(`#bag-rgb${userColorBagsCount}`).append(`<div id="rgb${j}" style="background-color:${colorbag.rgbs[j]};width:${width}%"></div>` );
     }
-    // $('#userColorBags div[id^="colorbag"].always-visible:last-of-type').addClass('hidden');
-    // $('#userColorBags div[id^="colorbag"].always-visible:last-of-type').removeClass('always-hidden');
+
+    $('div.always-visible:nth-of-type(5)').addClass('hidden');
+    $('div.always-visible:nth-of-type(5').removeClass('always-visible');
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log('uh oh');
