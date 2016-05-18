@@ -6,19 +6,9 @@ var fontPluses = [];
 $('#bags').on('click', function(){
   $('aside').toggleClass('hidden');
   asideHeight();
-  if ($(window).width() >= 992) {
-    if (!$('aside').hasClass('slideInRight')) {
-      $('aside').addClass('slideInRight');
-    }
-    $('#color-generator').toggleClass('col-md-6 col-md-5');
-    $('#color-generator').toggleClass('col-md-pull-2');
-    $('#gallery').toggleClass('col-md-6 col-md-5');
-    $('#gallery').toggleClass('col-md-pull-2');
-    $('#fonts').toggleClass('col-md-6 col-md-5');
-    $('#fonts').toggleClass('col-md-pull-2');
-  } else {
-    $('aside').removeClass('slideInRight');
-  }
+  $('#color-generator').toggleClass('col-md-6 col-md-5');
+  $('#gallery').toggleClass('col-md-6 col-md-5');
+  $('#fonts').toggleClass('col-md-6 col-md-5');
   if ($('aside').hasClass('hidden')) {
     $('#bags span').html('▼');
   } else {
@@ -57,11 +47,11 @@ function savedColorBags(){
   .done(function(colorbags) {
     //we use this variable somewhere else
     userColorBagsCount = colorbags.length;
-    if (userColorBagsCount == 0) {
-      $('#userColorBags').html("<p>You haven't saved any ColorBags.</p>");
-    } else {
+    if (userColorBagsCount > 0) {
       $('#appendSavedColorBags').empty();
       displayColorBags(colorbags);
+    } else {
+      $('#userColorBags p').html("<p>You haven't saved any ColorBags.</p>");
     }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
@@ -111,8 +101,8 @@ function displayColorBags(colorbags) {
     })
     .done(function(data) {
       console.log('Deleted colorbag: ', data);
-      $('div[id^="colorbag"]:nth-of-type(5)').addClass('always-visible');
-      $('div[id^="colorbag"]:nth-of-type(5)').removeClass('hidden');
+      // $('div[id^="colorbag"]:nth-of-type(5)').addClass('always-visible');
+      // $('div[id^="colorbag"]:nth-of-type(5)').removeClass('hidden');
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
       console.log('Uh oh');
@@ -303,13 +293,40 @@ function sixBags(){
   })
 }
 
+
+
+// function displaySixBags(Colorbag){
+//   console.log(Colorbag);
+// }
+
+// function displaySixBags(colorbags) {
+//   console.log('49', colorbags);
+//   colorbags.forEach(function(colorbag){
+//     if (!colorbag) {
+//       return;
+//     } else {
+//       var colorData = Math.floor(Math.random()*256);
+//       for (var i = 0; i <= 6; i++) {
+//         var name = colorbags[i].name;
+//         $('aside').append(`<div class="colorbag"><h4>${name}</h4><div class="colorbag-rgb" id="colorbag${i}"></div></div>`);
+//         for (var j = 0; j <= colorbags[i].rgbs.length; j++) {
+//           console.log(`#colorbag${i}`)
+//           $(`#colorbag${i}`).append(`<div class="rgb${j}" style="background-color:${colorbags[i].rgbs[j]};"></div>`);
+//           console.log('61', colorData[i]);
+//         }
+//       }
+//     }
+//   })
+// }
+// displaySixBags();
+
 // DISPLAY NEWLY SAVED COLORBAGS IN ASIDE
 var savefirstcolor = 0;
 $('.saveColorBag').click(function(e){
   e.preventDefault();
   e.stopPropagation();
 
-  div[id^=""]
+  // div[id^=""]
 
   var userId = $('#userId').val();
   var name = $('#colorBagName').val();
@@ -582,7 +599,6 @@ var color;
   $('#logo').on('click', function(){
     $('#generator').css('display', 'none');
     $('#bags').addClass('hidden');
-    $('body').css('background-color', '#272826');
     $('#landing').show();
   });
 
@@ -717,16 +733,6 @@ var color;
   $(window).resize(function() {
     swatchHeight();
     asideHeight();
-
-    if ($(window).width() <= 992) {
-      if (!$('aside').hasClass('hidden')) {
-        $('aside').attr('class', 'col-xs-12 col-md-2 col-md-push-10 hidden animated');
-        $('#bags span').html('▼');
-      };
-      $('#color-generator').attr('class', 'col-xs-12 col-md-6');
-      $('#gallery').attr('class', 'col-xs-12 col-md-6 hidden');
-      $('#fonts').attr('class', 'col-xs-12 col-md-6 text-center');
-    }
   }).resize();
 
   function swatchHeight() {
@@ -745,6 +751,7 @@ var color;
 
   function asideHeight() {
     var asideHeight;
+
     var minAsideHeight = $(window).height() - $('#border').height() - 10;
 
     var colorGenHeight = $('#color-generator').height();
@@ -755,14 +762,8 @@ var color;
     } else {
       asideHeight = fontsHeight + 30;
     }
-
-    if ($(window).width() >= 992) {
-      $('aside').css('height', asideHeight+'px');
-      $('aside').css('min-height', minAsideHeight+'px');
-    } else {
-      $('aside').css('min-height', '100px');
-      $('aside').css('max-height', minAsideHeight+'px');
-    }
+    $('aside').css('height', asideHeight+'px');
+    $('aside').css('min-height', minAsideHeight+'px');
   };
 
 

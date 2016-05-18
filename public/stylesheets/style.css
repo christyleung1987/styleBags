@@ -4,7 +4,7 @@ html, body {
 
 body {
   color: #e7e7e7;
-  background-color: #272826;
+  background-color: white;
   font: 1.8em "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 p {
@@ -51,7 +51,7 @@ p {
     color: #1e1e1e; }
 
 header {
-  background-color: #272826;
+  background-color: white;
   border-bottom: 10px solid #00a376;
   color: #e7e7e7;
   margin-bottom: 8px;
@@ -119,12 +119,12 @@ header {
 
 .container, .container-fluid:not(:first-of-type) {
   padding: 10px 25px 0px;
-  background-color: #1e1e1e; }
+  background-color: white;}
 
 #landing {
   margin-top: 30px;
   border-radius: 10px;
-  color: #e7e7e7; }
+  color: darkgrey; }
   #landing h1 {
     color: #f4b800; }
   #landing h2, #landing b {
@@ -132,7 +132,6 @@ header {
   #landing #start {
     color: #e7e7e7;
     background-color: #00a376;
-    text-shadow: 1px 1px 2px #1e1e1e;
     padding: 15px 25px;
     margin: 20px 0;
     border-radius: 20px; }
@@ -147,34 +146,16 @@ header {
 .hidden {
   display: none; }
 
-.randcolor {
-  position: relative; }
-  .randcolor .saveColorBagGallery {
-    border-radius: 5px;
-    position: absolute;
-    top: 0;
-    right: 15px;
-    text-transform: uppercase;
-    font-size: .8em;
-    border: 1px solid #e7e7e7;
-    color: #00a376;
-    background-color: #1e1e1e; }
-    .randcolor .saveColorBagGallery:hover {
-      color: #1e1e1e;
-      background-color: #00a376; }
-  .randcolor:not(.dontaddmargin) {
-    margin-bottom: 70px; }
-
 aside {
-  padding: 15px;
   position: relative;
   top: -25px;
-  border: 2px dotted #00a376;
-  border-top: none;
-  border-radius: 0px 0px 25px 25px;
+  left: 10px;
   padding-top: 10px;
   background-color: #272826;
-  overflow: scroll; }
+  border-left: 2px dotted #00a376;
+  box-shadow: -1px 0 10px black;
+  overflow: scroll;
+  margin-bottom: -25px; }
   aside h4 {
     padding-bottom: 10px;
     text-shadow: 1px 1px 1px black;
@@ -287,15 +268,9 @@ div[id^="savedFont"] {
   #fonts article:not(:last-child) {
     margin-bottom: 40px; }
 
-@media (min-width: 992px) {
-  aside {
-    padding: 0px;
-    border-radius: 0;
-    right: 0;
-    border-bottom: none;
-    border-left: 1px dotted #00a376;
-    border-right: 1px dotted #00a376;
-    box-shadow: -1px 0 10px black;
-    margin-bottom: -25px; } }
-
 /*# sourceMappingURL=style.css.map */
+.btn-primary {
+    color: #337ab7;
+    background-color: white;
+    border-color: #2e6da4;
+}
