@@ -585,7 +585,7 @@ var color;
       savedColorBags();
       savedFonts();
     }
-    $('body').css('background-color', '#1e1e1e');
+    $('body').css('background-color', 'white');
 
     colors=[];
     colorsGenerator();
